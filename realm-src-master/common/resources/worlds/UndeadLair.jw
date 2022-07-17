@@ -1,0 +1,13 @@
+﻿{
+  "isLimbo": false,
+  "persist": false,
+  "name": "Undead Lair",
+  "sbName": "Undead Lair",
+  "difficulty": 4,
+  "background": 0,
+  "blocking": 2,
+  "restrictTp": false,
+  "showDisplays": false,
+  "portals": [ 0x071a ],
+  "maps": [ "UDL.jm", "UDL.jm", "UDLT.jm" ] //1/3 chance for troom
+}

@@ -1,0 +1,13 @@
+﻿{
+  "isLimbo": false,
+  "persist": false,
+  "name": "Cave of a Thousand Treasures",
+  "sbName": "Cave of a Thousand Treasures",
+  "difficulty": 3,
+  "background": 0,
+  "blocking": 2,
+  "restrictTp": false,
+  "showDisplays": false,
+  "portals": [ 0x5e2e ],
+  "maps": [ "CaveOfThousandTreasures.jm" ]
+}

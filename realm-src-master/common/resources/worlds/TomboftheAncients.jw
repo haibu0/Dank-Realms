@@ -1,0 +1,13 @@
+﻿{
+  "isLimbo": false,
+  "persist": false,
+  "name": "Tomb of the Ancients",
+  "sbName": "Tomb of the Ancients",
+  "difficulty": 4,
+  "background": 0,
+  "blocking": 2,
+  "restrictTp": true,
+  "showDisplays": false,
+  "portals": [ 0x072c ],
+  "maps": [ "TomboftheAncients.jm" ]
+}

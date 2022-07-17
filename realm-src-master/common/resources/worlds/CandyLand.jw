@@ -1,0 +1,13 @@
+﻿{
+  "isLimbo": false,
+  "persist": false,
+  "name": "Candyland Hunting Grounds",
+  "sbName": "Candyland Hunting Grounds",
+  "difficulty": 4,
+  "background": 0,
+  "blocking": 2,
+  "restrictTp": true,
+  "showDisplays": false,
+  "portals": [ 0x074a ],
+  "maps": [ "CLand.jm" ]
+}

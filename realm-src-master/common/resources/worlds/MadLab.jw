@@ -1,0 +1,13 @@
+﻿{
+  "isLimbo": false,
+  "persist": false,
+  "name": "Mad Lab",
+  "sbName": "Mad Lab",
+  "difficulty": 3,
+  "background": 0,
+  "blocking": 2,
+  "restrictTp": false,
+  "showDisplays": false,
+  "portals": [ 0x0890 ],
+  "maps": [ "MadLab.jm" ]
+}

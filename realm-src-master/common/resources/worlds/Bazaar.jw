@@ -1,0 +1,13 @@
+﻿{
+  "isLimbo": false,
+  "persist": false,
+  "name": "Bazaar",
+  "sbName": "Bazaar",
+  "difficulty": -1,
+  "background": 0,
+  "blocking": 2,
+  "restrictTp": true,
+  "showDisplays": false,
+  "portals": [ 0x074d ],
+  "maps": [ "Bazaar.jm" ]
+}

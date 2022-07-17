@@ -1,0 +1,13 @@
+﻿{
+  "isLimbo": false,
+  "persist": false,
+  "name": "Sprite World",
+  "sbName": "Sprite World",
+  "difficulty": 2,
+  "background": 0,
+  "blocking": 2,
+  "restrictTp": true,
+  "showDisplays": false,
+  "portals": [ 0x070c ],
+  "maps": [ "SpriteWorld.jm" ]
+}

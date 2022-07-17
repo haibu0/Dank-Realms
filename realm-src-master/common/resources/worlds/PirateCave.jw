@@ -1,0 +1,13 @@
+﻿{
+  "isLimbo": false,
+  "persist": false,
+  "name": "Pirate Cave",
+  "sbName": "Pirate Cave",
+  "difficulty": 5,
+  "background": 0,
+  "blocking": 2,
+  "restrictTp": true,
+  "showDisplays": false,
+  "portals": [ 0x0717 ],
+  "maps": [ "PirateCave.jm" ]
+}

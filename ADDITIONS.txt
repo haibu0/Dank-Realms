@@ -1,0 +1,43 @@
+-pets(summon similar to mseal or hp fountains following player) - different tier pets or abilites like heal player when below 20% health/mana
+-ability summons(different use for each ability?) summoner
+✓overmaxing
+-more stats(focus, crit(set amount), luck)
+-protection shield(with regen instead of surge)
+-enchants
+-reforge(with glows according to tier)
+-forge
+-item abilities
+-custom effects
+-statusbar change stat colors when maxed then again when fully maxed
+-additional currency
+-ui changes
+-summons: only a certain amount at a time, eff.amount, summonfollow(closer than petfollow?), follows mouse/runs to enemies
+-potion stacking
+-loot preview if mouse over
+-map editor change
+-still decoys
+-tooltips
+
+fixes needed
+-make summons damage enemies
+-stat boost icons
+-mscale scroll
+-equipmenttooltip duplicate texts (look at orbs)
+bugs
+-wismod tooltip
+-poison aoe not showing sometimes
+-wismod on statboost
+-wander looks buggy/not smooth(or just movement in general)
+-fame notifier(+0 fame)
+-equipmenttool tips shot effect
+-forbi jungle boss totem hp bars(make behavior with invunerable)
+-fix fame command
+
+ability perfection(mods tht make sense, improvements that u see and update all tiered abilities) make them all perfect min/max damage on abilities(trap, poison)
+tiered items lookover, t8 abilities(change all)get proj colors? (revisit other class damage)| projectile amplitude and frequency changes with mouse pos(wakizashi)
+
+items to fix:
+-penetrating blast spell
+-drake in an or
+-ogmur(tooltip)
+-belligerance shield: cant activate shoot and activate something else (slowed eff) at the same time

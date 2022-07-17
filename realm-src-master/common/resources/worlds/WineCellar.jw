@@ -1,0 +1,13 @@
+﻿{
+  "isLimbo": false,
+  "persist": false,
+  "name": "Wine Cellar",
+  "sbName": "Wine Cellar",
+  "difficulty": 4,
+  "background": 0,
+  "blocking": 2,
+  "restrictTp": true,
+  "showDisplays": false,
+  "portals": [ 0x0721 ],
+  "maps": [ "WineCellar.wmap" ]
+}

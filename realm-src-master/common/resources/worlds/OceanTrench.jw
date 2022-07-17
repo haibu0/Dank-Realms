@@ -1,0 +1,13 @@
+﻿{
+  "isLimbo": false,
+  "persist": false,
+  "name": "Ocean Trench",
+  "sbName": "Ocean Trench",
+  "difficulty": 4,
+  "background": 0,
+  "blocking": 2,
+  "restrictTp": false,
+  "showDisplays": false,
+  "portals": [ 0x0730 ],
+  "maps": [ "OceanTrench.jm" ]
+}

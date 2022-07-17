@@ -1,0 +1,18 @@
+﻿<AppSettings>
+  <NewAccounts>
+    <MaxCharSlot>2</MaxCharSlot>
+    <VaultCount>3</VaultCount>
+    <Fame>99999</Fame>
+    <Credits>99999</Credits>
+    <SlotCost>1500</SlotCost>
+    <SlotCurrency>1</SlotCurrency>
+    <ClassesUnlocked/>
+    <!--<SkinsUnlocked/>-->
+  </NewAccounts>
+  <NewCharacters>
+    <Level>1</Level>
+    <!--<Maxed/>-->
+  </NewCharacters>
+  <UseExternalPayments>0</UseExternalPayments>
+  <MaxStackablePotions>12</MaxStackablePotions>
+</AppSettings>

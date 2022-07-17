@@ -1,0 +1,13 @@
+﻿{
+  "isLimbo": false,
+  "persist": false,
+  "name": "Manor of the Immortals",
+  "sbName": "Manor of the Immortals",
+  "difficulty": 3,
+  "background": 0,
+  "blocking": 2,
+  "restrictTp": false,
+  "showDisplays": false,
+  "portals": [ 0x0739 ],
+  "maps": [ "ManoroftheImmortals.jm" ]
+}
