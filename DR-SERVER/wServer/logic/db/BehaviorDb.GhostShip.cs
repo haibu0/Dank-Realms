@@ -206,6 +206,7 @@ namespace wServer.logic
                 new ItemLoot("Ghost Pirate Rum", .2),
                 new Threshold(0.01,
                     new ItemLoot("Potion of Wisdom", .1),
+                    new ItemLoot("Trap of the Vile Spirit", .001),
                     new TierLoot(8, ItemType.Weapon, 0.12),
                     new TierLoot(9, ItemType.Weapon, 0.10),
                     new TierLoot(8, ItemType.Armor, 0.12),
@@ -219,7 +220,7 @@ namespace wServer.logic
                     new TierLoot(11, ItemType.Armor, 0.04),
                     new TierLoot(5, ItemType.Ability, 0.04),
                     new TierLoot(5, ItemType.Ring, 0.04),
-                    new ItemLoot("Wine Cellar Incantation", .001)
+                    new ItemLoot("Wine Cellar Incantation", .01)
                     )
             )
             .Init("Ghost Ship Anchor",

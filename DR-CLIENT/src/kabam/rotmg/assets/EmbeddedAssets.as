@@ -2,8 +2,11 @@ package kabam.rotmg.assets
 {
    public class EmbeddedAssets
    {
-      
-      public static var particlesEmbed:Class = EmbeddedAssets_particlesEmbed;
+       public static var d2LofiObjEmbed_:Class = EmbeddedAssets_d2LofiObjEmbed_;
+
+       public static var d3LofiObjEmbed_:Class = EmbeddedAssets_d3LofiObjEmbed_;
+
+       public static var particlesEmbed:Class = EmbeddedAssets_particlesEmbed;
       
       public static var lofiCharEmbed_:Class = EmbeddedAssets_lofiCharEmbed_;
       
@@ -28,8 +31,8 @@ package kabam.rotmg.assets
       public static var lofiObj2Embed_:Class = EmbeddedAssets_lofiObj2Embed_;
       
       public static var lofiObj3Embed_:Class = EmbeddedAssets_lofiObj3Embed_;
-      
-      public static var lofiObj4Embed_:Class = EmbeddedAssets_lofiObj4Embed_;
+
+       public static var lofiObj4Embed_:Class = EmbeddedAssets_lofiObj4Embed_;
       
       public static var lofiObj5Embed_:Class = EmbeddedAssets_lofiObj5Embed_;
       

@@ -67,12 +67,12 @@ namespace wServer.logic
                     new TierLoot(3, ItemType.Ring, .15),
                     new TierLoot(4, ItemType.Ring, .07),
                     new TierLoot(5, ItemType.Ring, .03),
-                    new ItemLoot("Potion of Defense", .1),
-                    new ItemLoot("Potion of Attack", .1),
-                    new ItemLoot("Potion of Vitality", .1),
-                    new ItemLoot("Potion of Wisdom", .1),
-                    new ItemLoot("Potion of Speed", .1),
-                    new ItemLoot("Potion of Dexterity", .1),
+                    new TierLoot(5, ItemType.Potion, .1),
+                    new TierLoot(5, ItemType.Potion, .1),
+                    new TierLoot(5, ItemType.Potion, .1),
+                    new TierLoot(5, ItemType.Potion, .1),
+                    new TierLoot(5, ItemType.Potion, .1),
+                    new TierLoot(5, ItemType.Potion, .1),
                     new ItemLoot("Seal of Blasphemous Prayer", .004)
                     )
             )

@@ -927,18 +927,24 @@ namespace wServer.realm.commands
         protected override bool Process(Player player, RealmTime time, string args)
         {
             var pd = player.Manager.Resources.GameData.Classes[player.ObjectType];
-
-            player.Stats.Base[0] = pd.Stats[0].MaxValue + 50;
-            player.Stats.Base[1] = pd.Stats[1].MaxValue + 50;
-            player.Stats.Base[2] = pd.Stats[2].MaxValue + 10;
-            player.Stats.Base[3] = pd.Stats[3].MaxValue + 10;
-            player.Stats.Base[4] = pd.Stats[4].MaxValue + 10;
-            player.Stats.Base[5] = pd.Stats[5].MaxValue + 10;
-            player.Stats.Base[6] = pd.Stats[6].MaxValue + 10;
-            player.Stats.Base[7] = pd.Stats[7].MaxValue + 10;
-
-            player.SendInfo("Your character stats have been maxed.");
-            return true;
+            if (player.AscensionEnabled)
+            {
+                player.Stats.Base[0] = pd.Stats[0].MaxValue + 50;
+                player.Stats.Base[1] = pd.Stats[1].MaxValue + 50;
+                player.Stats.Base[2] = pd.Stats[2].MaxValue + 10;
+                player.Stats.Base[3] = pd.Stats[3].MaxValue + 10;
+                player.Stats.Base[4] = pd.Stats[4].MaxValue + 10;
+                player.Stats.Base[5] = pd.Stats[5].MaxValue + 10;
+                player.Stats.Base[6] = pd.Stats[6].MaxValue + 10;
+                player.Stats.Base[7] = pd.Stats[7].MaxValue + 10;
+                player.SendInfo("Your character stats have been maxed.");
+                return true;
+            }
+            else
+            {
+                player.SendError("Your character is not ascended.");
+                return false;
+            }
         }
     }
 
@@ -950,8 +956,32 @@ namespace wServer.realm.commands
 
         protected override bool Process(Player player, RealmTime time, string args)
         {
-            player.AscensionEnabled = true;
-            return true;
+            var pd = player.Manager.Resources.GameData.Classes[player.ObjectType];
+            if (player.AscensionEnabled) {
+                player.SendError("Your character is already ascended.");
+                return false;  
+            }
+            if (!player.AscensionEnabled && 
+            player.Stats.Base[0] == pd.Stats[0].MaxValue &&
+            player.Stats.Base[1] == pd.Stats[1].MaxValue &&
+            player.Stats.Base[2] == pd.Stats[2].MaxValue &&
+            player.Stats.Base[3] == pd.Stats[3].MaxValue &&
+            player.Stats.Base[4] == pd.Stats[4].MaxValue &&
+            player.Stats.Base[5] == pd.Stats[5].MaxValue &&
+            player.Stats.Base[6] == pd.Stats[6].MaxValue &&
+            player.Stats.Base[7] == pd.Stats[7].MaxValue)
+            {
+                player.AscensionEnabled = true;
+                player.SendInfo("Your character is now ascended!");
+                return true;
+
+            }
+            else
+            {
+                
+                player.SendError("Your character must be 8/8 to ascend.");
+                return false;
+            }
         }
     }
 
@@ -1512,7 +1542,7 @@ namespace wServer.realm.commands
                 player.CalculateFame();
                 return true;
             }
-
+            player.SendError("Error");
             return false;
         }
     }

@@ -17,14 +17,17 @@ namespace wServer.realm.entities
         int dmg;
         ConditionEffectIndex effect;
         int duration;
-        public Trap(Player player, float radius, int dmg, ConditionEffectIndex eff, float effDuration)
+        uint color;
+        public Trap(Player player, float radius, int dmg, ConditionEffectIndex eff, float effDuration, uint color)
             : base(player.Manager, 0x0711, LIFETIME * 1000, true, true, false)
         {
+            if (color == 0) { color = 0xff9000ff; }
             this.player = player;
             this.radius = radius;
             this.dmg = dmg;
             this.effect = eff;
-            this.duration = (int)(effDuration * 1000);
+            this.color = color;
+            this.duration = (int)(effDuration * 1000);      
         }
 
         int t = 0;
@@ -36,7 +39,7 @@ namespace wServer.realm.entities
                 Owner.BroadcastPacketNearby(new ShowEffect()
                 {
                     EffectType = EffectType.Trap,
-                    Color = new ARGB(0xff9000ff),
+                    Color = new ARGB(color),
                     TargetObjectId = Id,
                     Pos1 = new Position() { X = radius / 2 }
                 }, this, null);
@@ -62,7 +65,7 @@ namespace wServer.realm.entities
             Owner.BroadcastPacketNearby(new ShowEffect()
             {
                 EffectType = EffectType.AreaBlast,
-                Color = new ARGB(0xff9000ff),
+                Color = new ARGB(color),
                 TargetObjectId = Id,
                 Pos1 = new Position() { X = radius }
             }, this, null);

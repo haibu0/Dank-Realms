@@ -41,10 +41,12 @@ import com.company.util.AssetLibrary;
           Options.refreshCursor();
 
       }
-      
+
       private function addImages() : void
       {
-         AssetLibrary.addImageSet("lofiChar8x8",new EmbeddedAssets.lofiCharEmbed_().bitmapData,8,8);
+          AssetLibrary.addImageSet("d2LofiObjEmbed",new EmbeddedAssets.d2LofiObjEmbed_().bitmapData,8,8);
+          AssetLibrary.addImageSet("d3LofiObjEmbed",new EmbeddedAssets.d3LofiObjEmbed_().bitmapData,8,8);
+          AssetLibrary.addImageSet("lofiChar8x8",new EmbeddedAssets.lofiCharEmbed_().bitmapData,8,8);
          AssetLibrary.addImageSet("lofiChar16x8",new EmbeddedAssets.lofiCharEmbed_().bitmapData,16,8);
          AssetLibrary.addImageSet("lofiChar16x16",new EmbeddedAssets.lofiCharEmbed_().bitmapData,16,16);
          AssetLibrary.addImageSet("lofiChar28x8",new EmbeddedAssets.lofiChar2Embed_().bitmapData,8,8);

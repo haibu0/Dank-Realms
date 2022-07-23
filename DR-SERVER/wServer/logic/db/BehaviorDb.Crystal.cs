@@ -227,9 +227,14 @@ namespace wServer.logic
                         )
                     ),
                 new Threshold(0.015,
-                    new TierLoot(2, ItemType.Potion, numRequired: 3, threshold: 0.07)
+                     new ItemLoot(item: "Potion of Defense", probability: 0.3),
+                    new ItemLoot(item: "Potion of Attack", probability: 0.3),
+                    new ItemLoot(item: "Potion of Speed", probability: 0.3),
+                    new ItemLoot(item: "Potion of Dexterity", probability: 0.3),
+                    new ItemLoot(item: "Potion of Vitality", probability: 0.3),
+                    new ItemLoot(item: "Potion of Wisdom", probability: 0.3)
                     ),
-                new Threshold(0.03,
+                new Threshold(0.03,                 
                     new ItemLoot("Crystal Wand", 0.05),
                     new ItemLoot("Crystal Sword", 0.06)
                     )

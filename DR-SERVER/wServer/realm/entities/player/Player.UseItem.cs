@@ -1058,15 +1058,18 @@ namespace wServer.realm.entities
             BroadcastSync(pkts, p => this.DistSqr(p) < RadiusSqr);
         }
 
-        private void AETrap(RealmTime time, Item item, Position target, ActivateEffect eff)
+        private void AETrap(RealmTime time, Item item, Position target, ActivateEffect eff) //cond eff nothing
         {
+            var color = eff.Color;
+            if (color == 0) { color = 0xff9000ff; }
             BroadcastSync(new ShowEffect()
             {
                 EffectType = EffectType.Throw,
-                Color = new ARGB(0xff9000ff),
+                Color = new ARGB(color),
                 TargetObjectId = Id,
                 Pos1 = target
             }, p => this.DistSqr(p) < RadiusSqr);
+            //eff.Duration;
 
             Owner.Timers.Add(new WorldTimer(1500, (world, t) =>
             {
@@ -1075,7 +1078,8 @@ namespace wServer.realm.entities
                     eff.Radius,
                     eff.TotalDamage,
                     eff.ConditionEffect ?? ConditionEffectIndex.Slowed,
-                    eff.EffectDuration);
+                    eff.EffectDuration,
+                    color);
                 trap.Move(target.X, target.Y);
                 world.EnterWorld(trap);
             }));
