@@ -549,6 +549,14 @@ public class GameObject extends BasicObject
 
 
 
+       public function rangeMultiplier() :Number
+       {
+           var rangeMult = 1;
+           if(isArmored()){
+               rangeMult *= 2;
+           }
+           return rangeMult;
+       }
 
        public function isUntargetable() :Boolean
       {

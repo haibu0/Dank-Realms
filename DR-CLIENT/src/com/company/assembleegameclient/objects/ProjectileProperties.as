@@ -1,6 +1,7 @@
 package com.company.assembleegameclient.objects
 {
 import com.company.assembleegameclient.util.ConditionEffect;
+import com.company.assembleegameclient.objects.GameObject;
 
 
 
@@ -54,7 +55,10 @@ import com.company.assembleegameclient.util.ConditionEffect;
          this.lifetime_ = int(projectileXML.LifetimeMS);
          this.speed_ = int(projectileXML.Speed);
          this.size_ = Boolean(projectileXML.hasOwnProperty("Size"))?int(Number(projectileXML.Size)):int(-1);
-
+        if((this.condition_ & ConditionEffect.ARMORED_BIT)){
+            this.speed_ *=2;
+            this.lifetime_*=2;
+        }
 
          if(projectileXML.hasOwnProperty("Damage"))
          {

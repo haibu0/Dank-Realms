@@ -20,7 +20,8 @@ namespace common.resources
     {
         Gold = 0,
         Fame = 1,
-        GuildFame = 2
+        GuildFame = 2,
+
     }
 
     public enum TerrainType
@@ -157,7 +158,7 @@ namespace common.resources
         Unstable = 1 << 29,
         Exposed = 1 << 30,
         Curse = (ulong)1 << 31,
-        Inspired = 1 << 32
+        Inspired = (ulong)1 << 32
 
 
     }

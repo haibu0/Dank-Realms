@@ -1,6 +1,5 @@
 -pets(summon similar to mseal or hp fountains following player) - different tier pets or abilites like heal player when below 20% health/mana
 -ability summons(different use for each ability?) summoner
-✓overmaxing
 -more stats(focus, crit(set amount), luck)
 -protection shield(with regen instead of surge)
 -enchants
@@ -38,6 +37,6 @@ tiered items lookover, t8 abilities(change all)get proj colors? (revisit other c
 
 items to fix:
 -penetrating blast spell
--drake in an or
+-drake in an orb
 -ogmur(tooltip)
 -belligerance shield: cant activate shoot and activate something else (slowed eff) at the same time

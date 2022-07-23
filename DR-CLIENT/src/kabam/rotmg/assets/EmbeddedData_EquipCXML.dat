@@ -10,6 +10,7 @@
         <Description>Condition effect tests.</Description>
         <Sound>spell/light_heal</Sound>
         <Usable/>
+        <Activate effect="Inspired" duration="5">ConditionEffectSelf</Activate>
         <BagType>4</BagType>
         <FameBonus>6</FameBonus>
         <MpCost>100</MpCost>

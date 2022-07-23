@@ -120,6 +120,7 @@
     <Compile Include="logic\behaviors\Swirl.cs" />
     <Compile Include="logic\behaviors\Taunt.cs" />
     <Compile Include="logic\behaviors\TeleporttoTarget.cs" />
+    <Compile Include="logic\behaviors\TalismanAttack.cs" />
     <Compile Include="logic\behaviors\Timed.cs" />
     <Compile Include="logic\behaviors\TossObject.cs" />
     <Compile Include="logic\behaviors\TransferDamageOnDeath.cs" />
