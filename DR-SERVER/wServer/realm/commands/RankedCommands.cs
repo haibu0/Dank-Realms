@@ -947,6 +947,35 @@ namespace wServer.realm.commands
             }
         }
     }
+    class MaxFull : Command
+    {
+        public MaxFull() : base("maxfull", reqAdmin: true) { }
+
+        protected override bool Process(Player player, RealmTime time, string args)
+        {
+            //set level 20
+            player.Experience = Player.GetLevelExp(20);
+            player.Level = 20;
+            player.CalculateFame();
+            //ascend
+            player.AscensionEnabled = true;
+            //max fully
+            var pd = player.Manager.Resources.GameData.Classes[player.ObjectType];
+            player.Stats.Base[0] = pd.Stats[0].MaxValue + 50;
+            player.Stats.Base[1] = pd.Stats[1].MaxValue + 50;
+            player.Stats.Base[2] = pd.Stats[2].MaxValue + 10;
+            player.Stats.Base[3] = pd.Stats[3].MaxValue + 10;
+            player.Stats.Base[4] = pd.Stats[4].MaxValue + 10;
+            player.Stats.Base[5] = pd.Stats[5].MaxValue + 10;
+            player.Stats.Base[6] = pd.Stats[6].MaxValue + 10;
+            player.Stats.Base[7] = pd.Stats[7].MaxValue + 10;
+            //set fame to 2050
+            player.Fame = player.Client.Account.Fame += 2050;
+            player.ForceUpdate(player.Fame);
+            player.SendInfo("Your character has been fully maxed");
+            return true;
+        }
+    }
 
     internal class AscendCommand : Command
     {

@@ -226,7 +226,553 @@
         <BagType>5</BagType>
     </Object>
 
-
+    <!--The Machine Items-->
+    <Object type="0x572" id="K.I.D.D. Force">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x64</Index>
+        </Texture>
+        <SlotType>17</SlotType>
+        <Description>A highly unstable staff engineered to expel forceful bolts of an energy component known as K.I.D.D. (Knee-deep In Dungeon Design). It's not great now, but allegedly the second version will be better.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+        </ExtraTooltipData>
+        <RateOfFire>0.8</RateOfFire>
+        <Sound>weapon/wand_of_death</Sound>
+        <Projectile>
+            <ObjectId>K.I.D.D. Force Energy 1.0</ObjectId>
+            <Speed>50</Speed>
+            <MinDamage>80</MinDamage>
+            <MaxDamage>130</MaxDamage>
+            <LifetimeMS>2000</LifetimeMS>
+            <Amplitude>1.5</Amplitude>
+            <Frequency>1.75</Frequency>
+            <Size>90</Size>
+        </Projectile>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <NumProjectiles>2</NumProjectiles>
+        <ArcGap>40</ArcGap>
+        <OldSound>weapon/missile_wand</OldSound>
+        <feedPower>20</feedPower>
+        <Soulbound/>
+    </Object>
+    <Object type="0x573" id="MMace MMurderer">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x65</Index>
+        </Texture>
+        <SlotType>1</SlotType>
+        <Description>A heavy mace that abides only by the power of repetition.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+        </ExtraTooltipData>
+        <RateOfFire>0.4</RateOfFire>
+        <Sound>weapon/glass_sword</Sound>
+        <Projectile>
+            <ObjectId>MMissile</ObjectId>
+            <Speed>40</Speed>
+            <MinDamage>222</MinDamage>
+            <MaxDamage>333</MaxDamage>
+            <LifetimeMS>1250</LifetimeMS>
+            <Size>80</Size>
+        </Projectile>
+        <NumProjectiles>2</NumProjectiles>
+        <ArcGap>20</ArcGap>
+        <BagType>6</BagType>
+        <FameBonus>1</FameBonus>
+        <OldSound>weapon/crossbow</OldSound>
+        <feedPower>1313</feedPower>
+        <Soulbound/>
+    </Object>
+    <Object type="0x574" id="Mister Mango">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x66</Index>
+        </Texture>
+        <SlotType>2</SlotType>
+        <Description>Displaying this malformed mango in public is said to awaken the rage of a long-dormant entity from beyond.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+        </ExtraTooltipData>
+        <Sound>weapon/fire_dagger</Sound>
+        <OldSound>monster/cubes_hit</OldSound>
+        <Projectile>
+            <ObjectId>Mango</ObjectId>
+            <Speed>75</Speed>
+            <MinDamage>250</MinDamage>
+            <MaxDamage>300</MaxDamage>
+            <LifetimeMS>800</LifetimeMS>
+        </Projectile>
+        <RateOfFire>0.45</RateOfFire>
+        <BagType>6</BagType>
+        <feedPower>833</feedPower>
+        <FameBonus>1</FameBonus>
+        <Soulbound/>
+    </Object>
+    <Object type="0x575" id="Butter Bow">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x67</Index>
+        </Texture>
+        <SlotType>3</SlotType>
+        <Description>Crispy, buttered, wheat or rye. In toast it lives, in toast it dies.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+        </ExtraTooltipData>
+        <RateOfFire>1.2</RateOfFire>
+        <Sound>weapon/golden_bow</Sound>
+        <OldSound>weapon/golden_bow</OldSound>
+        <Projectile>
+            <ObjectId>Toast</ObjectId>
+            <Speed>160</Speed>
+            <MinDamage>15</MinDamage>
+            <MaxDamage>50</MaxDamage>
+            <LifetimeMS>600</LifetimeMS>
+            <Size>100</Size>
+            <MultiHit/>
+        </Projectile>
+        <NumProjectiles>5</NumProjectiles>
+        <ArcGap>23</ArcGap>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <feedPower>777</feedPower>
+        <Soulbound/>
+    </Object>
+    <Object type="0x576" id="Caduceus of Current Craziness">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x68</Index>
+        </Texture>
+        <SlotType>8</SlotType>
+        <Description>The harbinger of past pandemonium, current craziness, and future fatuity. It just can't seem to stay focused.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+        </ExtraTooltipData>
+        <RateOfFire>1</RateOfFire>
+        <Sound>weapon/wand_of_death</Sound>
+        <Projectile>
+            <ObjectId>Indecisive Missile</ObjectId>
+            <Speed>170</Speed>
+            <LifetimeMS>500</LifetimeMS>
+            <MinDamage>65</MinDamage>
+            <MaxDamage>90</MaxDamage>
+            <MultiHit/>
+        </Projectile>
+        <NumProjectiles>2</NumProjectiles>
+        <ArcGap>180</ArcGap>
+        <BagType>6</BagType>
+        <FameBonus>2</FameBonus>
+        <OldSound>weapon/sprite_wand</OldSound>
+        <feedPower>35</feedPower>
+        <Soulbound/>
+    </Object>
+    <Object type="0x577" id="Blade of Ages">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x69</Index>
+        </Texture>
+        <SlotType>24</SlotType>
+        <Description>A katana once belonging to a royal sorcerer known for great ambition, but slow delivery. His treasured blade was prophesied to produce something wonderful... eventually.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+        </ExtraTooltipData>
+        <RateOfFire>0.01</RateOfFire>
+        <Sound>weapon/long_sword</Sound>
+        <Projectile>
+            <ObjectId>Slowpoke Slash</ObjectId>
+            <Speed>10</Speed>
+            <LifetimeMS>500</LifetimeMS>
+            <MinDamage>1000</MinDamage>
+            <MaxDamage>1000</MaxDamage>
+            <MultiHit/>
+            <Wavy/>
+        </Projectile>
+        <BagType>6</BagType>
+        <FameBonus>2</FameBonus>
+        <OldSound>spell/major_heal</OldSound>
+        <feedPower>202</feedPower>
+        <Soulbound/>
+    </Object>
+    <Object type="0x5b27" id="Mirror Cloak">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x100</Index>
+        </Texture>
+        <SlotType>13</SlotType>
+        <Description>A brilliant cloak that utilizes the complex process of light reflection to perfectly conceal its user by creating an exact replica, mimicking the wearer.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+            <EffectInfo description="Creates a mirror clone" name="On Use"/>
+        </ExtraTooltipData>
+        <Sound>spell/fire_nova</Sound>
+        <Usable/>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <MpCost>100</MpCost>
+        <Activate effect="Invisible" duration="7">ConditionEffectSelf</Activate>
+        <Activate objectId="Orange Drake">Pet</Activate>
+        <Cooldown>8</Cooldown>
+        <feedPower>500</feedPower>
+        <Soulbound/>
+    </Object>
+    <Object type="0x5b2b" id="Spelling Spell">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x10c</Index>
+        </Texture>
+        <SlotType>11</SlotType>
+        <Description>An instructional spell used as an education tool for the training of young wizards. Before they run, they must learn to talk.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+        </ExtraTooltipData>
+        <Sound>spell/magic_nova</Sound>
+        <Projectile>
+            <ObjectId>Alphabet</ObjectId>
+            <Speed>100</Speed>
+            <MinDamage>10</MinDamage>
+            <MaxDamage>100</MaxDamage>
+            <LifetimeMS>850</LifetimeMS>
+        </Projectile>
+        <Usable/>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <MpCost>26</MpCost>
+        <Activate>BulletNova</Activate>
+        <NumProjectiles>26</NumProjectiles>
+        <feedPower>500</feedPower>
+        <Soulbound/>
+    </Object>
+    <Object type="0x5b2d" id="Tome of Moral Support">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x109</Index>
+        </Texture>
+        <SlotType>4</SlotType>
+        <Description>The deepest wounds are not physical, but psychological. Only the wisest healers are savvy enough to apply the advanced treatment this tome enables, guaranteed to revitalize allies in their times of need.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+            <EffectInfo description="Encourages allies" name="On Use"/>
+        </ExtraTooltipData>
+        <Sound>spell/major_heal</Sound>
+        <Usable/>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <MpCost>80</MpCost>
+        <Cooldown>5</Cooldown>
+        <Activate range="5" amount="1" useWisMod="true">HealNova</Activate>
+        <Soulbound/>
+    </Object>
+    <Object type="0x5b2f" id="Challenger Helm">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x12a</Index>
+        </Texture>
+        <SlotType>16</SlotType>
+        <Description>It's not easy being the best. Some wish for more, a way to inflict difficulties on themselves so that they may once again experience what it's like to not be insultingly overpowered. At last, there is a way.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+        </ExtraTooltipData>
+        <Usable/>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <MpCost>50</MpCost>
+        <Activate effect="Dazed" duration="5">ConditionEffectSelf</Activate>
+        <Activate effect="Slowed" duration="5">ConditionEffectSelf</Activate>
+        <Soulbound/>
+    </Object>
+    <Object type="0x5b30" id="Shield of Pogmur">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x10d</Index>
+        </Texture>
+        <SlotType>5</SlotType>
+        <Description>As the heavy armor worn by most knights typically conceals their faces with a stoic expression, they require other ways to convey emotions of shock or excitement.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+        </ExtraTooltipData>
+        <Sound>spell/fire_spray</Sound>
+        <Projectile>
+            <ObjectId>Pogmur Shield</ObjectId>
+            <Speed>15</Speed>
+            <MinDamage>300</MinDamage>
+            <MaxDamage>400</MaxDamage>
+            <LifetimeMS>500</LifetimeMS>
+            <Size>200</Size>
+            <ConditionEffect duration="0.5">Armor Broken</ConditionEffect>
+            <MultiHit/>
+            <PassesCover/>
+        </Projectile>
+        <Usable/>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <MpCost>100</MpCost>
+        <Activate>Shoot</Activate>
+        <NumProjectiles>1</NumProjectiles>
+        <feedPower>500</feedPower>
+        <Soulbound/>
+    </Object>
+    <Object type="0x5b32" id="Seal of Eternal Life">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>d2LofiObjEmbed</File>
+            <Index>0xd2</Index>
+        </Texture>
+        <SlotType>12</SlotType>
+        <Description>The fruit of over a decade of research, this blessed seal at long last overcomes all limitations on its usage and never allows its user to run out of strength. A slight concession had to be made by devoting one hundred percent of its magic resources back into magic.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+        </ExtraTooltipData>
+        <Sound>spell/light_heal</Sound>
+        <Activate effect="Healing" duration="5">ConditionEffectSelf</Activate>
+        <Usable/>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <MpCost>100</MpCost>
+        <Cooldown>5</Cooldown>
+        <feedPower>500</feedPower>
+        <Soulbound/>
+    </Object>
+    <Object type="0x5b33" id="Lightning in a Bottle">
+        <Class>Equipment</Class>
+        <Item/>
+        <SlotType>18</SlotType>
+        <Usable/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x10f</Index>
+        </Texture>
+        <Description>A misguided attempt by Xolotl to grant a form of his power to followers among the Secluded Thicket, with the glaring weakness that it can only be utilized in large, open areas with direct access to the clouds.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+            <EffectInfo name="On Use" description="Hurls lightning"/>
+            <EffectInfo name="Lightning Damage" description="300"/>
+            <EffectInfo name="Lightning Effect" description="Stasis for 1.8 seconds"/>
+        </ExtraTooltipData>
+        <Activate radius="3" totalDamage="0" duration="5" impactDamage="300" color ="0xF4D714" color2="0xF4D714">PoisonGrenade</Activate>
+        <MpCost>130</MpCost>
+        <Cooldown>5</Cooldown>
+        <FameBonus>5</FameBonus>
+        <BagType>6</BagType>
+        <Soulbound/>
+    </Object>
+    <Object type="0x5b35" id="Epiphany Skull">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x10e</Index>
+        </Texture>
+        <Usable/>
+        <SlotType>19</SlotType>
+        <Description>The skull of an enlightened philosopher who understood the true potential of necromancers to be summoners. Tragically, his overwhelmingly high IQ got the best of him.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+            <EffectInfo description="Summons a mind minion to enlighten foes" name="Epiphany Summon"/>
+        </ExtraTooltipData>
+        <Activate objectId="Flying Brain">Pet</Activate>
+        <MpCost>100</MpCost>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <Soulbound/>
+    </Object>
+    <Object type="0x5b37" id="Helium Trap">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x103</Index>
+        </Texture>
+        <SlotType>20</SlotType>
+        <Description>A devastating trap with some major hang time. It's full of hot air and not actually that useful, which is surely a metaphor for something.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+        </ExtraTooltipData>
+        <Usable/>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <MpCost>95</MpCost>
+        <Activate radius="1" totalDamage="1000" condEffect="Slowed" color="0xff0000">Trap</Activate>
+        <Soulbound/>
+    </Object>
+    <Object type="0x5b38" id="Karma Orb">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x104</Index>
+        </Texture>
+        <SlotType>21</SlotType>
+        <Description>What goes around comes around.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+        </ExtraTooltipData>
+        <Usable/>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <MpCost>90</MpCost>
+        <Activate duration="6">StasisBlast</Activate>
+        <Activate duration="5" effect="Paralyzed">ConditionEffectSelf</Activate>
+        <feedPower>500</feedPower>
+        <Soulbound/>
+    </Object>
+    <Object type="0x5b39" id="Fool's Prism">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x105</Index>
+        </Texture>
+        <SlotType>22</SlotType>
+        <Description>All that glitters is not gold. Beware, tricksters who choose this dastardly prism must be committed to their cruel prank.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+            <EffectInfo description="Places a fake white bag on cursor" name="On Use"/>
+        </ExtraTooltipData>
+        <Usable/>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <MpCost>70</MpCost>
+        <Cooldown>60</Cooldown>
+        <Soulbound/>
+    </Object>
+    <Object type="0x5b3a" id="Honey Scepter Supreme">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x106</Index>
+        </Texture>
+        <SlotType>23</SlotType>
+        <Description>After years of the truth being rejected by the masses, this version of the fabled Honey Scepter is automatically enhanced with the full potential it had all along.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+            <EffectInfo name="On Use" description="Converts you to a Honey Scepter Acolyte for 60 seconds"/>
+        </ExtraTooltipData>
+        <Sound>spell/fire_spray</Sound>
+        <Usable/>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <MpCost>70</MpCost>
+        <Activate totalDamage="100" maxTargets="15" color="0xffdf00">Lightning</Activate>
+        <Soulbound/>
+    </Object>
+    <Object type="0x5b3b" id="Unshuriken">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x10a</Index>
+        </Texture>
+        <SlotType>25</SlotType>
+        <Description>A star with high potential, but curses the user with a crippling lack of decisiveness.</Description>
+        <Sound>spell/fire_spray</Sound>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+            <EffectInfo name="While Key Held" description=""/>
+            <EffectInfo name="" description="Confused on self"/>
+            <EffectInfo name="" description="Drain 10 MP/sec"/>
+            <EffectInfo name="When Key Released" description=""/>
+        </ExtraTooltipData>
+        <Projectile>
+            <ObjectId>Ninja Star Unsure</ObjectId>
+            <Speed>100</Speed>
+            <MinDamage>1000</MinDamage>
+            <MaxDamage>1000</MaxDamage>
+            <LifetimeMS>200</LifetimeMS>
+            <Size>120</Size>
+            <Boomerang/>
+            <PassesCover/>
+        </Projectile>
+        <Usable/>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <MpCost>0</MpCost>
+        <MpEndCost>50</MpEndCost>
+        <Activate>ShurikenAbility</Activate>
+        <MultiPhase/>
+        <Soulbound/>
+    </Object>
+    <Object type="0x5b3d" id="NSFWakizashi">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x107</Index>
+        </Texture>
+        <SlotType>28</SlotType>
+        <Description>A double-edged wakizashi that exposes in more ways than one.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+        </ExtraTooltipData>
+        <Projectile>
+            <ObjectId>Wakizashi Strip</ObjectId>
+            <Speed>95</Speed>
+            <MinDamage>0</MinDamage>
+            <MaxDamage>0</MaxDamage>
+            <LifetimeMS>200</LifetimeMS>
+            <Size>80</Size>
+            <PassesCover/>
+            <MultiHit/>
+            <ConditionEffect duration="10">Exposed</ConditionEffect>
+        </Projectile>
+        <Usable/>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <MpCost>60</MpCost>
+        <Activate range="4">BulletCreate</Activate>
+        <Activate effect="Exposed" duration="10">ConditionEffectSelf</Activate>
+        <feedPower>500</feedPower>
+        <Soulbound/>
+    </Object>
+    <Object type="0x5b3f" id="Omni-Impotence Ring" setType="0x5b40" setName="The Mistake">
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x10b</Index>
+        </Texture>
+        <SlotType>9</SlotType>
+        <Description>An unfathomable lack of strength is found in this ring. Only the most unreasonable mortals would ever consider voluntarily handicapping themselves so aggressively.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="" description="Mistake"/>
+        </ExtraTooltipData>
+        <ActivateOnEquip amount="-80" stat="0">IncrementStat</ActivateOnEquip>
+        <ActivateOnEquip amount="-80" stat="3">IncrementStat</ActivateOnEquip>
+        <ActivateOnEquip amount="-4" stat="20">IncrementStat</ActivateOnEquip>
+        <ActivateOnEquip amount="-4" stat="21">IncrementStat</ActivateOnEquip>
+        <ActivateOnEquip amount="-4" stat="22">IncrementStat</ActivateOnEquip>
+        <ActivateOnEquip amount="-4" stat="28">IncrementStat</ActivateOnEquip>
+        <ActivateOnEquip amount="-4" stat="26">IncrementStat</ActivateOnEquip>
+        <ActivateOnEquip amount="-4" stat="27">IncrementStat</ActivateOnEquip>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <feedPower>500</feedPower>
+        <Soulbound/>
+    </Object>
     <Object type="0xa00" id="Short Sword">
         <Class>Equipment</Class>
         <Item/>

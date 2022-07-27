@@ -154,6 +154,8 @@
     <None Include="resources\worlds\SpiderDen.jw" />
     <None Include="resources\worlds\SpriteWorld.jm" />
     <None Include="resources\worlds\SpriteWorld.jw" />
+    <None Include="resources\worlds\TheMachine.jm" />
+    <None Include="resources\worlds\TheMachine.jw" />
     <None Include="resources\worlds\TomboftheAncients.jm" />
     <None Include="resources\worlds\TomboftheAncients.jw" />
     <None Include="resources\worlds\UDLT.jm" />
@@ -879,6 +881,8 @@
     <Content Include="resources\xml\EmbeddedData_TextilesCXML.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="resources\xml\EmbeddedData_theMachineGroundCXML.xml" />
+    <Content Include="resources\xml\EmbeddedData_theMachineObjectsCXML.xml" />
     <Content Include="resources\xml\EmbeddedData_TombOfTheAncientsCXML.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

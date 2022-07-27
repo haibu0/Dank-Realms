@@ -14,6 +14,8 @@
     </RandomTexture>
     <Rotation>100</Rotation>
   </Object>
+  <!--The Machine Prjs-->
+  
   <!--Sheath Shots-->
   <Object type="0x9ab1" id="Slashing Sheath Shot">
     <Class>Projectile</Class>

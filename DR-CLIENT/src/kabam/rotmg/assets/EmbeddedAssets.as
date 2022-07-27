@@ -2,6 +2,13 @@ package kabam.rotmg.assets
 {
    public class EmbeddedAssets
    {
+       //the machine
+       public static var theMachineObjects8x8_:Class = EmbeddedAssets_theMachineObjects8x8_;
+       public static var theMachineChars8x8_:Class = EmbeddedAssets_theMachineChars8x8_;
+       public static var theMachineObjects16x16_:Class = EmbeddedAssets_theMachineObjects16x16_;
+       public static var theMachineChars16x16:Class = EmbeddedAssets_theMachineChars16x16_;
+
+
        public static var d2LofiObjEmbed_:Class = EmbeddedAssets_d2LofiObjEmbed_;
 
        public static var d3LofiObjEmbed_:Class = EmbeddedAssets_d3LofiObjEmbed_;

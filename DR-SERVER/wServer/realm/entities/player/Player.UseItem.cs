@@ -1061,6 +1061,7 @@ namespace wServer.realm.entities
         private void AETrap(RealmTime time, Item item, Position target, ActivateEffect eff) //cond eff nothing
         {
             var color = eff.Color;
+            var effect = eff.ConditionEffect;
             if (color == 0) { color = 0xff9000ff; }
             BroadcastSync(new ShowEffect()
             {

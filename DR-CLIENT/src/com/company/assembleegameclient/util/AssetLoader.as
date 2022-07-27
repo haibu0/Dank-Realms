@@ -44,6 +44,9 @@ import com.company.util.AssetLibrary;
 
       private function addImages() : void
       {
+          AssetLibrary.addImageSet("theMachineObjects8x8",new EmbeddedAssets.theMachineObjects8x8_().bitmapData,8,8);//
+          AssetLibrary.addImageSet("theMachineObjects16x16",new EmbeddedAssets.theMachineObjects16x16_().bitmapData,8,8);//
+
           AssetLibrary.addImageSet("d2LofiObjEmbed",new EmbeddedAssets.d2LofiObjEmbed_().bitmapData,8,8);
           AssetLibrary.addImageSet("d3LofiObjEmbed",new EmbeddedAssets.d3LofiObjEmbed_().bitmapData,8,8);
           AssetLibrary.addImageSet("lofiChar8x8",new EmbeddedAssets.lofiCharEmbed_().bitmapData,8,8);
@@ -91,7 +94,11 @@ import com.company.util.AssetLibrary;
       
       private function addAnimatedCharacters() : void
       {
-         AnimatedChars.add("chars8x8rBeach",new EmbeddedAssets.chars8x8rBeachEmbed_().bitmapData,null,8,8,56,8,AnimatedChar.RIGHT);
+          AnimatedChars.add("theMachineChars16x16",new EmbeddedAssets.theMachineChars16x16().bitmapData,null,16,16,112,16,AnimatedChar.DOWN); //char8x8
+          AnimatedChars.add("theMachineChars8x8",new EmbeddedAssets.theMachineChars8x8_().bitmapData,null,8,8,56,8,AnimatedChar.DOWN); //char8x8
+
+
+          AnimatedChars.add("chars8x8rBeach",new EmbeddedAssets.chars8x8rBeachEmbed_().bitmapData,null,8,8,56,8,AnimatedChar.RIGHT);
          AnimatedChars.add("chars8x8dBeach",new EmbeddedAssets.chars8x8dBeachEmbed_().bitmapData,null,8,8,56,8,AnimatedChar.DOWN);
          AnimatedChars.add("chars8x8rLow1",new EmbeddedAssets.chars8x8rLow1Embed_().bitmapData,null,8,8,56,8,AnimatedChar.RIGHT);
          AnimatedChars.add("chars8x8rLow2",new EmbeddedAssets.chars8x8rLow2Embed_().bitmapData,null,8,8,56,8,AnimatedChar.RIGHT);
