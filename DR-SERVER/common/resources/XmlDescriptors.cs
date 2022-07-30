@@ -83,6 +83,8 @@ namespace common.resources
 
     public enum ActivateEffects
     {
+        ObjectToss,
+        SupportTome,
         GenericActivate,
         Create,
         Dye,
@@ -630,6 +632,8 @@ namespace common.resources
         public readonly ConditionEffectIndex? ConditionEffect;
         public readonly ConditionEffectIndex? CheckExistingEffect;
 
+        public readonly bool TossObject;
+        public readonly int AirTime;
         public readonly int ImpactDamage;
         public readonly int TotalDamage;
         public readonly float Radius;
@@ -640,6 +644,7 @@ namespace common.resources
         public readonly float Range;
         public readonly float MaximumDistance;
         public readonly string ObjectId;
+        public readonly uint ObjectType;
         public readonly string Id;
         public readonly int MaxTargets;
         public readonly uint Color;
@@ -694,14 +699,17 @@ namespace common.resources
                 VisualEffect = e.GetAttribute<int>("visualEffect");
             }
 
+            AirTime = e.GetAttribute<int>("airTime");
             TotalDamage = e.GetAttribute<int>("totalDamage");
             ImpactDamage = e.GetAttribute<int>("impactDamage");
+            TossObject = e.GetAttribute<bool>("tossObject");
             Radius = e.GetAttribute<float>("radius");
             EffectDuration = e.GetAttribute<float>("condDuration");
             DurationSec = e.GetAttribute<float>("duration");
             DurationMS = (int)(DurationSec * 1000.0f);
             Amount = e.GetAttribute<int>("amount");
             Range = e.GetAttribute<float>("range");
+            ObjectType = e.GetAttribute<uint>("objectType");
             ObjectId = e.GetAttribute<string>("objectId");
             Id = e.GetAttribute<string>("id");
             MaximumDistance = e.GetAttribute<float>("maxDistance");

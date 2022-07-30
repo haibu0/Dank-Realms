@@ -10,7 +10,7 @@
         <Description>Condition effect tests.</Description>
         <Sound>spell/light_heal</Sound>
         <Usable/>
-        <Activate effect="Inspired" duration="5">ConditionEffectSelf</Activate>
+        <Activate effect="Unstable" duration="5">ConditionEffectSelf</Activate>
         <BagType>4</BagType>
         <FameBonus>6</FameBonus>
         <MpCost>100</MpCost>
@@ -77,7 +77,7 @@
         <BagType>1</BagType>
         <FameBonus>1</FameBonus>
         <MpCost>75</MpCost>
-        <Activate objectId="Orange Drake">Pet</Activate>
+        <Activate objectType="0x1403" objectId="Orange Drake" color="0xFE864C">ObjectToss</Activate>
     </Object>
     <Object type="0x62a8" id="Essence of Power">
         <Class>Equipment</Class>
@@ -425,11 +425,96 @@
         <FameBonus>5</FameBonus>
         <MpCost>100</MpCost>
         <Activate effect="Invisible" duration="7">ConditionEffectSelf</Activate>
-        <Activate objectId="Orange Drake">Pet</Activate>
+        <Activate objectId="Mirrored Character">Pet</Activate>
         <Cooldown>8</Cooldown>
         <feedPower>500</feedPower>
         <Soulbound/>
     </Object>
+    <Object type="0x8ac5" id="Mirrored Character">
+        <Enemy/>
+        <Class>Character</Class>
+        <RandomTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>0</Index>
+            </AnimatedTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>1</Index>
+            </AnimatedTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>2</Index>
+            </AnimatedTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>3</Index>
+            </AnimatedTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>4</Index>
+            </AnimatedTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>5</Index>
+            </AnimatedTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>6</Index>
+            </AnimatedTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>6</Index>
+            </AnimatedTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>6</Index>
+            </AnimatedTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>7</Index>
+            </AnimatedTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>8</Index>
+            </AnimatedTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>9</Index>
+            </AnimatedTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>10</Index>
+            </AnimatedTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>11</Index>
+            </AnimatedTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>12</Index>
+            </AnimatedTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>13</Index>
+            </AnimatedTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>14</Index>
+            </AnimatedTexture>
+            <AnimatedTexture>
+                <File>players</File>
+                <Index>15</Index>
+                <AnimatedTexture>
+                    <File>players</File>
+                    <Index>16</Index>
+                </AnimatedTexture>
+            </AnimatedTexture>
+        </RandomTexture>
+        <NoMiniMap/>
+        <Size>100</Size>
+    </Object>
+
     <Object type="0x5b2b" id="Spelling Spell">
         <Class>Equipment</Class>
         <Item/>
@@ -478,7 +563,7 @@
         <FameBonus>5</FameBonus>
         <MpCost>80</MpCost>
         <Cooldown>5</Cooldown>
-        <Activate range="5" amount="1" useWisMod="true">HealNova</Activate>
+        <Activate>SupportTome</Activate>
         <Soulbound/>
     </Object>
     <Object type="0x5b2f" id="Challenger Helm">
@@ -572,7 +657,7 @@
             <EffectInfo name="Lightning Damage" description="300"/>
             <EffectInfo name="Lightning Effect" description="Stasis for 1.8 seconds"/>
         </ExtraTooltipData>
-        <Activate radius="3" totalDamage="0" duration="5" impactDamage="300" color ="0xF4D714" color2="0xF4D714">PoisonGrenade</Activate>
+        <Activate objectType="0x0932" objectId="Oryx the Mad God 2" tossObject="true">ObjectToss</Activate>
         <MpCost>130</MpCost>
         <Cooldown>5</Cooldown>
         <FameBonus>5</FameBonus>
@@ -593,11 +678,21 @@
             <EffectInfo name="" description="Mistake"/>
             <EffectInfo description="Summons a mind minion to enlighten foes" name="Epiphany Summon"/>
         </ExtraTooltipData>
-        <Activate objectId="Flying Brain">Pet</Activate>
+        <Activate objectId="Mini Flying Brain">Pet</Activate>
         <MpCost>100</MpCost>
         <BagType>6</BagType>
         <FameBonus>5</FameBonus>
         <Soulbound/>
+    </Object>
+    <Object type="0x1443" id="Mini Flying Brain">
+        <Class>Character</Class>
+        <AnimatedTexture>
+            <File>chars8x8rHero2</File>
+            <Index>0x09</Index>
+        </AnimatedTexture>
+        <Flying/>
+        <Z>0.2</Z>
+        <NoMiniMap/>
     </Object>
     <Object type="0x5b37" id="Helium Trap">
         <Class>Equipment</Class>
@@ -615,7 +710,7 @@
         <BagType>6</BagType>
         <FameBonus>5</FameBonus>
         <MpCost>95</MpCost>
-        <Activate radius="1" totalDamage="1000" condEffect="Slowed" color="0xff0000">Trap</Activate>
+        <Activate radius="1" totalDamage="1000" condEffect="Slowed" airTime ="100" color="0xff0000">Trap</Activate>
         <Soulbound/>
     </Object>
     <Object type="0x5b38" id="Karma Orb">
@@ -3899,7 +3994,6 @@
         <Sound>spell/major_heal</Sound>
         <Usable/>
         <ActivateOnEquip stat="21" amount="1">IncrementStat</ActivateOnEquip>
-        <Activate effect="Inspired" duration="3" range="4.5" useWisMod="true">ConditionEffectAura</Activate>
         <Activate stat="21" amount="1" duration="2">StatBoostSelf</Activate>
         <Activate stat="28" amount="1" duration="3" range="4.5">StatBoostAura</Activate>
         <Cooldown>4</Cooldown>
@@ -7915,7 +8009,7 @@
         <BagType>6</BagType>
         <FameBonus>6</FameBonus>
         <MpCost>90</MpCost>
-        <Activate radius="3" totalDamage="1000" color="0x5c6bb8">Trap</Activate>
+        <Activate radius="3" totalDamage="1000" airTime="1000" color="0x5c6bb8">Trap</Activate>
         <Soulbound/>
     </Object>
     <Object type="0xae4" id="Stasis Orb">

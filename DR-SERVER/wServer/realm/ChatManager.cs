@@ -164,7 +164,6 @@ namespace wServer.realm
             }, null);
             log.Info("[{0}({1})] <Oryx the Mad God> {2}", world.Name, world.Id, text);
         }
-
         public bool Tell(Player src, string target, string text)
         {
             if (String.IsNullOrWhiteSpace(text))

@@ -22,10 +22,9 @@ fixes needed
 -stat boost icons
 -mscale scroll
 -equipmenttooltip duplicate texts (look at orbs)
-bugs
 -wismod tooltip
+bugs
 -poison aoe not showing sometimes
--wismod on statboost
 -wander looks buggy/not smooth(or just movement in general)
 -fame notifier(+0 fame)
 -equipmenttool tips shot effect

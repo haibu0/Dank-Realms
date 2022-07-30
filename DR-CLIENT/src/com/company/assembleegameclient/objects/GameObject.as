@@ -538,15 +538,9 @@ public class GameObject extends BasicObject
        {
            return (this.condition_ & ConditionEffect.EXPOSED_BIT) != 0;
        }
-       public function isCursed() : Boolean
-       {
+       public function isCursed() : Boolean {
            return (this.condition_ & ConditionEffect.CURSE_BIT) != 0;
        }
-       public function isInspired():Boolean
-       {
-           return (this.condition_ & ConditionEffect.INSPIRED_BIT) != 0;
-       }
-
 
 
        public function rangeMultiplier() :Number

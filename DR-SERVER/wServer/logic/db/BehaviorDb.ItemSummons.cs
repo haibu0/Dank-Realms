@@ -26,6 +26,33 @@ namespace wServer.logic
                     )
             )
             )
+
+               .Init("Mirrored Character",
+                new State(
+                    new State("Summon",
+                    new Wander(.5),
+                    new ConditionalEffect(ConditionEffectIndex.Invincible),
+                    new Taunt(0.8, "01101110 01110101 01101100 01101100"),
+
+                        new TimedTransition(7000, "Destroy")
+                        ),
+                    new State("Destroy",
+                        new ConditionalEffect(ConditionEffectIndex.Invincible),
+                        new Suicide()
+                    )
+            )
+            )
+         .Init("Mini Flying Brain",
+                new State(
+                    new State("Summon",
+                    new FamiliarFollow(),
+                        new TimedTransition(7000, "Destroy")
+                        ),
+                    new State("Destroy",
+                        new Suicide()
+                    )
+            )
+            )
             ;
 
     }

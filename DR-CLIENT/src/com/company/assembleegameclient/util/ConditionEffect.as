@@ -77,8 +77,6 @@ import com.company.util.AssetLibrary;
 
        public static const CURSE:uint = 32;
 
-       public static const INSPIRED:uint = 33;
-
        public static const DEAD_BIT:uint = 1 << DEAD - 1;
       
       public static const QUIET_BIT:uint = 1 << QUIET - 1;
@@ -143,14 +141,12 @@ import com.company.util.AssetLibrary;
 
        public static const CURSE_BIT:uint = 1 << CURSE - NEW_CON_THREASHOLD;
 
-       public static const INSPIRED_BIT:uint = (1 << (INSPIRED - NEW_CON_THREASHOLD));
-
 
 
 
        public static const MAP_FILTER_BITMASK:uint = DRUNK_BIT | BLIND_BIT | PAUSED_BIT;
        public static const NEW_CON_THREASHOLD:uint = 32; //todo
-       public static var effects_:Vector.<ConditionEffect> = new <ConditionEffect>[new ConditionEffect("Nothing", 0, null), new ConditionEffect("Dead", DEAD_BIT, null), new ConditionEffect("Quiet", QUIET_BIT, [32, 33]), new ConditionEffect("Weak", WEAK_BIT, [34, 35, 36, 37]), new ConditionEffect("Slowed", SLOWED_BIT, [1]), new ConditionEffect("Sick", SICK_BIT, [39]), new ConditionEffect("Dazed", DAZED_BIT, [44]), new ConditionEffect("Stunned", STUNNED_BIT, [45]), new ConditionEffect("Blind", BLIND_BIT, [41]), new ConditionEffect("Hallucinating", HALLUCINATING_BIT, [42]), new ConditionEffect("Drunk", DRUNK_BIT, [43]), new ConditionEffect("Confused", CONFUSED_BIT, [2]), new ConditionEffect("Stun Immune", STUN_IMMUNE_BIT, null), new ConditionEffect("Invisible", INVISIBLE_BIT, null), new ConditionEffect("Paralyzed", PARALYZED_BIT, [53, 54]), new ConditionEffect("Speedy", SPEEDY_BIT, [0]), new ConditionEffect("Bleeding", BLEEDING_BIT, [46]), new ConditionEffect("Not Used", NOT_USED_BIT, null), new ConditionEffect("Healing", HEALING_BIT, [47]), new ConditionEffect("Damaging", DAMAGING_BIT, [49]), new ConditionEffect("Berserk", BERSERK_BIT, [50]), new ConditionEffect("Paused", PAUSED_BIT, null), new ConditionEffect("Stasis", STASIS_BIT, null), new ConditionEffect("Stasis Immune", STASIS_IMMUNE_BIT, null), new ConditionEffect("Invincible", INVINCIBLE_BIT, null), new ConditionEffect("Invulnerable", INVULNERABLE_BIT, [17]), new ConditionEffect("Armored", ARMORED_BIT, [16]), new ConditionEffect("Armor Broken", ARMORBROKEN_BIT, [55]), new ConditionEffect("Hexed", HEXED_BIT, [42]), new ConditionEffect("Unstable", UNSTABLE_BIT, [56]), new ConditionEffect("Curse", CURSE_BIT, [57]), new ConditionEffect("Exposed", EXPOSED_BIT, [58]), new ConditionEffect("Inspired", INSPIRED_BIT, [59]), new ConditionEffect("Ninja Speedy", NINJA_SPEEDY_BIT, [0])];
+       public static var effects_:Vector.<ConditionEffect> = new <ConditionEffect>[new ConditionEffect("Nothing", 0, null), new ConditionEffect("Dead", DEAD_BIT, null), new ConditionEffect("Quiet", QUIET_BIT, [32, 33]), new ConditionEffect("Weak", WEAK_BIT, [34, 35, 36, 37]), new ConditionEffect("Slowed", SLOWED_BIT, [1]), new ConditionEffect("Sick", SICK_BIT, [39]), new ConditionEffect("Dazed", DAZED_BIT, [44]), new ConditionEffect("Stunned", STUNNED_BIT, [45]), new ConditionEffect("Blind", BLIND_BIT, [41]), new ConditionEffect("Hallucinating", HALLUCINATING_BIT, [42]), new ConditionEffect("Drunk", DRUNK_BIT, [43]), new ConditionEffect("Confused", CONFUSED_BIT, [2]), new ConditionEffect("Stun Immune", STUN_IMMUNE_BIT, null), new ConditionEffect("Invisible", INVISIBLE_BIT, null), new ConditionEffect("Paralyzed", PARALYZED_BIT, [53, 54]), new ConditionEffect("Speedy", SPEEDY_BIT, [0]), new ConditionEffect("Bleeding", BLEEDING_BIT, [46]), new ConditionEffect("Not Used", NOT_USED_BIT, null), new ConditionEffect("Healing", HEALING_BIT, [47]), new ConditionEffect("Damaging", DAMAGING_BIT, [49]), new ConditionEffect("Berserk", BERSERK_BIT, [50]), new ConditionEffect("Paused", PAUSED_BIT, null), new ConditionEffect("Stasis", STASIS_BIT, null), new ConditionEffect("Stasis Immune", STASIS_IMMUNE_BIT, null), new ConditionEffect("Invincible", INVINCIBLE_BIT, null), new ConditionEffect("Invulnerable", INVULNERABLE_BIT, [17]), new ConditionEffect("Armored", ARMORED_BIT, [16]), new ConditionEffect("Armor Broken", ARMORBROKEN_BIT, [55]), new ConditionEffect("Hexed", HEXED_BIT, [42]), new ConditionEffect("Unstable", UNSTABLE_BIT, [56]), new ConditionEffect("Curse", CURSE_BIT, [57]), new ConditionEffect("Exposed", EXPOSED_BIT, [58]), new ConditionEffect("Ninja Speedy", NINJA_SPEEDY_BIT, [0])];
       private static var conditionEffectFromName_:Object = null;
       private static var bitToIcon_:Object = null;
 

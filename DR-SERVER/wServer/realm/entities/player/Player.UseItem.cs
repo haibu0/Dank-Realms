@@ -256,7 +256,12 @@ namespace wServer.realm.entities
             {
                 switch (eff.Effect)
                 {
-
+                    case ActivateEffects.ObjectToss:
+                        AEObjectToss(time, item, target, eff);
+                        break;
+                    case ActivateEffects.SupportTome:
+                        AESupportTome(time, item, target, eff);
+                        break;
                     case ActivateEffects.GenericActivate:
                         AEGenericActivate(time, item, target, eff);
                         break;
@@ -364,8 +369,41 @@ namespace wServer.realm.entities
                 }
             }
         }
+        private void AEObjectToss(RealmTime time, Item item, Position target, ActivateEffect eff)
+        {
+            //summon at mouse at airtime(x) seconds
+            //choice to use posion/trap trail
+            var throwColor = eff.Color; 
+            var entity = Resolve(Manager, eff.ObjectId);
+            BroadcastSync(new ShowEffect()
+            {
+                EffectType = EffectType.BeachBall,
+                Color = new ARGB(eff.ObjectType),
+                TargetObjectId = Id,
+                Pos1 = target,
+                Pos2 = new Position { X = X, Y = Y }
+            }, p => this.DistSqr(p) < RadiusSqr);
+            if (!eff.TossObject)
+            {
+                BroadcastSync(new ShowEffect()
+                {
+                    EffectType = EffectType.Throw,
+                    Color = new ARGB(throwColor),
+                    TargetObjectId = Id,
+                    Pos1 = target
+                }, p => this.DistSqr(p) < RadiusSqr);
+            }
 
-        private void AEGenericActivate(RealmTime time, Item item, Position target, ActivateEffect eff)
+            Owner.Timers.Add(new WorldTimer(1500, (world, t) => //timer for airtime
+            {
+                if (entity == null)
+                    return;
+                entity.Move(target.X, target.Y);
+                entity.SetPlayerOwner(this);
+                Owner.EnterWorld(entity);
+            }));
+        }
+            private void AEGenericActivate(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
             var targetPlayer = eff.Target.Equals("player");
             var centerPlayer = eff.Center.Equals("player");
@@ -408,7 +446,21 @@ namespace wServer.realm.entities
                     Pos2 = new Position() { X = target.X - range, Y = target.Y }
                 }, p => this.DistSqr(p) < RadiusSqr);
         }
-
+        private void AESupportTome(RealmTime time, Item item, Position target, ActivateEffect eff)
+        {
+            var rand = new Random();
+            
+            string[] suppTextList = {"Go Team!", "Have you tried using health potions?", "I believe in you!", "I'll cheer from over here!", "It's just a flesh wound!", "Just dodge!", "Rah rah rah!", "You're doing great!" };
+            int suppIndex = rand.Next(suppTextList.Length);
+            string supportiveText = suppTextList[suppIndex];
+            Owner.BroadcastPacket(new Text()
+            {
+                BubbleTime = 0,
+                NumStars = -1,
+                Name = "#Tome of Moral Support",
+                Txt = supportiveText
+            }, null);
+        }
         private void AEPowerStat(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
             if (AscensionEnabled)
@@ -864,25 +916,39 @@ namespace wServer.realm.entities
 
         private void AEPoisonGrenade(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
-            var throwColor = eff.Color2;
+            var trailColor = eff.Color2;
             var aoeColor = eff.Color;
             var impactDamage = eff.ImpactDamage;
+            var airTime = eff.AirTime;
             //if (eff.UseWisMod) { }
-            if (throwColor == 0) { throwColor = 0xffddff00; }
+            if (airTime == 0) { airTime = 1500; }
+            if (trailColor == 0) { trailColor = 0xffddff00; }
             if (aoeColor == 0) { aoeColor = 0xffddff00; }
 
+
+            if (eff.TossObject == true)
+            {
+                BroadcastSync(new ShowEffect()
+                {
+                    EffectType = EffectType.BeachBall,
+                    Color = new ARGB(item.ObjectType),
+                    TargetObjectId = Id,
+                    Pos1 = target,
+                    Pos2 = new Position { X = X, Y = Y }
+                }, p => this.DistSqr(p) < RadiusSqr);
+            }
             BroadcastSync(new ShowEffect()
             {
                 EffectType = EffectType.Throw,
-                Color = new ARGB(throwColor),
+                Color = new ARGB(trailColor),
                 TargetObjectId = Id,
                 Pos1 = target
             }, p => this.DistSqr(p) < RadiusSqr);
 
-            var x = new Placeholder(Manager, 1500);
+            var x = new Placeholder(Manager, airTime); 
             x.Move(target.X, target.Y);
             Owner.EnterWorld(x);
-            Owner.Timers.Add(new WorldTimer(1500, (world, t) =>
+            Owner.Timers.Add(new WorldTimer(airTime, (world, t) => //timer for airtime
             {
                 world.BroadcastPacketNearby(new ShowEffect()
                 {
@@ -1060,8 +1126,10 @@ namespace wServer.realm.entities
 
         private void AETrap(RealmTime time, Item item, Position target, ActivateEffect eff) //cond eff nothing
         {
+            var airTime = eff.AirTime;
             var color = eff.Color;
             var effect = eff.ConditionEffect;
+            if (airTime == 0) { airTime = 1000; }
             if (color == 0) { color = 0xff9000ff; }
             BroadcastSync(new ShowEffect()
             {
@@ -1072,7 +1140,7 @@ namespace wServer.realm.entities
             }, p => this.DistSqr(p) < RadiusSqr);
             //eff.Duration;
 
-            Owner.Timers.Add(new WorldTimer(1500, (world, t) =>
+            Owner.Timers.Add(new WorldTimer(airTime, (world, t) => //airtime for trap
             {
                 var trap = new Trap(
                     this,

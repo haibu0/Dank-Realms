@@ -31,6 +31,7 @@ package com.company.assembleegameclient.ui.tooltip.slotcomparisons
          var damage:int = 0;
          var otherDamage:int = 0;
          var duration:int = 0;
+          var airtime:Number = 0;
          var otherDuration:int = 0;
          var avg:Number = NaN;
          var otherAvg:Number = NaN;
@@ -50,6 +51,10 @@ package com.company.assembleegameclient.ui.tooltip.slotcomparisons
             }
             else
             {
+                //if (int(trap.@airtime) == 0) { airtime = 1000 } else (airtime = int(trap.@airTime));
+                airtime = Number(trap.@airTime);
+                airtime /= 1000;
+                var airtimeTxt = airtime == 1000 ? "" : airtime;
                radius = Number(trap.@radius);
                otherRadius = Number(otherTrap.@radius);
                damage = int(trap.@totalDamage);
@@ -59,7 +64,7 @@ package com.company.assembleegameclient.ui.tooltip.slotcomparisons
                avg = 0.33 * radius + 0.33 * damage + 0.33 * duration;
                otherAvg = 0.33 * otherRadius + 0.33 * otherDamage + 0.33 * otherDuration;
                textColor = getTextColor(avg - otherAvg);
-               compositeHtml = damage + " HP within " + radius + " sqrs\n" + " Slowed for " + duration + " seconds\n";
+               compositeHtml = damage + " HP within " + radius + " sqrs\n" + " Slowed for " + duration + " seconds\n" + airtime + "s airtime\n";
                comparisonText = comparisonText + ("Trap: " + wrapInColoredFont(compositeHtml,textColor));
                processedTags[trap.toXMLString()] = true;
             }

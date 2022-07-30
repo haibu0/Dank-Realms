@@ -67,6 +67,7 @@
     <Compile Include="Empty.cs" />
     <Compile Include="logic\Behavior.cs" />
     <Compile Include="logic\BehaviorDb.cs" />
+    <Compile Include="logic\behaviors\FamiliarFollow.cs" />
     <Compile Include="logic\behaviors\AnnounceOnDeath.cs" />
     <Compile Include="logic\behaviors\BackAndForth.cs" />
     <Compile Include="logic\behaviors\BringEnemy.cs" />
