@@ -54,8 +54,11 @@ package kabam.rotmg.messaging.impl.incoming
       public var pos2_:WorldPosData;
       
       public var color_:int;
-      
-      public function ShowEffect(id:uint, callback:Function)
+
+       public var airTime_:int;
+
+
+       public function ShowEffect(id:uint, callback:Function)
       {
          this.pos1_ = new WorldPosData();
          this.pos2_ = new WorldPosData();
@@ -69,11 +72,13 @@ package kabam.rotmg.messaging.impl.incoming
          this.pos1_.parseFromInput(data);
          this.pos2_.parseFromInput(data);
          this.color_ = data.readInt();
+          this.airTime_ = data.readInt();
+
       }
       
       override public function toString() : String
       {
-         return formatToString("SHOW_EFFECT","effectType_","targetObjectId_","pos1_","pos2_","color_");
+         return formatToString("SHOW_EFFECT","effectType_","targetObjectId_","pos1_","pos2_","color_","airTime_");
       }
    }
 }

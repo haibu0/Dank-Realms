@@ -7,6 +7,11 @@ package kabam.rotmg.assets
        public static var theMachineChars8x8_:Class = EmbeddedAssets_theMachineChars8x8_;
        public static var theMachineObjects16x16_:Class = EmbeddedAssets_theMachineObjects16x16_;
        public static var theMachineChars16x16:Class = EmbeddedAssets_theMachineChars16x16_;
+       //the nest
+       public static var epicHiveChars8x8_:Class = EmbeddedAssets_epicHiveChars8x8_;
+       public static var epicHiveChars16x16_:Class = EmbeddedAssets_epicHiveChars16x16_;
+       public static var epicHiveObjects8x8_:Class = EmbeddedAssets_epicHiveObjects8x8_;
+       public static var epicHiveObjects16x16_:Class = EmbeddedAssets_epicHiveObjects16x16_;
 
 
        public static var d2LofiObjEmbed_:Class = EmbeddedAssets_d2LofiObjEmbed_;

@@ -56,7 +56,7 @@ namespace wServer.logic.behaviors
                     var vect = new Vector2(player.X - host.X, player.Y - host.Y);
                     if (vect.Length() > 20)
                     {
-                        host.Move(player.X, player.Y);
+                        host.Move(player.X, player.Y);//
                     }
                     else if (vect.Length() > 1)
                     {

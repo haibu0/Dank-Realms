@@ -24,6 +24,7 @@ fixes needed
 -equipmenttooltip duplicate texts (look at orbs)
 -wismod tooltip
 bugs
+-talisman attack is buggy
 -poison aoe not showing sometimes
 -wander looks buggy/not smooth(or just movement in general)
 -fame notifier(+0 fame)
@@ -31,6 +32,9 @@ bugs
 -forbi jungle boss totem hp bars(make behavior with invunerable)
 -fix fame command
 
+buggy talisman attack
+make aoe behavior with grenade behavior(god that gives debuffs?) figure out how to hit enemies ;(
+hive helm/summoner(after nest?)
 ability perfection(mods tht make sense, improvements that u see and update all tiered abilities) make them all perfect min/max damage on abilities(trap, poison)
 tiered items lookover, t8 abilities(change all)get proj colors? (revisit other class damage)| projectile amplitude and frequency changes with mouse pos(wakizashi)
 

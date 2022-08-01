@@ -12,7 +12,7 @@ namespace wServer.logic.behaviors
     class Grenade : Behavior
     {
         //State storage: cooldown timer
-
+        bool isBomb;
         double range;
         float radius;
         double? fixedAngle;
@@ -22,9 +22,10 @@ namespace wServer.logic.behaviors
         int effectDuration;
         new uint color;
 
-        public Grenade(double radius, int damage, double range = 5,
-            double? fixedAngle = null, Cooldown coolDown = new Cooldown(), ConditionEffectIndex effect = 0, int effectDuration = 0, uint color = 0xffff0000)
+        public Grenade(double radius = 0, int damage = 0, double range = 5,
+            double? fixedAngle = null, Cooldown coolDown = new Cooldown(), ConditionEffectIndex effect = 0, int effectDuration = 0, uint color = 0xffff0000, bool isBomb = false)
         {
+            this.isBomb = isBomb;
             this.radius = (float)radius;
             this.damage = damage;
             this.range = range;
@@ -43,6 +44,7 @@ namespace wServer.logic.behaviors
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
             int cool = (int)state;
+            var timer = isBomb ? 0 : 1500;
 
             if (cool <= 0)
             {
@@ -60,19 +62,34 @@ namespace wServer.logic.behaviors
                             Y = (float)(range * Math.Sin(fixedAngle.Value)) + host.Y,
                         };
                     else
+                        if (isBomb)
+                    {
+                        target = new Position()
+                        {
+                            X = host.X,
+                            Y = host.Y,
+                        };
+                    }
+                    else
+                    {
                         target = new Position()
                         {
                             X = player.X,
                             Y = player.Y,
                         };
-                    host.Owner.BroadcastPacketNearby(new ShowEffect()
+                    }
+                    if (!isBomb)
                     {
-                        EffectType = EffectType.Throw,
-                        Color = new ARGB(color),
-                        TargetObjectId = host.Id,
-                        Pos1 = target
-                    }, host, null);
-                    host.Owner.Timers.Add(new WorldTimer(1500, (world, t) =>
+                        host.Owner.BroadcastPacketNearby(new ShowEffect()
+                        {
+                            EffectType = EffectType.Throw,
+                            Color = new ARGB(color),
+                            TargetObjectId = host.Id,
+                            Pos1 = target,
+                            AirTime = 1500
+                        }, host, null);
+                    }
+                    host.Owner.Timers.Add(new WorldTimer(timer, (world, t) =>
                     {
                         world.BroadcastPacketNearby(new Aoe()
                         {
@@ -81,7 +98,8 @@ namespace wServer.logic.behaviors
                             Damage = (ushort)damage,
                             Duration = 0,
                             Effect = 0,
-                            OrigType = host.ObjectType
+                            OrigType = host.ObjectType,
+                            Color = new ARGB(color)
                         }, host, null);
                         world.AOE(target, radius, true, p =>
                         {

@@ -109,6 +109,15 @@ namespace wServer
                     if (d < dist)
                         yield return i;
                 }
+            else if (objType == 1)
+            {
+                foreach (Entity i in entity.Owner.EnemiesCollision.HitTest(entity.X, entity.Y, (float)dist))
+                {
+                    double d = i.Dist(entity);
+                    if (d < dist)
+                        yield return i;
+                }
+            }
             else
                 foreach (var i in entity.Owner.EnemiesCollision.HitTest(entity.X, entity.Y, dist))
                 {

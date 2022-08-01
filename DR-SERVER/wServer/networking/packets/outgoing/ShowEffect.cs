@@ -9,6 +9,8 @@ namespace wServer.networking.packets.outgoing
         public Position Pos1 { get; set; }
         public Position Pos2 { get; set; }
         public ARGB Color { get; set; }
+        public int AirTime { get; set; }
+
 
         public override PacketId ID => PacketId.SHOWEFFECT;
         public override Packet CreateInstance() { return new ShowEffect(); }
@@ -20,6 +22,8 @@ namespace wServer.networking.packets.outgoing
             Pos1 = Position.Read(rdr);
             Pos2 = Position.Read(rdr);
             Color = ARGB.Read(rdr);
+            AirTime = rdr.ReadInt32();
+
         }
         protected override void Write(NWriter wtr)
         {
@@ -28,6 +32,8 @@ namespace wServer.networking.packets.outgoing
             Pos1.Write(wtr);
             Pos2.Write(wtr);
             Color.Write(wtr);
+            wtr.Write(AirTime);
+
         }
     }
 }

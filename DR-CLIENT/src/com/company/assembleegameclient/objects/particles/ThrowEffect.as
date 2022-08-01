@@ -11,13 +11,16 @@ package com.company.assembleegameclient.objects.particles
       public var end_:Point;
       
       public var color_:int;
-      
-      public function ThrowEffect(start:Point, end:Point, color:int)
+
+       public var airTime_:int;
+
+      public function ThrowEffect(start:Point, end:Point, color:int, airTime:int)
       {
          super();
          this.start_ = start;
          this.end_ = end;
          this.color_ = color;
+          this.airTime_ = airTime;
       }
       
       override public function update(time:int, dt:int) : Boolean
@@ -25,7 +28,7 @@ package com.company.assembleegameclient.objects.particles
          x_ = this.start_.x;
          y_ = this.start_.y;
          var size:int = 200;
-         var part:ThrowParticle = new ThrowParticle(size,this.color_,1500,this.start_,this.end_);//for throw airtime
+         var part:ThrowParticle = new ThrowParticle(size,this.color_,this.airTime_,this.start_,this.end_);//for throw airtime
          map_.addObj(part,x_,y_);
          return false;
       }

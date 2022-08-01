@@ -682,7 +682,7 @@ namespace wServer.realm
                     continue;
 
                 var eff = (int)i.Effect;
-                Console.WriteLine(ConditionEffects);
+                //Console.WriteLine(ConditionEffects);
                 _effects[eff] = i.DurationMS;
                 if (i.DurationMS != 0)
                     ConditionEffects |= (ConditionEffects)((ulong)1 << eff);

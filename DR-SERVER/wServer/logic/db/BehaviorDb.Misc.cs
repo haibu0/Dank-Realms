@@ -40,8 +40,8 @@ namespace wServer.logic
                 new State(
                     new PetFollow(),
                     new Wander(0.05),
-                    new HealPlayer(8, 9000, 45),
-                    new HealPlayerMP(8, 9000, 25)
+                    new HealPlayer(10, 3000, 150),
+                    new HealPlayerMP(10, 3000, 100)
                 )            
             );
     }

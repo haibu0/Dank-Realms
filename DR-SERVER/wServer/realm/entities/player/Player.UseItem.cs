@@ -295,8 +295,8 @@ namespace wServer.realm.entities
                     case ActivateEffects.BulletNova:
                         AEBulletNova(time, item, target, eff);
                         break;
-                    case ActivateEffects.BulletCreate:
-                        AEBulletCreate(time, item, target, eff);
+                    case ActivateEffects.Wakizashi:
+                        AEWakizashi(time, item, target, eff);
                         break;
                     case ActivateEffects.ConditionEffectSelf:
                         AEConditionEffectSelf(time, item, target, eff);
@@ -371,30 +371,33 @@ namespace wServer.realm.entities
         }
         private void AEObjectToss(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
-            //summon at mouse at airtime(x) seconds
-            //choice to use posion/trap trail
+            //summoner summons 3 spaced apart
+            var airTime = eff.AirTime;
             var throwColor = eff.Color; 
             var entity = Resolve(Manager, eff.ObjectId);
-            BroadcastSync(new ShowEffect()
+            airTime = eff.AirTime == 0 ? 1000 : airTime;
+            if (eff.TossObject)
             {
-                EffectType = EffectType.BeachBall,
-                Color = new ARGB(eff.ObjectType),
-                TargetObjectId = Id,
-                Pos1 = target,
-                Pos2 = new Position { X = X, Y = Y }
-            }, p => this.DistSqr(p) < RadiusSqr);
-            if (!eff.TossObject)
+                BroadcastSync(new ShowEffect()
+                {
+                    EffectType = EffectType.BeachBall,
+                    Color = new ARGB(eff.ObjectType),
+                    TargetObjectId = Id,
+                    Pos1 = target,
+                    Pos2 = new Position { X = X, Y = Y }
+                }, p => this.DistSqr(p) < RadiusSqr);
+            } else
             {
                 BroadcastSync(new ShowEffect()
                 {
                     EffectType = EffectType.Throw,
                     Color = new ARGB(throwColor),
                     TargetObjectId = Id,
-                    Pos1 = target
+                    Pos1 = target,
+                    AirTime = airTime
                 }, p => this.DistSqr(p) < RadiusSqr);
             }
-
-            Owner.Timers.Add(new WorldTimer(1500, (world, t) => //timer for airtime
+            Owner.Timers.Add(new WorldTimer(1500, (world, t) =>
             {
                 if (entity == null)
                     return;
@@ -622,7 +625,7 @@ namespace wServer.realm.entities
             foreach (var player in Owner.Players.Values)
                 player.SendInfo(string.Format("{0} unlocked by {1}!", world.SBName, Name));
         }
-        private void AEBulletCreate(RealmTime time, Item item, Position target, ActivateEffect eff)
+        private void AEWakizashi(RealmTime time, Item item, Position target, ActivateEffect eff) //bulletcreate looks interesting
         {
             var charX = X;
             var mouseAngleX = target.X - X;
@@ -763,7 +766,7 @@ namespace wServer.realm.entities
         private void AEBulletNova(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
             var numprjs = item.NumProjectiles;
-            if (numprjs == 1) { numprjs = 20; } //for spells that dont declare numprojectiles, to have 20 shots
+            numprjs = item.NumProjectiles == 0 ? 20 : numprjs; //for spells that dont declare numprojectiles, to have 20 shots
             var prjs = new Projectile[numprjs];
             var prjDesc = item.Projectiles[0]; //Assume only one(!)
             var batch = new Packet[numprjs + 1];
@@ -919,11 +922,10 @@ namespace wServer.realm.entities
             var trailColor = eff.Color2;
             var aoeColor = eff.Color;
             var impactDamage = eff.ImpactDamage;
-            var airTime = eff.AirTime;
-            //if (eff.UseWisMod) { }
-            if (airTime == 0) { airTime = 1500; }
-            if (trailColor == 0) { trailColor = 0xffddff00; }
-            if (aoeColor == 0) { aoeColor = 0xffddff00; }
+            var airTime = eff.AirTime;           
+            airTime = eff.AirTime == 0 ? 1500 : airTime;
+            trailColor = eff.Color2 == 0 ? 0xffddff00 :trailColor;
+            aoeColor = eff.Color == 0 ? 0xffddff00 : aoeColor;
 
 
             if (eff.TossObject == true)
@@ -942,7 +944,8 @@ namespace wServer.realm.entities
                 EffectType = EffectType.Throw,
                 Color = new ARGB(trailColor),
                 TargetObjectId = Id,
-                Pos1 = target
+                Pos1 = target,
+                AirTime = airTime
             }, p => this.DistSqr(p) < RadiusSqr);
 
             var x = new Placeholder(Manager, airTime); 
@@ -1129,14 +1132,15 @@ namespace wServer.realm.entities
             var airTime = eff.AirTime;
             var color = eff.Color;
             var effect = eff.ConditionEffect;
-            if (airTime == 0) { airTime = 1000; }
-            if (color == 0) { color = 0xff9000ff; }
+            airTime = eff.AirTime == 0 ? 1500 : airTime;
+            color = eff.Color == 0 ? 0xff9000ff : color;
             BroadcastSync(new ShowEffect()
             {
                 EffectType = EffectType.Throw,
                 Color = new ARGB(color),
                 TargetObjectId = Id,
-                Pos1 = target
+                Pos1 = target,
+                AirTime = airTime
             }, p => this.DistSqr(p) < RadiusSqr);
             //eff.Duration;
 
@@ -1156,6 +1160,7 @@ namespace wServer.realm.entities
 
         private void AEVampireBlast(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
+           
             //damage wis mod
             var RealDamage = (eff.TotalDamage / 2); 
             var Wisdom = (Stats.Base[7] + Stats.Boost[7]);
@@ -1168,8 +1173,8 @@ namespace wServer.realm.entities
             var healingM = (realHealing * 100) / 80;
             var healingAmt = (damage + healingM );
             var color = eff.Color;
-
-            if(color == 0) { color = 0xC90D0D; } //default color is red
+     
+            color = eff.Color == 0 ? 0xC90D0D: color;//default color is red
             var pkts = new List<Packet>
             {
                 new ShowEffect()
@@ -1214,12 +1219,13 @@ namespace wServer.realm.entities
 
             if (enemies.Count > 0)
             {
-                
-                if(enemies.Count >= 3 /*&& !HasConditionEffect(ConditionEffects.Sick)*/)
+                if (item.ObjectId == "Skull of Endless Torment")//endless torment skull ability
                 {
-                   AERemoveNegativeConditions(time, item, target, eff);
-                }
-                
+                    if (enemies.Count >= 3 /*&& !HasConditionEffect(ConditionEffects.Sick)*/) 
+                    {
+                        AERemoveNegativeConditions(time, item, target, eff);
+                    }
+                }          
                 var rand = new Random();
                 for (var i = 0; i < 5; i++)
                 {

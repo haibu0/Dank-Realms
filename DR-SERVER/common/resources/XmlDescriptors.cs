@@ -97,7 +97,7 @@ namespace common.resources
         StatBoostAura,
         TestNova,
         BulletNova,
-        BulletCreate,
+        Wakizashi,
         ConditionEffectSelf,
         ConditionEffectAura,
         Teleport,
