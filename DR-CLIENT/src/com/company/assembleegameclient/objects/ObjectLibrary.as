@@ -182,13 +182,9 @@ public class ObjectLibrary
                return TextureRedrawer.redraw(texture,size,includeBottom,0,useCaching,scaleValue);
            }
            var objectXML:XML = xmlLibrary_[objectType];
-           if(texture == null && objectXML.hasOwnProperty("Legendary"))
+           if(texture == null && objectXML.hasOwnProperty("Mistake"))
            {
                return TextureRedrawer.redraw(texture,size,includeBottom,14603786,useCaching,scaleValue);
-           }
-           if(texture == null && objectXML.hasOwnProperty("Bluelol"))
-           {
-               return TextureRedrawer.redraw(texture,size,includeBottom,23989,useCaching,scaleValue);
            }
            var tex1:int = Boolean(objectXML.hasOwnProperty("Tex1"))?int(int(objectXML.Tex1)):int(0);
            var tex2:int = Boolean(objectXML.hasOwnProperty("Tex2"))?int(int(objectXML.Tex2)):int(0);

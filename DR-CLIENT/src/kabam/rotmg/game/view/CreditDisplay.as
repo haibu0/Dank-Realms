@@ -17,17 +17,22 @@ package kabam.rotmg.game.view
    {
       
       private static const FONT_SIZE:int = 18;
-       
-      
-      private var creditsText_:SimpleText;
+
+       private var silverText_:SimpleText;
+
+       private var creditsText_:SimpleText;
       
       private var fameText_:SimpleText;
-      
-      private var coinIcon_:Bitmap;
+
+       private var silverIcon_:Bitmap;
+
+       private var coinIcon_:Bitmap;
       
       private var fameIcon_:Bitmap;
-      
-      private var credits_:int = -1;
+
+       private var silver_:int = -1;
+
+       private var credits_:int = -1;
       
       private var fame_:int = -1;
       
@@ -40,6 +45,11 @@ package kabam.rotmg.game.view
          this.creditsText_ = new SimpleText(FONT_SIZE,16777215,false,0,0);
          this.creditsText_.filters = [new DropShadowFilter(0,0,0,1,4,4,2)];
          addChild(this.creditsText_);
+          this.silverText_ = new SimpleText(FONT_SIZE,16777215,false,0,0);
+          this.silverText_.filters = [new DropShadowFilter(0,0,0,1,4,4,2)];
+          addChild(this.silverText_);
+          this.silverIcon_ = new Bitmap(FameUtil.getSilverIcon());
+          addChild(this.silverIcon_);
          var coinBD:BitmapData = AssetLibrary.getImageFromSet("lofiObj3",225);
          coinBD = TextureRedrawer.redraw(coinBD,40,true,0);
          this.coinIcon_ = new Bitmap(coinBD);
@@ -49,25 +59,36 @@ package kabam.rotmg.game.view
          addChild(this.fameText_);
          this.fameIcon_ = new Bitmap(FameUtil.getFameIcon());
          addChild(this.fameIcon_);
-         this.draw(0,0);
+         this.draw( 0, 0, 0 );
          mouseEnabled = false;
          doubleClickEnabled = false;
       }
 
-      public function draw(credits:int, fame:int) : void
+      public function draw(credits:int, fame:int, silver:int) : void
       {
-         if(credits == this.credits_ && fame == this.fame_)
+         if((credits == this.credits_) && (fame == this.fame_) && (silver = this.silver_))
          {
             return;
          }
-         this.credits_ = credits;
+          this.silver_ = silver;
+          this.credits_ = credits;
          this.fame_ = fame;
          this.coinIcon_.x = -this.coinIcon_.width;
          this.creditsText_.text = this.credits_.toString();
          this.creditsText_.updateMetrics();
          this.creditsText_.x = this.coinIcon_.x - this.creditsText_.width + 8;
          this.creditsText_.y = this.coinIcon_.height / 2 - this.creditsText_.height / 2;
-         this.fameIcon_.x = this.creditsText_.x - this.fameIcon_.width;
+
+          this.silverIcon_.x = -this.silverIcon_.width;
+          this.silverIcon_.y = this.coinIcon_.y + 30;
+          this.silverText_.text = this.silverText_.toString();
+          this.silverText_.updateMetrics();
+          this.silverText_.x = this.silverIcon_.x - this.silverText_.width + 8;
+          this.silverText_.y = this.creditsText_.y + 30;
+
+
+
+          this.fameIcon_.x = this.creditsText_.x - this.fameIcon_.width;
          this.fameText_.text = this.fame_.toString();
          this.fameText_.updateMetrics();
          this.fameText_.x = this.fameIcon_.x - this.fameText_.width + 8;

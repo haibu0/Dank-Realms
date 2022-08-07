@@ -30,7 +30,7 @@ namespace wServer.realm.entities
         {
             this.player = player;
             this.duration = duration;
-            this.speed = tps; //set 0 for still decoy
+            this.speed = tps; //set 0 for still decoy, change for run speeed; add decoy stop
 
             var history = player.TryGetHistory(1);
             if (history == null)

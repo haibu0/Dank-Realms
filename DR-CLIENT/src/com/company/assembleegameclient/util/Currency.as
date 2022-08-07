@@ -4,15 +4,18 @@ package com.company.assembleegameclient.util
    {
       
       public static const INVALID:int = -1;
-      
+
       public static const GOLD:int = 0;
-      
+
       public static const FAME:int = 1;
       
       public static const GUILD_FAME:int = 2;
-       
-      
-      public function Currency()
+
+       public static const SILVER:int = 3;
+
+
+
+       public function Currency()
       {
          super();
       }
@@ -21,6 +24,8 @@ package com.company.assembleegameclient.util
       {
          switch(type)
          {
+             case SILVER:
+                 return "Silver";
             case GOLD:
                return "Gold";
             case FAME:

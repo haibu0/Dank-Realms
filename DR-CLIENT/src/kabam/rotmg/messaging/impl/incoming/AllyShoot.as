@@ -4,9 +4,9 @@ package kabam.rotmg.messaging.impl.incoming
    
    public class AllyShoot extends IncomingMessage
    {
-       
-      
-      public var bulletId_:uint;
+       public var bulletType_:int;
+
+       public var bulletId_:uint;
       
       public var ownerId_:int;
       
@@ -21,7 +21,8 @@ package kabam.rotmg.messaging.impl.incoming
       
       override public function parseFromInput(data:IDataInput) : void
       {
-         this.bulletId_ = data.readUnsignedByte();
+          this.bulletType_ = data.readUnsignedByte();
+          this.bulletId_ = data.readUnsignedByte();
          this.ownerId_ = data.readInt();
          this.containerType_ = data.readShort();
          this.angle_ = data.readFloat();
@@ -29,7 +30,7 @@ package kabam.rotmg.messaging.impl.incoming
       
       override public function toString() : String
       {
-         return formatToString("ALLYSHOOT","bulletId_","ownerId_","containerType_","angle_");
+         return formatToString("ALLYSHOOT","bulletId_","ownerId_","containerType_","angle_", "bulletType_");
       }
    }
 }

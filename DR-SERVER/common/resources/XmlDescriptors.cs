@@ -21,6 +21,7 @@ namespace common.resources
         Gold = 0,
         Fame = 1,
         GuildFame = 2,
+        Silver = 3,
 
     }
 
@@ -475,7 +476,7 @@ namespace common.resources
         public readonly bool InvUse;
         public readonly bool TypeOfConsumable;
         public readonly bool Soulbound;
-        public readonly bool Bluelol;
+        public readonly bool Mistake;
         public readonly bool Potion;
         public readonly bool Usable;
         public readonly bool Resurrects;
@@ -514,7 +515,7 @@ namespace common.resources
             Description = e.GetValue<string>("Description");
             Consumable = e.HasElement("Consumable");
             Soulbound = e.HasElement("Soulbound");
-            Bluelol = e.HasElement("Bluelol");
+            Mistake = e.HasElement("Mistake");
             Potion = e.HasElement("Potion");
             Usable = e.HasElement("Usable");
             Resurrects = e.HasElement("Resurrects");

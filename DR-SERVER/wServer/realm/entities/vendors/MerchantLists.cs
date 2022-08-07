@@ -36,7 +36,7 @@ namespace wServer.realm.entities.vendors
     {
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-        private static readonly List<ISellableItem> Weapons = new List<ISellableItem>
+        private static readonly List<ISellableItem> Store9 = new List<ISellableItem>
         {
             new ShopItem("Dagger of Foul Malevolence", 500),
             new ShopItem("Bow of Covert Havens", 500),
@@ -46,7 +46,7 @@ namespace wServer.realm.entities.vendors
             new ShopItem("Masamune", 500)
         };
 
-        private static readonly List<ISellableItem> Abilities = new List<ISellableItem>
+        private static readonly List<ISellableItem> Store8 = new List<ISellableItem>
         {
             new ShopItem("Cloak of Ghostly Concealment", 500),
             new ShopItem("Quiver of Elvish Mastery", 500),
@@ -64,7 +64,7 @@ namespace wServer.realm.entities.vendors
             new ShopItem("Doom Circle", 500)
         };
 
-        private static readonly List<ISellableItem> Armor = new List<ISellableItem>
+        private static readonly List<ISellableItem> Store7 = new List<ISellableItem>
         {
             new ShopItem("Robe of the Illusionist", 50),
             new ShopItem("Robe of the Grand Sorcerer", 500),
@@ -73,8 +73,8 @@ namespace wServer.realm.entities.vendors
             new ShopItem("Mithril Armor", 50),
             new ShopItem("Acropolis Armor", 500)
         };
-
-        private static readonly List<ISellableItem> Rings = new List<ISellableItem>
+        
+        private static readonly List<ISellableItem> Store6 = new List<ISellableItem>
         {
             new ShopItem("Ring of Paramount Attack", 100),
             new ShopItem("Ring of Paramount Defense", 100),
@@ -94,7 +94,7 @@ namespace wServer.realm.entities.vendors
             new ShopItem("Ring of Unbound Magic", 750)
         };
 
-        private static readonly List<ISellableItem> Keys = new List<ISellableItem>
+        private static readonly List<ISellableItem> Store5 = new List<ISellableItem>
         {
         };
 
@@ -164,9 +164,14 @@ namespace wServer.realm.entities.vendors
             new Dictionary<TileRegion, Tuple<List<ISellableItem>, CurrencyType, int>>()
         {
             { TileRegion.Store_1, new Tuple<List<ISellableItem>, CurrencyType, int>(Store1, CurrencyType.Gold, 0) },
-            { TileRegion.Store_2, new Tuple<List<ISellableItem>, CurrencyType, int>(Store2, CurrencyType.Fame, 0) },
+            { TileRegion.Store_2, new Tuple<List<ISellableItem>, CurrencyType, int>(Store2, CurrencyType.Silver, 0) },
             { TileRegion.Store_3, new Tuple<List<ISellableItem>, CurrencyType, int>(Store3, CurrencyType.Gold, 0) },
             { TileRegion.Store_4, new Tuple<List<ISellableItem>, CurrencyType, int>(Store4, CurrencyType.Fame, 0) },
+            { TileRegion.Store_5, new Tuple<List<ISellableItem>, CurrencyType, int>(Store5, CurrencyType.Gold, 0) },
+            { TileRegion.Store_6, new Tuple<List<ISellableItem>, CurrencyType, int>(Store6, CurrencyType.Gold, 0) },
+            { TileRegion.Store_7, new Tuple<List<ISellableItem>, CurrencyType, int>(Store7, CurrencyType.Gold, 0) },
+            { TileRegion.Store_8, new Tuple<List<ISellableItem>, CurrencyType, int>(Store8, CurrencyType.Gold, 0) },
+            { TileRegion.Store_9, new Tuple<List<ISellableItem>, CurrencyType, int>(Store9, CurrencyType.Gold, 0) }
         };
 
         public static void Init(RealmManager manager)

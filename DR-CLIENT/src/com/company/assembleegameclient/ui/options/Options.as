@@ -26,7 +26,7 @@ import flash.display.BitmapData;
 import flash.geom.Point;
 import kabam.rotmg.ui.UIUtils;
 
-   
+
    public class Options extends Sprite
    {
       private static const CONTROLS_TAB:String = "Controls";

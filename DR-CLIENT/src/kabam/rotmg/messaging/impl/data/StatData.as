@@ -81,6 +81,7 @@ import flash.utils.IDataInput;
       public static const BACKPACK_7_STAT:int = 74;
       public static const HASBACKPACK_STAT:int = 75;
       public static const TEXTURE_STAT:int = 76;
+       public static const SILVER_STAT:int = 77;
        public static const ASCENSIONENABLED:int = 146;
        
       

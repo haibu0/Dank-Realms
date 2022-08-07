@@ -1105,7 +1105,7 @@ import kabam.rotmg.ui.view.NotEnoughGoldDialog;
             return;
          }
          var proj:Projectile = FreeList.newObject(Projectile) as Projectile;
-         proj.reset(allyShoot.containerType_,0,allyShoot.ownerId_,allyShoot.bulletId_,allyShoot.angle_,this.gs_.lastUpdate_);
+         proj.reset(allyShoot.containerType_,allyShoot.bulletType_,allyShoot.ownerId_,allyShoot.bulletId_,allyShoot.angle_,this.gs_.lastUpdate_); //test multiple prjs
          this.gs_.map.addObj(proj,owner.x_,owner.y_);
          owner.setAttack(allyShoot.containerType_,allyShoot.angle_);
       }
@@ -1545,6 +1545,9 @@ import kabam.rotmg.ui.view.NotEnoughGoldDialog;
                case StatData.MERCHANDISE_TYPE_STAT:
                   merchant.setMerchandiseType(value);
                   continue;
+                case StatData.SILVER_STAT:
+                    player.setSilver(value);
+                    continue;
                case StatData.CREDITS_STAT:
                   player.setCredits(value);
                   continue;

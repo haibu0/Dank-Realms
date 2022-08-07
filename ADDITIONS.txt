@@ -16,10 +16,12 @@
 -map editor change
 -still decoys
 -tooltips
+-mutiple projectiles on weapons
+-selftransform(honey scepter supreme)
 
 fixes needed
 -make summons damage enemies
--stat boost icons
+-stat boost icons(need to figure out conditioneffects)
 -mscale scroll
 -equipmenttooltip duplicate texts (look at orbs)
 -wismod tooltip
@@ -32,6 +34,9 @@ bugs
 -forbi jungle boss totem hp bars(make behavior with invunerable)
 -fix fame command
 
+
+finish machine abilities
+oryx abilities
 buggy talisman attack
 make aoe behavior with grenade behavior(god that gives debuffs?) figure out how to hit enemies ;(
 hive helm/summoner(after nest?)
@@ -39,6 +44,8 @@ ability perfection(mods tht make sense, improvements that u see and update all t
 tiered items lookover, t8 abilities(change all)get proj colors? (revisit other class damage)| projectile amplitude and frequency changes with mouse pos(wakizashi)
 
 items to fix:
+-unshuriken (cond eff confused - look at samuari from valor)
+-nsfwakizashi
 -penetrating blast spell
 -drake in an orb
 -ogmur(tooltip)

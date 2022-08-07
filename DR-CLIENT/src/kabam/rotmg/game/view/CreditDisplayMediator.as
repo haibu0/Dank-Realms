@@ -22,7 +22,7 @@ package kabam.rotmg.game.view
       {
          this.model.creditsChanged.add(this.onCreditsChanged);
          this.model.fameChanged.add(this.onFameChanged);
-         this.view.draw(this.model.getCredits(),this.model.getFame());
+         this.view.draw(this.model.getCredits(),this.model.getFame(), this.model.getSilver());
       }
       
       override public function destroy() : void
@@ -33,12 +33,12 @@ package kabam.rotmg.game.view
       
       private function onCreditsChanged(credits:int) : void
       {
-         this.view.draw(credits,this.model.getFame());
+         this.view.draw(credits,this.model.getFame(), this.model.getSilver());
       }
       
       private function onFameChanged(fame:int) : void
       {
-         this.view.draw(this.model.getCredits(),fame);
+         this.view.draw(this.model.getCredits(),fame, this.model.getSilver());
       }
    }
 }

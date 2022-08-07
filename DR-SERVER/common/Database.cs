@@ -90,6 +90,8 @@ namespace common
                 Guest = true,
                 Fame = newAccounts.Fame,
                 TotalFame = newAccounts.Fame,
+                Silver = newAccounts.Silver,
+                TotalSilver = newAccounts.Silver,
                 Credits = newAccounts.Credits,
                 TotalCredits = newAccounts.Credits,
                 PassResetToken = ""
@@ -337,6 +339,8 @@ namespace common
                 Guest = isGuest,
                 Fame = newAccounts.Fame,
                 TotalFame = newAccounts.Fame,
+                Silver = newAccounts.Silver,
+                TotalSilver = newAccounts.Silver,
                 Credits = newAccounts.Credits,
                 TotalCredits = newAccounts.Credits,
                 PassResetToken = "",
@@ -611,6 +615,7 @@ namespace common
 
         private static readonly Dictionary<CurrencyType, string[]> CurrencyKey = new Dictionary<CurrencyType, string[]>
         {
+            { CurrencyType.Silver, new [] { "totalSilver", "silver" } },
             { CurrencyType.Gold, new [] { "totalCredits", "credits" } },
             { CurrencyType.Fame, new [] { "totalFame", "fame" } },
             { CurrencyType.GuildFame, new [] { "totalFame", "fame" } }
@@ -683,6 +688,8 @@ namespace common
         {
             switch (currency)
             {
+                case CurrencyType.Silver:
+                    return acc.Silver;
                 case CurrencyType.Gold:
                     return acc.Credits;
                 case CurrencyType.Fame:
@@ -696,6 +703,13 @@ namespace common
         {
             switch (type)
             {
+                case CurrencyType.Silver:
+                    if (total)
+                        acc.TotalSilver = value;
+                    else
+                        acc.Silver = value;
+                    break;
+
                 case CurrencyType.Gold:
                     if (total)
                         acc.TotalCredits = value;
@@ -711,7 +725,30 @@ namespace common
                     break;
             }
         }
+        public Task UpdateSilver(DbAccount acc, int amount, ITransaction transaction = null)
+        {
+            var trans = transaction ?? _db.CreateTransaction();
 
+            if (amount > 0)
+                trans.HashIncrementAsync(acc.Key, "totalSilver", amount)
+                    .ContinueWith(t =>
+                    {
+                        if (!t.IsCanceled)
+                            acc.TotalSilver = (int)t.Result;
+                    });
+
+            var task = trans.HashIncrementAsync(acc.Key, "silver", amount)
+                .ContinueWith(t =>
+                {
+                    if (!t.IsCanceled)
+                        acc.Silver = (int)t.Result;
+                });
+
+            if (transaction == null)
+                trans.Execute();
+
+            return task;
+        }
         public Task UpdateCredit(DbAccount acc, int amount, ITransaction transaction = null)
         {
             var trans = transaction ?? _db.CreateTransaction();

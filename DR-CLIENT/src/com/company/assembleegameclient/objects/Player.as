@@ -74,7 +74,8 @@ import kabam.rotmg.ui.model.TabStripModel;
       public var skin:AnimatedChar;
       public var accountId_:int = -1;
       public var credits_:int = 0;
-      public var numStars_:int = 0;
+       public var silver_:int = 0;
+       public var numStars_:int = 0;
       public var fame_:int = 0;
       public var nameChosen_:Boolean = false;
       public var currFame_:int = 0;
@@ -197,6 +198,11 @@ import kabam.rotmg.ui.model.TabStripModel;
       {
          this.credits_ = credits;
       }
+
+       public function setSilver(silver:int) : void
+       {
+           this.silver_ = silver;
+       }
       
       public function setGuildName(guildName:String) : void
       {

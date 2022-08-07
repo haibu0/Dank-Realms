@@ -207,6 +207,7 @@ namespace wServer.logic.behaviors
                         AngleInc = _shootAngle,
                         NumShots = (byte) count,
                     };
+                    //var pkt = new PetShoot() { }
                     foreach (var plr in host.Owner.Players.Values
                         .Where(p => p.DistSqr(host) < Player.RadiusSqr))
                     {

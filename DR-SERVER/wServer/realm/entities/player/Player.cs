@@ -120,6 +120,13 @@ namespace wServer.realm.entities
             set { _credits.SetValue(value); }
         }
 
+        private readonly SV<int> _silver;
+        public int Silver
+        {
+            get { return _silver.GetValue(); }
+            set { _silver.SetValue(value); }
+        }
+
         private readonly SV<bool> _nameChosen;
         public bool NameChosen
         {
@@ -206,6 +213,7 @@ namespace wServer.realm.entities
             stats[StatsType.Guild] = Guild;
             stats[StatsType.GuildRank] = GuildRank;
             stats[StatsType.Credits] = Credits;
+            stats[StatsType.Silver] = Silver;
             stats[StatsType.NameChosen] = // check from account in case ingame registration
                 (_client.Account?.NameChosen ?? NameChosen) ? 1 : 0;
             stats[StatsType.Texture1] = Texture1;
@@ -300,6 +308,8 @@ namespace wServer.realm.entities
             _guild = new SV<string>(this, StatsType.Guild, "");
             _guildRank = new SV<int>(this, StatsType.GuildRank, -1);
             _credits = new SV<int>(this, StatsType.Credits, client.Account.Credits, true);
+            _silver = new SV<int>(this, StatsType.Silver, client.Account.Silver, true);
+
             _nameChosen = new SV<bool>(this, StatsType.NameChosen, client.Account.NameChosen, false, v => _client.Account?.NameChosen ?? v);
             _texture1 = new SV<int>(this, StatsType.Texture1, client.Character.Tex1);
             _texture2 = new SV<int>(this, StatsType.Texture2, client.Character.Tex2);
@@ -846,6 +856,8 @@ namespace wServer.realm.entities
             {
                 case CurrencyType.Gold:
                     return Credits;
+                case CurrencyType.Silver:
+                    return Silver;
                 case CurrencyType.Fame:
                     return CurrentFame;
                 default:
@@ -859,6 +871,8 @@ namespace wServer.realm.entities
             {
                 case CurrencyType.Gold:
                     Credits = amount; break;
+                case CurrencyType.Silver:
+                    Silver = amount; break;
                 case CurrencyType.Fame:
                     CurrentFame = amount; break;
             }

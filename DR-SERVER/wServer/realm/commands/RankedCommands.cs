@@ -304,6 +304,24 @@ namespace wServer.realm.commands
             return true;
         }
     }
+    class SetSilverCommand : Command
+    {
+        public SetSilverCommand() : base("setsilver", reqAdmin: true, alias: "silver") { }
+
+        protected override bool Process(Player player, RealmTime time, string args)
+        {
+            var amount = int.Parse(args);
+
+            if (string.IsNullOrEmpty(args))
+            {
+                player.SendInfo("/silver <amount>");
+                return false;
+            }
+            player.Silver = player.Client.Account.Silver += amount;
+            player.ForceUpdate(player.Silver);
+            return true;
+        }
+    }
 
     class SetFameCommand : Command
     {

@@ -14,7 +14,7 @@ package com.company.assembleegameclient.ui.panels.mediators
       
       [Inject]
       public var updateHUD:UpdateHUDSignal;
-      
+
       public function InventoryGridMediator()
       {
          super();

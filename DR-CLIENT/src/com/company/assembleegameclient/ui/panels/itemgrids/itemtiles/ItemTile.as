@@ -38,7 +38,7 @@ package com.company.assembleegameclient.ui.panels.itemgrids.itemtiles
       public var tileId:int;
       
       public var ownerGrid:ItemGrid;
-      
+
       public function ItemTile(id:int, parentGrid:ItemGrid)
       {
          super();

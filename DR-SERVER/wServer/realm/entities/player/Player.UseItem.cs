@@ -369,6 +369,18 @@ namespace wServer.realm.entities
                 }
             }
         }
+
+        public void AreaBlastEffect(uint color, int radius, bool onMouse = false)
+        {
+            BroadcastSync(new ShowEffect()
+            {
+                EffectType = EffectType.AreaBlast,
+                TargetObjectId = Id,
+                Color = new ARGB(color),
+                Pos1 = new Position() { X = radius},
+                Pos2 = new Position { X = X, Y = Y }
+            }, p => this.DistSqr(p) < RadiusSqr);
+        }
         private void AEObjectToss(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
             //summoner summons 3 spaced apart
@@ -538,11 +550,13 @@ namespace wServer.realm.entities
         {
             var rangedSummon = item.RangedSummon;
             var entity = Resolve(Manager, eff.ObjectId);
+            AreaBlastEffect(color: 16711680, radius: 1); //blast on mouse for ranged summon
             if (entity == null)
                 return;
-            if (rangedSummon) { entity.Move(target.X, target.Y); } else { entity.Move(X, Y); }
+            if (rangedSummon) { entity.Move(target.X, target.Y); } else { entity.Move(X, Y); } //suummon
             entity.SetPlayerOwner(this);
             Owner.EnterWorld(entity);
+            
 
         }
 
@@ -1491,7 +1505,8 @@ namespace wServer.realm.entities
                     OwnerId = Id,
                     Angle = proj.Angle,
                     ContainerType = item.ObjectType,
-                    BulletId = proj.ProjectileId
+                    BulletId = proj.ProjectileId,
+                    BulletType = 0
                 };
                 FameCounter.Shoot(proj);
             }

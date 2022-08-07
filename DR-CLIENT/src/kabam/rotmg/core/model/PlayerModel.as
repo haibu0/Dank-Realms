@@ -10,7 +10,8 @@ package kabam.rotmg.core.model
    
    public class PlayerModel
    {
-      public const creditsChanged:Signal = new Signal(int);
+       public const silverChanged:Signal = new Signal(int);
+       public const creditsChanged:Signal = new Signal(int);
       public const fameChanged:Signal = new Signal(int);
       public var charList:SavedCharactersList;
       public var isInvalidated:Boolean;
@@ -49,11 +50,30 @@ package kabam.rotmg.core.model
       {
          this.charList.maxNumChars_ = value;
       }
-      
+
+       public function getSilver() : int
+       {
+           return this.charList.silver_;
+       }
+       public function changeSilver(silver:int) : void
+       {
+           this.charList.silver_ = this.charList.silver_ + silver;
+           this.silverChanged.dispatch(this.charList.silver_);
+       }
+       public function setSilver(silver:int) : void
+       {
+           if(this.charList.silver_ != silver)
+           {
+               this.charList.silver_ = silver;
+               this.silverChanged.dispatch(silver);
+           }
+       }
+
       public function getCredits() : int
       {
          return this.charList.credits_;
       }
+
       
       public function changeCredits(credits:int) : void
       {

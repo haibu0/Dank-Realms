@@ -301,7 +301,7 @@ import kabam.rotmg.ui.UIUtils;
          }
          if(player != null)
          {
-            this.creditDisplay_.draw(player.credits_,player.fame_);
+            this.creditDisplay_.draw(player.credits_,player.fame_, player.silver_);
             this.drawCharacterWindow.dispatch(player);
             if(this.map.showDisplays_)
             {

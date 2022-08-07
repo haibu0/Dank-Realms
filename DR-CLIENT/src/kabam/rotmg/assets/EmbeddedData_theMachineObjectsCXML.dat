@@ -123,6 +123,22 @@
         </Texture>
         <Rotation>100</Rotation>
     </Object>
+    <Object type="0xbc03" id="Ninja Star Unsure">
+        <Class>Projectile</Class>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x10a</Index>
+        </Texture>
+        <Rotation>100</Rotation>
+    </Object>
+    <Object type="0x5b2a" id="Archerang Arrow">
+        <Class>Projectile</Class>
+        <Texture>
+            <File>theMachineObjects8x8</File>
+            <Index>0x102</Index>
+        </Texture>
+        <Rotation>50</Rotation>
+    </Object>
     <Object type="0x5b2c" id="Alphabet">
         <Class>Projectile</Class>
         <RandomTexture>

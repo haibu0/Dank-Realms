@@ -9,10 +9,32 @@ namespace wServer.logic
     {
         private _ ItemSummons = () => Behav()
 
+        .Init("Fungal Mushroom",
+                new State(
+                    new State("Init",
+                    new PetBomb(damage: 1000, radius: 3, coolDown: 600, color: 10066431),
+                        new TimedTransition(6100, "Destroy")
+                        ),
+                    new State("Destroy",
+                        new Suicide()
+                    )
+            )
+            )
               .Init("Invisible Object",
                 new State(
                     new State("Init",
-                        new TimedTransition(100, "Destroy")
+                        new TimedTransition(10, "Destroy")
+                        ),
+                    new State("Destroy",
+                        new Suicide()
+                    )
+            )
+            )
+
+            .Init("Fake White Bag",
+                new State(
+                    new State("Init",
+                        new TimedTransition(10000, "Destroy")
                         ),
                     new State("Destroy",
                         new Suicide()
@@ -25,7 +47,6 @@ namespace wServer.logic
                     new FamiliarFollow(),
                     new Wander(.5),
                     new ConditionalEffect(ConditionEffectIndex.Invincible),
-                    new ShootPlayer(0, 8, fixedAngle: 360 / 8, projectileIndex: 0, coolDown: 1000),
                     //new Follow(1.5, 10, 3),
                         new TimedTransition(6000,"Destroy")
                         ),
@@ -53,8 +74,9 @@ namespace wServer.logic
          .Init("Mini Flying Brain", //big brain
                 new State(
                     new State("Summon",
-                    new TalismanAttack(10, ConditionEffectIndex.ArmorBroken, 4000, 100, 0xFFFFFF),
+                   new Wander(.3),
                     new FamiliarFollow(),//test
+                    new PetBomb(damage: 50, radius: 3, coolDown: 500, color: 6947071),
                         new TimedTransition(7000, "Destroy")
                         ),
                     new State("Destroy",
@@ -65,7 +87,7 @@ namespace wServer.logic
         .Init("Bottled Lightning",
                 new State(
                     new State("Init",
-                        new Grenade(3.5, 0, coolDown: 1000, range: 10, isBomb: true, color: 0xAED6F1, effect: ConditionEffectIndex.Berserk),//bomb test
+                    new PetBomb(damage: 1100, radius: 3, effect: ConditionEffectIndex.Stasis, effDuration: 4, coolDown: 100, color: 0xFFFF00),
                         new TimedTransition(200, "Destroy")
                         ),
                     new State("Destroy",
@@ -78,7 +100,7 @@ namespace wServer.logic
                     new State("Summon",
                         new Wander(.5),
                     new StayCloseToSpawn(speed: .5, range: 3),
-                    new TalismanAttack(120, ConditionEffectIndex.Curse, 4000, 1000),
+                    new TalismanAttack(120, ConditionEffectIndex.Curse, range: 6, 4000, 1000),
                     new FamiliarFollow(),
                         new TimedTransition(6500, "Destroy")
                         ),
@@ -92,7 +114,7 @@ namespace wServer.logic
                     new State("Summon",
                     new Wander(.5),
                     new StayCloseToSpawn(speed: .5, range: 3),
-                    new TalismanAttack(250, ConditionEffectIndex.Curse, 4000, 1500),
+                    new TalismanAttack(250, ConditionEffectIndex.Curse, range: 3, duration: 4000, coolDown: 1500),
                     new FamiliarFollow(),
                         new TimedTransition(6500, "Destroy")
                         ),
@@ -106,7 +128,7 @@ namespace wServer.logic
                     new State("Summon",
                         new Wander(.5),
                     new StayCloseToSpawn(speed: .5, range: 3),
-                    new TalismanAttack(100, ConditionEffectIndex.Curse, 4000, 1500),
+                    new TalismanAttack(100, ConditionEffectIndex.Curse, range: 3, 4000, 1500),
                     new FamiliarFollow(),
                         new TimedTransition(6500, "Destroy")
                         ),

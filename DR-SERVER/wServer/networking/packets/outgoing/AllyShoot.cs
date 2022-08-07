@@ -4,6 +4,7 @@ namespace wServer.networking.packets.outgoing
 {
     public class AllyShoot : OutgoingMessage
     {
+        public byte BulletType { get; set; }
         public byte BulletId { get; set; }
         public int OwnerId { get; set; }
         public ushort ContainerType { get; set; }
@@ -14,6 +15,7 @@ namespace wServer.networking.packets.outgoing
 
         protected override void Read(NReader rdr)
         {
+            BulletType = rdr.ReadByte();
             BulletId = rdr.ReadByte();
             OwnerId = rdr.ReadInt32();
             ContainerType = (ushort)rdr.ReadInt16();
@@ -21,6 +23,7 @@ namespace wServer.networking.packets.outgoing
         }
         protected override void Write(NWriter wtr)
         {
+            wtr.Write(BulletType);
             wtr.Write(BulletId);
             wtr.Write(OwnerId);
             wtr.Write((short)ContainerType);

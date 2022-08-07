@@ -67,6 +67,7 @@
     <Compile Include="Empty.cs" />
     <Compile Include="logic\Behavior.cs" />
     <Compile Include="logic\BehaviorDb.cs" />
+    <Compile Include="logic\behaviors\PetBomb.cs" />
     <Compile Include="logic\behaviors\FamiliarFollow.cs" />
     <Compile Include="logic\behaviors\AnnounceOnDeath.cs" />
     <Compile Include="logic\behaviors\BackAndForth.cs" />
@@ -110,7 +111,6 @@
     <Compile Include="logic\behaviors\ReturnToSpawn.cs" />
     <Compile Include="logic\behaviors\Sequence.cs" />
     <Compile Include="logic\behaviors\SetAltTexture.cs" />
-    <Compile Include="logic\behaviors\ShootPlayer.cs" />
     <Compile Include="logic\behaviors\Shoot.cs" />
     <Compile Include="logic\behaviors\Spawn.cs" />
     <Compile Include="logic\behaviors\SpawnGroup.cs" />

@@ -18,16 +18,15 @@ namespace wServer.realm.entities
         ConditionEffectIndex effect;
         int duration;
         uint color;
-        public Trap(Player player, float radius, int dmg, ConditionEffectIndex eff, float effDuration, uint color)
+        public Trap(Player player, float radius, int dmg, ConditionEffectIndex eff, float effDuration, uint color = 0xff9000ff)
             : base(player.Manager, 0x0711, LIFETIME * 1000, true, true, false)
         {
-            if (color == 0) { color = 0xff9000ff; }
             this.player = player;
             this.radius = radius;
             this.dmg = dmg;
             this.effect = eff;
+            this.duration = (int)(effDuration * 1000);
             this.color = color;
-            this.duration = (int)(effDuration * 1000);      
         }
 
         int t = 0;
@@ -69,14 +68,22 @@ namespace wServer.realm.entities
                 TargetObjectId = Id,
                 Pos1 = new Position() { X = radius }
             }, this, null);
-            this.AOE(radius, false, enemy =>
+
+          
+            var enemies = new List<Enemy>();
+            
+            
+
+            this.AOE(radius, false, enemy => enemies.Add(enemy as Enemy));
             {
-                (enemy as Enemy).Damage(player, time, dmg, false, new ConditionEffect()
+                if (enemies.Count() > 0)
+                foreach (var enemy in enemies)
+                enemy?.Damage(player, time, dmg, false, new ConditionEffect()
                 {
                     Effect = effect,
                     DurationMS = duration
                 });
-            });
+            };
             Owner.LeaveWorld(this);
         }
     }

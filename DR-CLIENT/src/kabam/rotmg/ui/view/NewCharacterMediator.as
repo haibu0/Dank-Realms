@@ -67,7 +67,7 @@ package kabam.rotmg.ui.view
       
       private function onBuyCharacterPending(objectType:int) : void
       {
-         this.view.updateCreditsAndFame(this.playerModel.getCredits(),this.playerModel.getFame());
+         this.view.updateCreditsAndFame(this.playerModel.getCredits(),this.playerModel.getFame(), this.playerModel.getSilver());
       }
       
       override public function destroy() : void

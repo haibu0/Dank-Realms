@@ -59,7 +59,7 @@ namespace wServer.logic.behaviors
                         target = new Position()
                         {
                             X = (float)(range * Math.Cos(fixedAngle.Value)) + host.X,
-                            Y = (float)(range * Math.Sin(fixedAngle.Value)) + host.Y,
+                            Y = (float)(range * Math.Sin(fixedAngle.Value)) + host.Y,                     
                         };
                     else
                         if (isBomb)

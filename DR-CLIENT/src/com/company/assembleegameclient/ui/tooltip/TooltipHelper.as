@@ -2,15 +2,19 @@ package com.company.assembleegameclient.ui.tooltip
 {
    public class TooltipHelper
    {
+       public static const BEST_COLOR:uint = 0xFFFF00;
 
       public static const BETTER_COLOR:String = "#00ff00";
       
       public static const WORSE_COLOR:String = "#ff0000";
       
       public static const NO_DIFF_COLOR:String = "#FFFF8F";
-       
-      
-      public function TooltipHelper()
+
+       public static const MISTAKEGEAR_COLOR:uint= 65280;
+
+
+
+       public function TooltipHelper()
       {
          super();
       }

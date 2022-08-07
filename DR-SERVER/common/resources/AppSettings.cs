@@ -42,6 +42,7 @@ namespace common.resources
         public readonly int VaultCount;
         public readonly int Fame;
         public readonly int Credits;
+        public readonly int Silver;
         public readonly int SlotCost;
         public readonly CurrencyType SlotCurrency;
         public readonly bool ClassesUnlocked;
@@ -54,6 +55,7 @@ namespace common.resources
             VaultCount = e.GetValue<int>("VaultCount", 1);
             Fame = e.GetValue<int>("Fame", 0);
             Credits = e.GetValue<int>("Credits", 0);
+            Silver = e.GetValue<int>("Silver", 0);
 
             ClassesUnlocked = e.HasElement("ClassesUnlocked");
             SkinsUnlocked = e.HasElement("SkinsUnlocked");
@@ -61,7 +63,7 @@ namespace common.resources
             SlotCost = e.GetValue<int>("SlotCost", 1000);
             SlotCurrency = (CurrencyType)e.GetValue<int>("SlotCurrency", 0);
             if (SlotCurrency != CurrencyType.Fame && SlotCurrency != CurrencyType.Gold)
-                SlotCurrency = CurrencyType.Gold;
+                SlotCurrency = CurrencyType.Gold; 
         }
     }
 

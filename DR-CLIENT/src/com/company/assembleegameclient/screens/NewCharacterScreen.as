@@ -52,7 +52,7 @@ package com.company.assembleegameclient.screens
          this.backButton_.addEventListener(MouseEvent.CLICK,this.onBackClick);
          addChild(this.backButton_);
          this.creditDisplay_ = new CreditDisplay();
-         this.creditDisplay_.draw(model.getCredits(),model.getFame());
+         this.creditDisplay_.draw(model.getCredits(),model.getFame(), model.getSilver());
          addChild(this.creditDisplay_);
          for(var i:int = 0; i < ObjectLibrary.playerChars_.length; i++)
          {
@@ -111,9 +111,9 @@ package com.company.assembleegameclient.screens
          this.selected.dispatch(objectType);
       }
       
-      public function updateCreditsAndFame(credits:int, fame:int) : void
+      public function updateCreditsAndFame(credits:int, fame:int, silver:int) : void
       {
-         this.creditDisplay_.draw(credits,fame);
+         this.creditDisplay_.draw(credits, fame, silver);
       }
       
       public function update(model:PlayerModel) : void

@@ -51,7 +51,8 @@ namespace wServer.networking.handlers
                 OwnerId = player.Id,
                 Angle = packet.Angle,
                 ContainerType = packet.ContainerType,
-                BulletId = packet.BulletId
+                BulletId = packet.BulletId,
+                BulletType = 0
             }, player, player);
             player.FameCounter.Shoot(prj);
         }

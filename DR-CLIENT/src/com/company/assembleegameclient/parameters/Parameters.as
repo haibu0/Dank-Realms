@@ -202,7 +202,7 @@ import flash.net.SharedObject;
           setDefault("smartProjectiles", true);
           setDefault("mScale", .80);
           setDefault("showLeftToMax", false);
-          setDefault("hpBars", true)
+          setDefault("hpBars", true);
           setDefault("toggleBarText", true)
 
 

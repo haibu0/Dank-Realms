@@ -115,5 +115,10 @@ package com.company.assembleegameclient.util
          var fameBD:BitmapData = AssetLibrary.getImageFromSet("lofiObj3",224);
          return TextureRedrawer.redraw(fameBD,40,true,0);
       }
+       public static function getSilverIcon() : BitmapData
+       {
+           var silverBD:BitmapData = AssetLibrary.getImageFromSet("lofiObj3",226);
+           return TextureRedrawer.redraw(silverBD,40,true,0);
+       }
    }
 }

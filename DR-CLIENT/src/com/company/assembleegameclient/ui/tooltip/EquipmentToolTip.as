@@ -149,10 +149,14 @@ package com.company.assembleegameclient.ui.tooltip
             {
                this.tierText_.text = "T" + this.objectXML_.Tier;
             }
-            else
+            else if(this.objectXML_.hasOwnProperty("Mistake"))
             {
-               this.tierText_.setColor(9055202);
-               this.tierText_.text = "UT";
+               this.tierText_.setColor(TooltipHelper.MISTAKEGEAR_COLOR);
+               this.tierText_.text = "M";
+            }
+             else {
+                this.tierText_.setColor(9055202);
+                this.tierText_.text = "UT";
             }
             this.tierText_.updateMetrics();
             addChild(this.tierText_);
@@ -552,9 +556,19 @@ package com.company.assembleegameclient.ui.tooltip
          {
             this.restrictions.push(new Restriction("Store this item in your Vault to avoid losing it!",16549442,true));
          }
+          if(this.objectXML_.hasOwnProperty("Resurrects"))
+          {
+              this.restrictions.push(new Restriction("Resurrects",TooltipHelper.BEST_COLOR,true));
+          }
+          if(this.objectXML_.hasOwnProperty("Mistake"))
+          {
+              this.titleText_.setColor(TooltipHelper.MISTAKEGEAR_COLOR)
+              this.restrictions.push(new Restriction("Mistake",TooltipHelper.MISTAKEGEAR_COLOR,true));
+          }
+
          if(this.objectXML_.hasOwnProperty("Soulbound"))
          {
-            this.restrictions.push(new Restriction("Soulbound",11776947,false));
+            this.restrictions.push(new Restriction("Soulbound",9055202,false));
          }
          if(this.playerCanUse)
          {
@@ -622,7 +636,14 @@ package com.company.assembleegameclient.ui.tooltip
 
       private function addDescriptionText() : void
       {
-         this.descText_ = new SimpleText(14,11776947,false,MAX_WIDTH,0);
+          var descColor_ = 0;
+          if(this.objectXML_.hasOwnProperty("Mistake")){
+              descColor_ = TooltipHelper.MISTAKEGEAR_COLOR;
+          }
+          else{
+              descColor_ = 11776947;
+          }
+         this.descText_ = new SimpleText(14,descColor_,false,MAX_WIDTH,0);
          this.descText_.wordWrap = true;
          this.descText_.text = String(this.objectXML_.Description);
          this.descText_.updateMetrics();
@@ -630,6 +651,8 @@ package com.company.assembleegameclient.ui.tooltip
          this.descText_.x = 4;
          this.descText_.y = this.icon_.height + 2;
          addChild(this.descText_);
+
+
       }
 
       private function buildCategorySpecificText() : void

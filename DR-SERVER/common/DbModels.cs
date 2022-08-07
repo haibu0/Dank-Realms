@@ -330,6 +330,17 @@ namespace common
             get { return GetValue<bool>("guest"); }
             set { SetValue<bool>("guest", value); }
         }
+        public int Silver
+        {
+            get { return GetValue<int>("silver"); }
+            set { SetValue<int>("silver", value); }
+        }
+
+        public int TotalSilver
+        {
+            get { return GetValue<int>("totalSilver"); }
+            set { SetValue<int>("totalSilver", value); }
+        }
 
         public int Credits
         {
