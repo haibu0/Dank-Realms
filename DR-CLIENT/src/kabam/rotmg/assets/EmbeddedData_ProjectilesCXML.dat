@@ -14,6 +14,56 @@
         </RandomTexture>
         <Rotation>100</Rotation>
     </Object>
+    <!--Agent of Oryx Prjs-->
+    <Object type="0x65f5" id="Realm Blade">
+        <Class>Projectile</Class>
+        <Texture>
+            <File>d2LofiObjEmbed</File>
+            <Index>0x16b</Index>
+        </Texture>
+        <AngleCorrection>1</AngleCorrection>
+    </Object>
+    <Object type="0x65f6" id="Realm Magic">
+        <Class>Projectile</Class>
+        <Texture>
+            <File>d2LofiObjEmbed</File>
+            <Index>0x168</Index>
+        </Texture>
+        <AngleCorrection>1</AngleCorrection>
+    </Object>
+    <Object type="0x65f7" id="Realm Arrow">
+        <Class>Projectile</Class>
+        <Texture>
+            <File>d2LofiObjEmbed</File>
+            <Index>0x16a</Index>
+        </Texture>
+        <AngleCorrection>1</AngleCorrection>
+        <Rotation>100</Rotation>
+    </Object>
+    <Object type="0x65f8" id="Realm Stab">
+        <Class>Projectile</Class>
+        <Texture>
+            <File>d2LofiObjEmbed</File>
+            <Index>0x169</Index>
+        </Texture>
+        <AngleCorrection>1</AngleCorrection>
+    </Object>
+    <Object type="0x65f9" id="Realm Missile">
+        <Class>Projectile</Class>
+        <Texture>
+            <File>d2LofiObjEmbed</File>
+            <Index>0x16c</Index>
+        </Texture>
+        <AngleCorrection>1</AngleCorrection>
+    </Object>
+    <Object type="0x65fa" id="Realm Slash">
+        <Class>Projectile</Class>
+        <Texture>
+            <File>d2LofiObjEmbed</File>
+            <Index>0x16d</Index>
+        </Texture>
+        <AngleCorrection>1</AngleCorrection>
+    </Object>
     <!--Sheath Shots-->
     <Object type="0x9ab1" id="Slashing Sheath Shot">
         <Class>Projectile</Class>

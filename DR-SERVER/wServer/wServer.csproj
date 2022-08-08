@@ -67,6 +67,7 @@
     <Compile Include="Empty.cs" />
     <Compile Include="logic\Behavior.cs" />
     <Compile Include="logic\BehaviorDb.cs" />
+    <Compile Include="logic\behaviors\MoveTo2.cs" />
     <Compile Include="logic\behaviors\PetBomb.cs" />
     <Compile Include="logic\behaviors\FamiliarFollow.cs" />
     <Compile Include="logic\behaviors\AnnounceOnDeath.cs" />

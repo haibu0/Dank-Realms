@@ -38,7 +38,7 @@ namespace wServer.logic.behaviors
             int cool = (int)state;
             if (cool <= 0)
             {
-                var entities = host.GetNearestEntities(_radius, 1);//1 for enemy
+                var entities = host.GetNearestEntities(_radius, 0);//1 for enemy
 
                 Enemy en = null;
                 foreach (Entity e in entities)
@@ -53,27 +53,26 @@ namespace wServer.logic.behaviors
                         X = host.X,
                         Y = host.Y,
                     };
-                    host.Owner.Timers.Add(new WorldTimer(_coolDown, (world, t) => 
-                    {
-                        host.Owner.BroadcastPacket(new ShowEffect()
-                        {
-                            EffectType = EffectType.AreaBlast,
-                            Color = new ARGB(_color),
-                            TargetObjectId = host.Id,
-                            Pos1 = new Position { X = _radius, }
-                        }, null);
-                        var enemies = new List<Enemy>();
-                        host.AOE(_radius, false, enemy => enemies.Add(enemy as Enemy));
-                        {
-                            if (enemies.Count() > 0)
-                                foreach (var enemy in enemies)
-                                    enemy?.Damage(host.GetPlayerOwner(), time, _damage, false, new ConditionEffect()
-                                    {
-                                        Effect = _effect,
-                                        DurationMS = _effDuration
-                                    });
-                        };
-                    }));                
+                //AOE Attack
+                host.Owner.BroadcastPacket(new ShowEffect()
+                {
+                    EffectType = EffectType.AreaBlast,
+                    Color = new ARGB(_color),
+                    TargetObjectId = host.Id,
+                    Pos1 = new Position { X = _radius, }
+                }, null);
+                var enemies = new List<Enemy>();
+                host.AOE(_radius, false, enemy => enemies.Add(enemy as Enemy));
+                {
+                    if (enemies.Count() > 0)
+                        foreach (var enemy in enemies)
+                            enemy?.Damage(host.GetPlayerOwner(), time, _damage, false, new ConditionEffect()
+                            {
+                                Effect = _effect,
+                                DurationMS = _effDuration
+                            });
+                };
+
                 cool = _coolDown;
             }
             else

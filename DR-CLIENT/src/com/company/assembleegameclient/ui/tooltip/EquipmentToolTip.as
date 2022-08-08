@@ -151,8 +151,13 @@ package com.company.assembleegameclient.ui.tooltip
             }
             else if(this.objectXML_.hasOwnProperty("Mistake"))
             {
-               this.tierText_.setColor(TooltipHelper.MISTAKEGEAR_COLOR);
-               this.tierText_.text = "M";
+                this.tierText_.setColor(TooltipHelper.MISTAKEGEAR_COLOR);
+                this.tierText_.text = "M";
+            }
+            else if(this.objectXML_.hasOwnProperty("OryxGear"))
+            {
+                this.tierText_.setColor(TooltipHelper.ORYXITEM_COLOR);
+                this.tierText_.text = "AO";
             }
              else {
                 this.tierText_.setColor(9055202);
@@ -565,6 +570,11 @@ package com.company.assembleegameclient.ui.tooltip
               this.titleText_.setColor(TooltipHelper.MISTAKEGEAR_COLOR)
               this.restrictions.push(new Restriction("Mistake",TooltipHelper.MISTAKEGEAR_COLOR,true));
           }
+          if(this.objectXML_.hasOwnProperty("OryxGear"))
+          {
+              this.titleText_.setColor(TooltipHelper.ORYXITEM_COLOR)
+              this.restrictions.push(new Restriction("Agent of Oryx Item",TooltipHelper.ORYXITEM_COLOR,true));
+          }
 
          if(this.objectXML_.hasOwnProperty("Soulbound"))
          {
@@ -639,6 +649,9 @@ package com.company.assembleegameclient.ui.tooltip
           var descColor_ = 0;
           if(this.objectXML_.hasOwnProperty("Mistake")){
               descColor_ = TooltipHelper.MISTAKEGEAR_COLOR;
+          }
+          if(this.objectXML_.hasOwnProperty("OryxGear")){
+              descColor_ = TooltipHelper.ORYXITEM_COLOR;
           }
           else{
               descColor_ = 11776947;

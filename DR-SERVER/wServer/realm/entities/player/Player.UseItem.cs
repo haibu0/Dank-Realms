@@ -383,13 +383,12 @@ namespace wServer.realm.entities
         }
         private void AEObjectToss(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
-            //summoner summons 3 spaced apart
             var airTime = eff.AirTime;
             var throwColor = eff.Color; 
             var entity = Resolve(Manager, eff.ObjectId);
-            airTime = eff.AirTime == 0 ? 1000 : airTime;
             if (eff.TossObject)
             {
+                airTime = 1500;
                 BroadcastSync(new ShowEffect()
                 {
                     EffectType = EffectType.BeachBall,
@@ -400,6 +399,11 @@ namespace wServer.realm.entities
                 }, p => this.DistSqr(p) < RadiusSqr);
             } else
             {
+                if(throwColor != 0)
+                {
+                    airTime = airTime != 0 ? eff.AirTime : 1500;
+                    
+                }
                 BroadcastSync(new ShowEffect()
                 {
                     EffectType = EffectType.Throw,
@@ -409,7 +413,7 @@ namespace wServer.realm.entities
                     AirTime = airTime
                 }, p => this.DistSqr(p) < RadiusSqr);
             }
-            Owner.Timers.Add(new WorldTimer(1500, (world, t) =>
+            Owner.Timers.Add(new WorldTimer(airTime, (world, t) =>
             {
                 if (entity == null)
                     return;

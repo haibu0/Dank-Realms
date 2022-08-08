@@ -12,6 +12,9 @@ package com.company.assembleegameclient.ui.tooltip
 
        public static const MISTAKEGEAR_COLOR:uint= 65280;
 
+       public static const ORYXITEM_COLOR:uint= 12582912;
+
+
 
 
        public function TooltipHelper()

@@ -81,7 +81,7 @@ package com.company.assembleegameclient.ui.panels.itemgrids
             }
             else
             {
-               itemName = "item";
+               itemName = "Item";
             }
             this.tooltip = new TextToolTip(3552822,10197915,null,"Empty " + itemName + " Slot",200);
          }

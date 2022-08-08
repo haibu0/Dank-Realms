@@ -8,12 +8,59 @@ namespace wServer.logic
     partial class BehaviorDb
     {
         private _ ItemSummons = () => Behav()
-
+        .Init("Genesis 1",
+                new State(
+                    new State("Init",
+                    new MoveTo2(5, 0, speed: 1, isMapPosition: false),
+                    new PetBomb(damage: 250, radius: 6, coolDown: 400, color: 6947071),
+                        new TimedTransition(4000, "Destroy")
+                        ),
+                    new State("Destroy",
+                        new Suicide()
+                    )
+            )
+            )
+        .Init("Genesis 2",
+                new State(
+                    new State("Init",
+                    new MoveTo2(0, 5, speed: 1, isMapPosition: false),
+                    new PetBomb(damage: 250, radius: 6, coolDown: 400, color: 6947071),
+                        new TimedTransition(4000, "Destroy")
+                        ),
+                    new State("Destroy",
+                        new Suicide()
+                    )
+            )
+            )
+        .Init("Genesis 3",
+                new State(
+                    new State("Init",
+                    new MoveTo2(-5, 0, speed: 1, isMapPosition: false),
+                    new PetBomb(damage: 250, radius: 6, coolDown: 400, color: 6947071),
+                        new TimedTransition(4000, "Destroy")
+                        ),
+                    new State("Destroy",
+                        new Suicide()
+                    )
+            )
+            )
+        .Init("Genesis 4",
+                new State(
+                    new State("Init",
+                    new MoveTo2(0, -5, speed: 1, isMapPosition: false),
+                    new PetBomb(damage: 250, radius: 6, coolDown: 400, color: 6947071),
+                        new TimedTransition(4000, "Destroy")
+                        ),
+                    new State("Destroy",
+                        new Suicide()
+                    )
+            )
+            )
         .Init("Fungal Mushroom",
                 new State(
                     new State("Init",
-                    new PetBomb(damage: 1000, radius: 3, coolDown: 600, color: 10066431),
-                        new TimedTransition(6100, "Destroy")
+                    new PetBomb(damage: 1000, radius: 3, coolDown: 1200, color: 10066431),
+                        new TimedTransition(4800, "Destroy")
                         ),
                     new State("Destroy",
                         new Suicide()
@@ -76,7 +123,6 @@ namespace wServer.logic
                     new State("Summon",
                    new Wander(.3),
                     new FamiliarFollow(),//test
-                    new PetBomb(damage: 50, radius: 3, coolDown: 500, color: 6947071),
                         new TimedTransition(7000, "Destroy")
                         ),
                     new State("Destroy",

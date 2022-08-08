@@ -79,12 +79,11 @@ package kabam.rotmg.game.view
          this.creditsText_.x = this.coinIcon_.x - this.creditsText_.width + 8;
          this.creditsText_.y = this.coinIcon_.height / 2 - this.creditsText_.height / 2;
 
-          this.silverIcon_.x = -this.silverIcon_.width;
-          this.silverIcon_.y = this.coinIcon_.y + 30;
-          this.silverText_.text = this.silverText_.toString();
-          this.silverText_.updateMetrics();
-          this.silverText_.x = this.silverIcon_.x - this.silverText_.width + 8;
-          this.silverText_.y = this.creditsText_.y + 30;
+          this.silverIcon_.x = (this.coinIcon_.x + 10);
+          this.silverIcon_.y = (this.coinIcon_.y + 30);
+          this.silverText_.x = ((this.silverIcon_.x - this.silverText_.width) - 2);
+          this.silverText_.y = ((this.silverIcon_.y + (this.silverIcon_.height / 2)) - (this.silverText_.height / 2));
+
 
 
 
