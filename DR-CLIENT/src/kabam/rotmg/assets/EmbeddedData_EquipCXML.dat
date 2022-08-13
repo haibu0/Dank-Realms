@@ -3,10 +3,18 @@
         <DisplayId>Sporous Spray Spell</DisplayId>
         <Class>Equipment</Class>
         <Item/>
+        <Projectile>
+            <ObjectId>None</ObjectId>
+        </Projectile>
         <Texture>
             <File>lofiObj6</File>
             <Index>0x59</Index>
         </Texture>
+        <ExtraTooltipData>
+            <EffectInfo name="On Ability use" description=""/>
+            <EffectInfo name="" description="Creates a Deadly Mushroom that lasts 4.8 seconds."/>
+            <EffectInfo name="Deadly Mushroom" description="1000 damage within 3 sqrs every 1.2 seconds"/>
+        </ExtraTooltipData>
         <SlotType>11</SlotType>
         <Description>Fungal Spell Test.</Description>
         <Usable/>
@@ -32,6 +40,13 @@
             <File>lofiObj6</File>
             <Index>0x69</Index>
         </Texture>
+        <Projectile>
+            <ObjectId>None</ObjectId>
+        </Projectile>
+        <ExtraTooltipData>
+            <EffectInfo name="On Ability Use" description="Summons 4 portals which zap enemies and deal 250 damage in a radius of 6 every 0.4 seconds"/>
+            <EffectInfo name="Duration" description="4 seconds"/>
+        </ExtraTooltipData>
         <SlotType>11</SlotType>
         <Description>Dammah’s powers of summoning portals stem from this profane spell. Most may use it to call attacks from primitive dimensions of untapped energy, but Oryx’s greatest thaumaturges can create stable gateways to the realm and beyond.</Description>
         <Sound>spell/magic_nova</Sound>
@@ -336,6 +351,188 @@
         <BagType>3</BagType>
     </Object>
     <!--Agent of Oryx Items-->
+    <Object id="AoOShield" type="0x4f33">
+        <DisplayId>Brutal Buckler</DisplayId>
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>d2LofiObjEmbed</File>
+            <Index>0x282</Index>
+        </Texture>
+        <SlotType>5</SlotType>
+        <Description>In contrast to Oryx's personal equipment, this lightweight shield is too small to stagger an opponent. It is instead covered in jagged metal to shred targets.</Description>
+        <Sound>spell/fire_spray</Sound>
+        <Projectile>
+            <ObjectId>Baneful Bash</ObjectId>
+            <Speed>160</Speed>
+            <MinDamage>350</MinDamage>
+            <MaxDamage>450</MaxDamage>
+            <LifetimeMS>250</LifetimeMS>
+            <Size>140</Size>
+            <MultiHit/>
+            <PassesCover/>
+            <ParticleTrail/>
+        </Projectile>
+        <ActivateOnEquip amount="40" stat="0">IncrementStat</ActivateOnEquip>
+        <ActivateOnEquip amount="4" stat="20">IncrementStat</ActivateOnEquip>
+        <ActivateOnEquip amount="10" stat="21">IncrementStat</ActivateOnEquip>
+        <ExtraTooltipData>
+            <EffectInfo name="Full Strength" description="Shoots additional radial projectiles with a longer range when used above 700 HP."/>
+        </ExtraTooltipData>
+        <Usable/>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <MpCost>110</MpCost>
+        <ArcGap>7</ArcGap>
+        <Activate>Shoot</Activate>
+        <NumProjectiles>8</NumProjectiles>
+        <OryxGear/>
+    </Object>
+    <Object id="AoOTome" type="0x52eb">
+        <Class>Equipment</Class>
+        <SlotType>4</SlotType>
+        <DisplayId>Tome of the Tarnished Gods</DisplayId>
+        <Description>An accursed collection of religious texts detailing the Mad God's rise to power, granted to Oryx's high priests by Archbishop Leucoryx as a symbol of utmost trust.</Description>
+        <Texture>
+            <File>d2LofiObjEmbed</File>
+            <Index>0x27a</Index>
+        </Texture>
+        <Item/>
+        <Usable/>
+        <Activate duration="4" effect="Healing" range="6" useWisMod="true">ConditionEffectAura</Activate>
+        <ExtraTooltipData>
+            <EffectInfo description="Creates a healing Holy Orb when used below 400 HP" name="Light Energy"/>
+            <EffectInfo description="60 HP up to 15 targets" name="Heal"/>
+            <EffectInfo description="Creates a damaging Darkness Orb when used above 400 HP" name="Dark Energy"/>
+            <EffectInfo description="350 over 6 sqrs" name="Damage"/>
+            <EffectInfo description="6 seconds" name="Orb Duration"/>
+            <EffectInfo description="4 seconds" name="Cooldown"/>
+        </ExtraTooltipData>
+        <ActivateOnEquip stat="3" amount="45">IncrementStat</ActivateOnEquip>
+        <ActivateOnEquip stat="27" amount="7">IncrementStat</ActivateOnEquip>
+        <MpCost>100</MpCost>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <OryxGear/>
+    </Object>
+    <Object id="AoOHelm" type="0x1b1a">
+        <DisplayId>Helm of Exalted Might</DisplayId>
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>d2LofiObjEmbed</File>
+            <Index>0x27e</Index>
+        </Texture>
+        <SlotType>16</SlotType>
+        <Description>A helm forged in the deepest depths of Oryx's realm. Those who wear it are said to feel a dark power coursing through their veins.</Description>
+        <ExtraTooltipData>
+            <EffectInfo name="Battle Cry" description="50% chance to deal a burst of 1000 damage to enemies within 5 sqrs on use."/>
+        </ExtraTooltipData>
+        <ActivateOnEquip amount="10" stat="21">IncrementStat</ActivateOnEquip>
+        <Usable/>
+        <Activate amount="30" duration="3" stat="28">StatBoostSelf</Activate>
+        <Activate amount="-15" duration="6" stat="20">StatBoostSelf</Activate>
+        <Activate duration="5.5" effect="Berserk" range="5">ConditionEffectAura</Activate>
+        <Activate2 totalDamage="1000" radius="6" color="0x0000" proc="50">Explode</Activate2>
+        <MpCost>95</MpCost>
+        <Cooldown>6.5</Cooldown>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <OryxGear/>
+    </Object>
+    <Object id="AoOSpell" type="0x4b52">
+        <DisplayId>Cursed Spire Spell</DisplayId>
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>d2LofiObjEmbed</File>
+            <Index>0x270</Index>
+        </Texture>
+        <Projectile>
+            <ObjectId>AoO Spell Proj</ObjectId>
+            <Speed>150</Speed>
+            <MinDamage>500</MinDamage>
+            <MaxDamage>600</MaxDamage>
+            <LifetimeMS>500</LifetimeMS>
+            <Size>120</Size>
+            <MultiHit/>
+            <PassesCover/>
+        </Projectile>
+        <Description>All but Chancellor Dammah's own mages shun this blasphemous spell, channeling the dark energies of the earth to construct an explosive spike.</Description>
+        <ExtraTooltipData>
+            <EffectInfo description="50% chance to boost defense by 15 for 3 seconds." name="Mayhem Aegis"/>
+        </ExtraTooltipData>
+        <SlotType>11</SlotType>
+        <Usable/>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <MpCost>100</MpCost>
+        <feedPower>700</feedPower>
+        <Soulbound/>
+    </Object>
+    <Object id="AoOCloak" type="0x52ec">
+        <Class>Equipment</Class>
+        <SlotType>13</SlotType>
+        <Item/>
+        <Texture>
+            <File>d2LofiObjEmbed</File>
+            <Index>0x279</Index>
+        </Texture>
+        <DisplayId>Cloak of the Darkened Sun</DisplayId>
+        <Description>A firm cloak worn by Oryx's stealth agents to assist in quiet takedowns. It doubles as protection for any compromised situation.</Description>
+        <Activate effect="Invisible" duration="4.5" color="444444">ConditionEffectSelf</Activate>
+        <ExtraTooltipData>
+            <EffectInfo description="+100 Max HP for 4.5 seconds when used above 550 HP" name="Strike Precautions"/>
+            <EffectInfo description="Restore 20 HP when hit while invisible above 550 HP" name="Stealth Guard"/>
+            <EffectInfo description="0.6 seconds" name="Cooldown"/>
+            <EffectInfo description="Restore 80 HP when hit while invisible below 550 HP" name="Emergency Ration"/>
+            <EffectInfo description="4 seconds" name="Cooldown"/>
+        </ExtraTooltipData>
+        <ActivateOnEquip stat="21" amount="3">IncrementStat</ActivateOnEquip>
+        <Usable/>
+        <MpCost>90</MpCost>
+        <Cooldown>6</Cooldown>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <OryxGear/>
+    </Object>
+    <Object id="AoOQuiver" type="0x4f34">
+        <DisplayId>Mad Javelin</DisplayId>
+        <Class>Equipment</Class>
+        <Item/>
+        <Texture>
+            <File>d2LofiObjEmbed</File>
+            <Index>0x280</Index>
+        </Texture>
+        <SlotType>15</SlotType>
+        <Description>Oryx's most versatile bowmen receive javelin training, requiring a steady hand and perfect focus to inflict devastating damage.</Description>
+        <ExtraTooltipData>
+            <EffectInfo description="33% chance of increasing attack by a further 10" name="Mental Click"/>
+        </ExtraTooltipData>
+        <Sound>spell/fire_spray</Sound>
+        <Projectile>
+            <ObjectId>Mad Javelin</ObjectId>
+            <Speed>200</Speed>
+            <MinDamage>800</MinDamage>
+            <MaxDamage>1300</MaxDamage>
+            <LifetimeMS>750</LifetimeMS>
+            <Size>150</Size>
+            <MultiHit/>
+            <PassesCover/>
+            <ParticleTrail/>
+        </Projectile>
+        <ActivateOnEquip amount="10" stat="20">IncrementStat</ActivateOnEquip>
+        <ActivateOnEquip amount="-3" stat="28">IncrementStat</ActivateOnEquip>
+        <Activate2 amount="10" duration="2" stat="20" proc="50" ignoreToolTip="false">StatBoostSelf</Activate2>
+        <Activate2 amount="5" duration="2" stat="20">StatBoostSelf</Activate2>
+        <Usable/>
+        <BagType>6</BagType>
+        <FameBonus>5</FameBonus>
+        <MpCost>120</MpCost>
+        <Activate>Shoot</Activate>
+        <Cooldown>3</Cooldown>
+        <OryxGear/>
+    </Object>
     <Object type="0x21f6" id="Mayhem Medallion">
         <Class>Equipment</Class>
         <Item/>
@@ -344,9 +541,6 @@
             <Index>0x285</Index>
         </Texture>
         <SlotType>9</SlotType>
-        <ExtraTooltipData>
-            <EffectInfo name="Strength of Oryx" description="Gain strength based on the amount of Agents of Oryx gear you wear."/>
-        </ExtraTooltipData>
         <Description>The Mad God’s likeness has been finely forged into this prestigious medal for acclaimed minions.</Description>
         <ActivateOnEquip stat="0" amount="60">IncrementStat</ActivateOnEquip>
         <ActivateOnEquip stat="28" amount="6">IncrementStat</ActivateOnEquip>
@@ -354,6 +548,10 @@
         <BagType>4</BagType>
         <FameBonus>5</FameBonus>
         <OryxGear/>
+        <ItemEffect id="0" color="10813440">
+            <Name>Strength of Oryx</Name>
+            <Description>Gain strength based on the amount of Agents of Oryx gear you wear.</Description>
+        </ItemEffect>
     </Object>
     <Object type="0x22f6" id="Ring of Wrath">
         <Class>Equipment</Class>
@@ -373,6 +571,10 @@
         <BagType>4</BagType>
         <FameBonus>5</FameBonus>
         <OryxGear/>
+        <ItemEffect id="1" color="10813440">
+            <Name>Strength of Oryx</Name>
+            <Description>Gain strength based on the amount of Agents of Oryx gear you wear.</Description>
+        </ItemEffect>
     </Object>
     <Object type="0x23f6" id="Autarch Amulet">
         <Class>Equipment</Class>
@@ -392,6 +594,10 @@
         <BagType>4</BagType>
         <FameBonus>5</FameBonus>
         <OryxGear/>
+        <ItemEffect id="1" color="10813440">
+            <Name>Strength of Oryx</Name>
+            <Description>Gain strength based on the amount of Agents of Oryx gear you wear.</Description>
+        </ItemEffect>
     </Object>
     <Object type="0x65ef" id="Henchman's Claymore">
         <Class>Equipment</Class>
@@ -409,7 +615,7 @@
             <Speed>60</Speed>
             <MinDamage>275</MinDamage>
             <MaxDamage>305</MaxDamage>
-            <LifetimeMS>600</LifetimeMS>
+            <LifetimeMS>900</LifetimeMS>
             <Amplitude>0.8</Amplitude>
             <Frequency>1.3</Frequency>
             <FaceDir/>
@@ -546,6 +752,7 @@
         <FameBonus>5</FameBonus>
         <feedPower>750</feedPower>
         <OryxGear/>
+        <LGAbility2/>
         <Soulbound/>
     </Object>
     <Object type="0x6eb" id="Squadron Sheathing">
@@ -4169,7 +4376,7 @@
         <FameBonus>6</FameBonus>
         <MpCost>105</MpCost>
         <Activate>Shoot</Activate>
-        <Activate stat="22" amount="-20" duration="3.5">StatBoostSelf</Activate>
+        <Activate2 stat="22" amount="-30" duration="3.5">StatBoostSelf</Activate2>
         <NumProjectiles>6</NumProjectiles>
         <Soulbound/>
         <feedPower>855</feedPower>

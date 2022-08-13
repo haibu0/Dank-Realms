@@ -38,7 +38,10 @@ package com.company.assembleegameclient.ui.tooltip.slotcomparisons
          var otherAverage:Number = (otherMinDamage + otherMaxDamage) / 2;
          var textColor:String = getTextColor(average - otherAverage);
          var dmgStr:String = minDamage == maxDamage?maxDamage.toString():minDamage + " - " + maxDamage;
-         return "Damage: <font color=\"" + textColor + "\">" + dmgStr + "</font>\n";
+          if(minDamage && maxDamage != 0) {
+              return "Damage: <font color=\"" + textColor + "\">" + dmgStr + "</font>\n";
+          }
+          return "";
       }
       
       private function getRangeText() : String
@@ -46,7 +49,10 @@ package com.company.assembleegameclient.ui.tooltip.slotcomparisons
          var range:Number = Number(this.projXML.Speed) * Number(this.projXML.LifetimeMS) / 10000;
          var otherRange:Number = Number(this.otherProjXML.Speed) * Number(this.otherProjXML.LifetimeMS) / 10000;
          var textColor:String = getTextColor(range - otherRange);
-         return "Range: <font color=\"" + textColor + "\">" + range + "</font>\n";
+          if(range != 0) {
+              return "Range: <font color=\"" + textColor + "\">" + range + "</font>\n";
+          }
+          return "";
       }
    }
 }

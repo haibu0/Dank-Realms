@@ -232,8 +232,6 @@ namespace wServer.realm.entities
                     Client.SendPacket(new InvResult() { Result = 1 });
             }
         }
-
-
         private void Activate(RealmTime time, Item item, Position target)
         {
            // if (HasConditionEffect(ConditionEffects.Armored))
@@ -250,12 +248,16 @@ namespace wServer.realm.entities
                     Pos1 = new Position { X = 4, Y = 0 }
                 }, p => this.DistSqr(p) < RadiusSqr);
             }
+            
 
             MP -= item.MpCost;
             foreach (var eff in item.ActivateEffects)
             {
                 switch (eff.Effect)
                 {
+                    case ActivateEffects.Explode:
+                        AEExplode(time, item, target, eff);
+                        break;
                     case ActivateEffects.ObjectToss:
                         AEObjectToss(time, item, target, eff);
                         break;
@@ -369,7 +371,33 @@ namespace wServer.realm.entities
                 }
             }
         }
+        void Explode(RealmTime time)
+        {
+            Owner.BroadcastPacketNearby(new ShowEffect()
+            {
+                EffectType = EffectType.AreaBlast,
+                Color = new ARGB(0x000),
+                TargetObjectId = Id,
+                Pos1 = new Position() { X = 6 }
+            }, this, null);
 
+
+            var enemies = new List<Enemy>();
+
+
+
+            this.AOE(6, false, enemy => enemies.Add(enemy as Enemy));
+            {
+                if (enemies.Count() > 0)
+                    foreach (var enemy in enemies)
+                        enemy?.Damage(this, time, 100, false, new ConditionEffect()
+                        {
+                            Effect = ConditionEffectIndex.Dazed,
+                            DurationMS = 10
+                        });
+            };
+            Owner.LeaveWorld(this);
+        }
         public void AreaBlastEffect(uint color, int radius, bool onMouse = false)
         {
             BroadcastSync(new ShowEffect()
@@ -380,6 +408,34 @@ namespace wServer.realm.entities
                 Pos1 = new Position() { X = radius},
                 Pos2 = new Position { X = X, Y = Y }
             }, p => this.DistSqr(p) < RadiusSqr);
+        }
+        private void AEExplode(RealmTime time, Item item, Position target, ActivateEffect eff)
+        {
+            Random rand = new Random();
+            float index = rand.Next(0, 100);
+            if (eff.ProcChance >= index) { 
+
+                Owner.BroadcastPacketNearby(new ShowEffect()
+                {
+                    EffectType = EffectType.AreaBlast,
+                    Color = new ARGB(eff.Color),
+                    TargetObjectId = Id,
+                    Pos1 = new Position() { X = eff.Radius }
+                }, this, null);
+
+            var impactDmg = 0;
+            var enemies = new List<Enemy>();
+            Owner.AOE(target, eff.Radius, false, enemy => enemies.Add(enemy as Enemy));
+            {
+                if (enemies.Count() > 0)
+                {
+                    foreach (var enemy in enemies)
+                    {
+                            impactDmg += (enemy as Enemy).Damage(this, time, eff.TotalDamage, false);
+                    }
+                }
+            };
+        }
         }
         private void AEObjectToss(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
@@ -784,7 +840,7 @@ namespace wServer.realm.entities
         private void AEBulletNova(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
             var numprjs = item.NumProjectiles;
-            numprjs = item.NumProjectiles == 0 ? 20 : numprjs; //for spells that dont declare numprojectiles, to have 20 shots
+            numprjs = item.NumProjectiles == 1 ? 20 : numprjs; //for spells that dont declare numprojectiles, to have 20 shots
             var prjs = new Projectile[numprjs];
             var prjDesc = item.Projectiles[0]; //Assume only one(!)
             var batch = new Packet[numprjs + 1];
@@ -1325,11 +1381,16 @@ namespace wServer.realm.entities
         private void AEHeal(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
             var Vitality = (Stats.Base[6] + Stats.Boost[6]) / 2;
-            var healAmt = eff.Amount; 
-            if (item.ObjectId == "Health Potion")
-            {
-                healAmt = eff.Amount + Vitality; //heal scales from vit
+            var Health = (Stats.Base[0] + Stats.Boost[0]) / 2;
 
+            var healAmt = eff.Amount;
+            if (Health > 550)
+            {
+                if (item.ObjectId == "Health Potion")
+                {
+                    healAmt = eff.Amount + Vitality; //heal scales from vit
+
+                }
             }
             if (!HasConditionEffect(ConditionEffects.Sick))
             {
@@ -1469,26 +1530,30 @@ namespace wServer.realm.entities
         {
             var duration = eff.DurationMS;
             var amount = eff.Amount;
-            if (eff.UseWisMod)
-            {
-                amount = (int)UseWisMod(eff.Amount, 0);
-                duration = (int)(UseWisMod(eff.DurationSec) * 1000);
-            }
-            var idx = StatsManager.GetStatIndex((StatsType)eff.Stats);
-            var s = eff.Amount;
-            Stats.Boost.ActivateBoost[idx].Push(s, false);
-            Stats.ReCalculateValues();
-            Owner.Timers.Add(new WorldTimer(eff.DurationMS, (world, t) =>
-            {
-                Stats.Boost.ActivateBoost[idx].Pop(s, false);
+            Random rand = new Random();
+            float index = rand.Next(0, 100);
+            if (eff.ProcChance >= index) {
+                if (eff.UseWisMod)
+                {
+                    amount = (int)UseWisMod(eff.Amount, 0);
+                    duration = (int)(UseWisMod(eff.DurationSec) * 1000);
+                }
+                var idx = StatsManager.GetStatIndex((StatsType)eff.Stats);
+                var s = eff.Amount;
+                Stats.Boost.ActivateBoost[idx].Push(s, false);
                 Stats.ReCalculateValues();
-            }));
-            BroadcastSync(new ShowEffect()
-            {
-                EffectType = EffectType.Potion,
-                TargetObjectId = Id,
-                Color = new ARGB(0xffffffff)
-            }, p => this.DistSqr(p) < RadiusSqr);
+                Owner.Timers.Add(new WorldTimer(eff.DurationMS, (world, t) =>
+                {
+                    Stats.Boost.ActivateBoost[idx].Pop(s, false);
+                    Stats.ReCalculateValues();
+                }));
+                BroadcastSync(new ShowEffect()
+                {
+                    EffectType = EffectType.Potion,
+                    TargetObjectId = Id,
+                    Color = new ARGB(0xffffffff)
+                }, p => this.DistSqr(p) < RadiusSqr);
+            }
         }
 
         private void AEShoot(RealmTime time, Item item, Position target, ActivateEffect eff)

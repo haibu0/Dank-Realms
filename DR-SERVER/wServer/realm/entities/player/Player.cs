@@ -49,7 +49,7 @@ namespace wServer.realm.entities
             get { return _experience.GetValue(); }
             set { _experience.SetValue(value); }
         }
-
+        public int Rn4g = 0;
         private readonly SV<int> _experienceGoal;
         public int ExperienceGoal
         {
@@ -357,12 +357,15 @@ namespace wServer.realm.entities
             if (!saveInventory)
                 DbLink = null;
 
-            Inventory.InventoryChanged += (sender, e) => Stats.ReCalculateValues(e);
+            Inventory.InventoryChanged += (sender, e) =>
+            {
+                Stats.ReCalculateValues(e);
+                OnEquippedChanged();
+            };
             SlotTypes = Utils.ResizeArray(
                 gameData.Classes[ObjectType].SlotTypes,
                 20);
-            Stats = new StatsManager(this);
-
+            Stats = new StatsManager(this);          
             Manager.Database.IsMuted(client.IP)
                 .ContinueWith(t =>
                 {
@@ -393,7 +396,7 @@ namespace wServer.realm.entities
             }
             Move(x + 0.5f, y + 0.5f);
             tiles = new byte[owner.Map.Width, owner.Map.Height];
-
+            OnEquippedChanged();
             // spawn pet if player has one attached
             SpawnPetIfAttached(owner);
 
@@ -445,6 +448,7 @@ namespace wServer.realm.entities
 
             if (!HasConditionEffect(ConditionEffects.Paused))
             {
+                EquippedStatusTick(time);
                 HandleRegen(time);
                 HandleEffects(time);
                 HandleOceanTrenchGround(time);
@@ -617,6 +621,7 @@ namespace wServer.realm.entities
             var dmg = (int)Stats.GetDefenseDamage(projectile.Damage, projectile.ProjDesc.ArmorPiercing);
             if (!HasConditionEffect(ConditionEffects.Invulnerable))
                 HP -= dmg;
+            EquippedStatusHit(dmg);
             ApplyConditionEffect(projectile.ProjDesc.Effects);
             Owner.BroadcastPacketNearby(new Damage()
             {

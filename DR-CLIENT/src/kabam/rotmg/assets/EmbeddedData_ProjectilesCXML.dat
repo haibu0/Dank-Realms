@@ -15,6 +15,21 @@
         <Rotation>100</Rotation>
     </Object>
     <!--Agent of Oryx Prjs-->
+    <Object id="Mad Javelin" type="0x4f31">
+        <Class>Projectile</Class>
+        <Texture>
+            <File>d2LofiObjEmbed</File>
+            <Index>0x281</Index>
+        </Texture>
+        <AngleCorrection>1</AngleCorrection>
+    </Object>
+    <Object id="Baneful Bash" type="0x4f32">
+        <Class>Projectile</Class>
+        <Texture>
+            <File>d2LofiObjEmbed</File>
+            <Index>0x283</Index>
+        </Texture>
+    </Object>
     <Object type="0x65f5" id="Realm Blade">
         <Class>Projectile</Class>
         <Texture>

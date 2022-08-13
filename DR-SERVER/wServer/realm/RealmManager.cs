@@ -14,6 +14,8 @@ using wServer.realm.commands;
 using wServer.realm.entities.vendors;
 using wServer.realm.worlds;
 using wServer.realm.worlds.logic;
+using wServer.realm.entities.player.equipstatus;
+
 
 namespace wServer.realm
 {
@@ -40,7 +42,7 @@ namespace wServer.realm
         private readonly bool _initialized;
         public string InstanceId { get; private set; }
         public bool Terminating { get; private set; }
-
+        public EquippedStatusManager EquippedManager { get; private set; }
         public Resources Resources { get; private set; }
         public Database Database { get; private set; }
         public ServerConfig Config { get; private set; }
@@ -90,6 +92,8 @@ namespace wServer.realm
                 config.serverSettings.maxPlayersWithPriority);
             Behaviors = new BehaviorDb(this);
             Commands = new CommandManager(this);
+            EquippedManager = new EquippedStatusManager();
+
 
             // some necessities that shouldn't be (will work this out later)
             MerchantLists.Init(this);

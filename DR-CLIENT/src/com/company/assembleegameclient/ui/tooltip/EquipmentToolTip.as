@@ -45,8 +45,9 @@ package com.company.assembleegameclient.ui.tooltip
       private var isInventoryFull:Boolean;
       private var yOffset:int;
       private var comparisonResults:SlotComparisonResult;
+       private var legendaryText:SimpleText;
 
-      public function EquipmentToolTip(objectType:int, player:Player, invType:int, inventoryOwnerType:String, inventorySlotID:uint = 1.0)
+       public function EquipmentToolTip(objectType:int, player:Player, invType:int, inventoryOwnerType:String, inventorySlotID:uint = 1.0)
       {
          this.player_ = player;
          this.inventoryOwnerType = inventoryOwnerType;
@@ -91,6 +92,8 @@ package com.company.assembleegameclient.ui.tooltip
          this.makeRestrictionList();
          this.makeRestrictionText();
       }
+
+
 
       private static function BuildRestrictionsHTML(restrictions:Vector.<Restriction>) : String
       {
@@ -333,6 +336,7 @@ package com.company.assembleegameclient.ui.tooltip
             }
                  activationType = activateXML.toString();
 
+
              var statName:String;
              var statIndex:int = activateXML.@stat;
              switch (statIndex) {
@@ -550,75 +554,68 @@ package com.company.assembleegameclient.ui.tooltip
          this.restrictions.push(new Restriction("Double-Click or Shift-Click on item to use",16777215,false));
       }
 
-      private function makeRestrictionList() : void
-      {
-         var reqXML:XML = null;
-         var reqMet:Boolean = false;
-         var stat:int = 0;
-         var value:int = 0;
-         this.restrictions = new Vector.<Restriction>();
-         if(this.objectXML_.hasOwnProperty("VaultItem") && this.invType != -1 && this.invType != ObjectLibrary.idToType_["Vault Chest"])
-         {
-            this.restrictions.push(new Restriction("Store this item in your Vault to avoid losing it!",16549442,true));
-         }
-          if(this.objectXML_.hasOwnProperty("Resurrects"))
-          {
-              this.restrictions.push(new Restriction("Resurrects",TooltipHelper.BEST_COLOR,true));
+      private function makeRestrictionList() : void {
+          var reqXML:XML = null;
+          var reqMet:Boolean = false;
+          var stat:int = 0;
+          var value:int = 0;
+          this.restrictions = new Vector.<Restriction>();
+          if (this.objectXML_.hasOwnProperty("VaultItem") && this.invType != -1 && this.invType != ObjectLibrary.idToType_["Vault Chest"]) {
+              this.restrictions.push(new Restriction("Store this item in your Vault to avoid losing it!", 16549442, true));
           }
-          if(this.objectXML_.hasOwnProperty("Mistake"))
-          {
+          if (this.objectXML_.hasOwnProperty("Resurrects")) {
+              this.restrictions.push(new Restriction("Resurrects", TooltipHelper.BEST_COLOR, true));
+          }
+          if (this.objectXML_.hasOwnProperty("Mistake")) {
               this.titleText_.setColor(TooltipHelper.MISTAKEGEAR_COLOR)
-              this.restrictions.push(new Restriction("Mistake",TooltipHelper.MISTAKEGEAR_COLOR,true));
+              this.restrictions.push(new Restriction("Mistake", TooltipHelper.MISTAKEGEAR_COLOR, true));
           }
-          if(this.objectXML_.hasOwnProperty("OryxGear"))
-          {
+          if (this.objectXML_.hasOwnProperty("OryxGear")) {
               this.titleText_.setColor(TooltipHelper.ORYXITEM_COLOR)
-              this.restrictions.push(new Restriction("Agent of Oryx Item",TooltipHelper.ORYXITEM_COLOR,true));
+              this.restrictions.push(new Restriction("Agent of Oryx Item", TooltipHelper.ORYXITEM_COLOR, true));
           }
 
-         if(this.objectXML_.hasOwnProperty("Soulbound"))
-         {
-            this.restrictions.push(new Restriction("Soulbound",9055202,false));
-         }
-         if(this.playerCanUse)
-         {
-            if(this.objectXML_.hasOwnProperty("Usable"))
-            {
-               this.addAbilityItemRestrictions();
-               this.addEquipmentItemRestrictions();
-            }
-            else if(this.objectXML_.hasOwnProperty("Consumable"))
-            {
-               this.addConsumableItemRestrictions();
-            }
-            else if(this.objectXML_.hasOwnProperty("InvUse"))
-            {
-               this.addReusableItemRestrictions();
-            }
-            else
-            {
-               this.addEquipmentItemRestrictions();
-            }
-         }
-         else if(this.player_ != null)
-         {
-            this.restrictions.push(new Restriction("Not usable by " + ObjectLibrary.typeToDisplayId_[this.player_.objectType_],16549442,true));
-         }
-         var usable:Vector.<String> = ObjectLibrary.usableBy(this.objectType_);
-         if(usable != null)
-         {
-            this.restrictions.push(new Restriction("Usable by: " + usable.join(", "),11776947,false));
-         }
-         for each(reqXML in this.objectXML_.EquipRequirement)
-         {
-            reqMet = ObjectLibrary.playerMeetsRequirement(reqXML,this.player_);
-            if(reqXML.toString() == "Stat")
-            {
-               stat = int(reqXML.@stat);
-               value = int(reqXML.@value);
-               this.restrictions.push(new Restriction("Requires " + StatData.statToName(stat) + " of " + value,reqMet?11776947:16549442,reqMet?Boolean(false):Boolean(true)));
-            }
-         }
+          if (this.objectXML_.hasOwnProperty("Soulbound")) {
+              this.restrictions.push(new Restriction("Soulbound", 9055202, false));
+          }
+          if (this.playerCanUse) {
+              if (this.objectXML_.hasOwnProperty("Usable")) {
+                  this.addAbilityItemRestrictions();
+                  this.addEquipmentItemRestrictions();
+              }
+              else if (this.objectXML_.hasOwnProperty("Consumable")) {
+                  this.addConsumableItemRestrictions();
+              }
+              else if (this.objectXML_.hasOwnProperty("InvUse")) {
+                  this.addReusableItemRestrictions();
+              }
+              else {
+                  this.addEquipmentItemRestrictions();
+              }
+          }
+          else if (this.player_ != null) {
+              this.restrictions.push(new Restriction("Not usable by " + ObjectLibrary.typeToDisplayId_[this.player_.objectType_], 16549442, true));
+          }
+          var usable:Vector.<String> = ObjectLibrary.usableBy(this.objectType_);
+          if (usable != null) {
+              this.restrictions.push(new Restriction("Usable by: " + usable.join(", "), 11776947, false));
+          }
+          for each(reqXML in this.objectXML_.EquipRequirement) {
+              reqMet = ObjectLibrary.playerMeetsRequirement(reqXML, this.player_);
+              if (reqXML.toString() == "Stat") {
+                  stat = int(reqXML.@stat);
+                  value = int(reqXML.@value);
+                  this.restrictions.push(new Restriction("Requires " + StatData.statToName(stat) + " of " + value, reqMet ? 11776947 : 16549442, reqMet ? Boolean(false) : Boolean(true)));
+              }
+          }
+          if (this.objectXML_.hasOwnProperty("ItemEffect")) { //Itemeffect descriptions
+              var effName = this.objectXML_.ItemEffect.Name;
+              var effDesc = this.objectXML_.ItemEffect.Description;
+              var color = this.objectXML_.ItemEffect.@color;
+              this.restrictions.push(new Restriction((effName), color, true));
+              this.restrictions.push(new Restriction((effDesc), color, false));
+          }
+
       }
 
       private function makeRestrictionText() : void

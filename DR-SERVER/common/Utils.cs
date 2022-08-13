@@ -16,6 +16,20 @@ using System.Xml.Linq;
 
 namespace common
 {
+
+    public static class RandomUtil
+    {
+        private static Random _random;
+
+        static RandomUtil()
+        {
+            _random = new Random();
+        }
+
+        public static int RandInt(int min, int max) => _random.Next(min, max);
+        public static double RandDouble() => _random.NextDouble();
+        public static void RandByte(byte[] buff) => _random.NextBytes(buff);
+    }
     public static class Utils
     {
         static readonly Logger Log = LogManager.GetCurrentClassLogger();

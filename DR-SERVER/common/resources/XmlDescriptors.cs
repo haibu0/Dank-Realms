@@ -123,9 +123,10 @@ namespace common.resources
         PowerStat,
         RangedSummon,
         ItemRange,
-        AscensionActivate
+        AscensionActivate,
+        Explode
     }
-
+    
     [Flags]
     public enum ConditionEffects : ulong
     {
@@ -252,7 +253,6 @@ namespace common.resources
         public readonly bool ProtectFromSink;
         public readonly bool Character;
         public readonly ProjectileDesc[] Projectiles;
-
         public readonly TerrainType Terrain;
         public readonly float SpawnProb;
         public readonly SpawnCount Spawn;
@@ -355,6 +355,11 @@ namespace common.resources
             Timeout = e.GetValue<int>("Timeout", 30);
         }
     }
+    public enum EquippedStatus : int
+    {
+        Corrupt
+    }
+    
 
     public class PlayerDesc : ObjectDesc
     {
@@ -463,6 +468,7 @@ namespace common.resources
 
     public class Item
     {
+        public List<EquippedStatus> EquipmentStatus;
         public readonly ushort ObjectType;
         public readonly string ObjectId;
         public readonly string Class;
@@ -501,6 +507,7 @@ namespace common.resources
         public readonly KeyValuePair<int, int>[] StatsBoost;
         public readonly ActivateEffect[] ActivateEffects;
         public readonly ProjectileDesc[] Projectiles;
+        public readonly ItemEffect[] ItemEffect;
 
         public Item(ushort type, XElement e)
         {
@@ -538,7 +545,30 @@ namespace common.resources
             Timer = e.GetValue<float>("Timer");
             MpEndCost = e.GetValue<int>("MpEndCost", 0);
             InvUse = e.HasElement("InvUse");
-            TypeOfConsumable = InvUse || Consumable;
+            TypeOfConsumable = InvUse || Consumable;  
+            EquipmentStatus = new List<EquippedStatus>();
+            /*
+            var length = Enum.GetNames(typeof(ItemType)).Length;
+            if (e.HasElement("ItemEffect"))
+            {
+                foreach (XElement i in e.Elements("ItemEffect"))
+                {
+                    for (int j = 0; j < length; j++)
+                    {
+                        if (j == i.GetAttribute<int>("id"))
+                        {
+                            EquipmentStatus.Add((EquippedStatus)j);
+                        }
+                    }
+                }
+            }
+            */
+            
+            
+
+
+
+
 
             var stats = new List<KeyValuePair<int, int>>();
             foreach (XElement i in e.Elements("ActivateOnEquip"))
@@ -548,7 +578,12 @@ namespace common.resources
             StatsBoost = stats.ToArray();
 
             var activate = new List<ActivateEffect>();
+
             foreach (var i in e.Elements("Activate"))
+                activate.Add(new ActivateEffect(i));
+            ActivateEffects = activate.ToArray();
+
+            foreach (var i in e.Elements("Activate2"))
                 activate.Add(new ActivateEffect(i));
             ActivateEffects = activate.ToArray();
 
@@ -556,9 +591,33 @@ namespace common.resources
             foreach (var i in e.Elements("Projectile"))
                 projs.Add(new ProjectileDesc(i));
             Projectiles = projs.ToArray();
+
+            var itemeff = new List<ItemEffect>();
+            foreach (var i in e.Elements("ItemEffect"))
+                itemeff.Add(new ItemEffect(i));
+            ItemEffect = itemeff.ToArray();
+
         }
     }
+    public class ItemEffect
+    {
+        public readonly int PowerId;
+        public readonly string Name;
+        public readonly string Description;
+        public readonly uint Color;
 
+        public ItemEffect(XElement e)
+        {
+            if (e.Attribute("id") != null)
+                PowerId = e.GetValue<int>("id");
+            if (e.Attribute("color") != null)
+                Color = e.GetValue<uint>("color");
+            Color = e.GetValue<uint>("color");
+            Name = e.Element("Name").Value;
+            Description = e.Element("Description").Value;
+            
+        }
+    }
     public class ProjectileDesc
     {
         public readonly int BulletType;
@@ -633,6 +692,8 @@ namespace common.resources
         public readonly ConditionEffectIndex? ConditionEffect;
         public readonly ConditionEffectIndex? CheckExistingEffect;
 
+        public readonly bool NoToolTip = false;
+        public readonly float ProcChance = 100;
         public readonly bool TossObject;
         public readonly int AirTime;
         public readonly int ImpactDamage;
@@ -675,6 +736,9 @@ namespace common.resources
             if (e.HasAttribute("checkExistingEffect"))
                 CheckExistingEffect = Utils.GetEffect(e.GetAttribute<string>("checkExistingEffect"));
 
+            if (e.HasAttribute("proc"))         
+                ProcChance = e.GetAttribute<float>("proc");       
+
             if (e.HasAttribute("color"))
             {
                 Color = e.GetAttribute<uint>("color");
@@ -699,7 +763,7 @@ namespace common.resources
             {
                 VisualEffect = e.GetAttribute<int>("visualEffect");
             }
-
+            NoToolTip = e.GetAttribute<bool>("ignoreToolTip");
             AirTime = e.GetAttribute<int>("airTime");
             TotalDamage = e.GetAttribute<int>("totalDamage");
             ImpactDamage = e.GetAttribute<int>("impactDamage");

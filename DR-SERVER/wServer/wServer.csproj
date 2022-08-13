@@ -340,6 +340,10 @@
     <Compile Include="realm\entities\OneWayContainer.cs" />
     <Compile Include="realm\entities\Pet.cs" />
     <Compile Include="realm\entities\Placeholder.cs" />
+    <Compile Include="realm\entities\player\equipstatus\EquippedStatusManager.cs" />
+    <Compile Include="realm\entities\player\equipstatus\IEquipStatus.cs" />
+    <Compile Include="realm\entities\player\equipstatus\itemeffects\CorruptAB.cs" />
+    <Compile Include="realm\entities\player\Player.Equipped.cs" />
     <Compile Include="realm\entities\player\Player.AntiCheat.cs" />
     <Compile Include="realm\entities\player\Player.Chat.cs" />
     <Compile Include="realm\entities\player\Player.cs" />
