@@ -29,15 +29,18 @@ namespace wServer.logic.behaviors
         private readonly string _group;
         private readonly TileRegion _region;
         private readonly double _regionRange;
-        private List<IntPoint> _reproduceRegions; 
+        private List<IntPoint> _reproduceRegions;
+        private readonly int _airTime;
+        private readonly uint _color;
 
         public TossObject(string child, double range = 5, double? angle = null,
-            Cooldown coolDown = new Cooldown(), int coolDownOffset = 0, 
+            Cooldown coolDown = new Cooldown(), int coolDownOffset = 0,
             bool tossInvis = false, double probability = 1, string group = null,
             double? minAngle = null, double? maxAngle = null,
             double? minRange = null, double? maxRange = null,
             double? densityRange = null, int? maxDensity = null,
-            TileRegion region = TileRegion.None, double regionRange = 10
+            TileRegion region = TileRegion.None, double regionRange = 10,
+            int airTime = 1500, uint color = 0xffffbf00
             )
         {
             if (group == null)
@@ -62,6 +65,8 @@ namespace wServer.logic.behaviors
             _group = group;
             _region = region;
             _regionRange = regionRange;
+            _airTime = airTime;
+            _color = color;
         }
 
         protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
@@ -165,12 +170,12 @@ namespace wServer.logic.behaviors
                         host.Owner.BroadcastPacketNearby(new ShowEffect()
                         {
                             EffectType = EffectType.Throw,
-                            Color = new ARGB(0xffffbf00),
+                            Color = new ARGB(_color),
                             TargetObjectId = host.Id,
                             Pos1 = target,
-                            AirTime = 1500
+                            AirTime = _airTime
                         }, target);
-                    host.Owner.Timers.Add(new WorldTimer(1500, (world, t) =>
+                    host.Owner.Timers.Add(new WorldTimer(_airTime, (world, t) =>
                     {
                         if (!world.IsPassable(target.X, target.Y, true))
                             return;

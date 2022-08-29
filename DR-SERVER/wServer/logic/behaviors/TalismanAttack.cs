@@ -13,14 +13,14 @@ namespace wServer.logic.behaviors
         private readonly int _duration;
         ConditionEffectIndex _effect;
 
-        public TalismanAttack(int damage, ConditionEffectIndex effect, int range=6, int duration = 0, int coolDown = 0, uint color = 0)
+        public TalismanAttack(int damage, ConditionEffectIndex effect, int range=6, int duration = 0, int coolDown = 0, uint color = 0xFF0000)
         {
             _range = range;
             _damage = damage;
             _effect = effect;
             _duration = duration;
             _coolDown = coolDown;
-            _color = color == 0 ? 0xFF0000 : color;
+            _color = color;
         }
         protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
         {
@@ -32,7 +32,7 @@ namespace wServer.logic.behaviors
             int cool = (int)state;
             if (cool <= 0)
             {              
-                var entities = host.GetNearestEntities(_range, 1);//1 for enemy
+                var entities = host.GetNearestEntities(_range, 1);//1 for tattack
 
                 Enemy en = null;
                 foreach (Entity e in entities)
@@ -42,7 +42,7 @@ namespace wServer.logic.behaviors
                         break;
                     }
 
-                if (en != null)
+                if (en != null & en.ObjectDesc.Enemy)
                 {
                     en.Owner.BroadcastPacket(new ShowEffect()
                     {
@@ -58,12 +58,7 @@ namespace wServer.logic.behaviors
                         Pos1 = new Position { X = en.X, Y = en.Y },
                         Color = new ARGB(_color)
                     }, null);
-                    en.Damage(host.GetPlayerOwner(), time, _damage, true);
-                    en.ApplyConditionEffect(new ConditionEffect
-                    {
-                        Effect = _effect,
-                        DurationMS = _duration
-                    });
+                    en?.Damage(host.GetPlayerOwner(), time, _damage, false);
                 }
                 cool = _coolDown; 
             }

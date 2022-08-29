@@ -692,7 +692,9 @@ namespace common.resources
         public readonly ConditionEffectIndex? ConditionEffect;
         public readonly ConditionEffectIndex? CheckExistingEffect;
 
-        public readonly bool NoToolTip = false;
+        public readonly bool NoToolTip;
+        public readonly int HPMinThreshold = 0;
+        public readonly int HPRequired = 0;
         public readonly float ProcChance = 100;
         public readonly bool TossObject;
         public readonly int AirTime;
@@ -763,6 +765,8 @@ namespace common.resources
             {
                 VisualEffect = e.GetAttribute<int>("visualEffect");
             }
+            HPMinThreshold = e.GetAttribute<int>("hpMinThreshold");
+            HPRequired = e.GetAttribute<int>("hpRequired");
             NoToolTip = e.GetAttribute<bool>("ignoreToolTip");
             AirTime = e.GetAttribute<int>("airTime");
             TotalDamage = e.GetAttribute<int>("totalDamage");

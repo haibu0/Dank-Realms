@@ -1064,7 +1064,7 @@ import kabam.rotmg.ui.view.NotEnoughGoldDialog;
             target.damage(-1,damage.damageAmount_,damage.effects_,damage.kill_,proj);
          }
       }
-      
+
       private function onServerPlayerShoot(serverPlayerShoot:ServerPlayerShoot) : void
       {
          var needsAck:Boolean = serverPlayerShoot.ownerId_ == this.playerId_;
@@ -1091,7 +1091,7 @@ import kabam.rotmg.ui.view.NotEnoughGoldDialog;
             this.shootAck(this.gs_.lastUpdate_);
          }
       }
-      
+
       private function onAllyShoot(allyShoot:AllyShoot) : void
       {
          if (!Parameters.data_.allyShots)
@@ -1109,7 +1109,7 @@ import kabam.rotmg.ui.view.NotEnoughGoldDialog;
          this.gs_.map.addObj(proj,owner.x_,owner.y_);
          owner.setAttack(allyShoot.containerType_,allyShoot.angle_);
       }
-      
+
       private function onEnemyShoot(enemyShoot:EnemyShoot) : void
       {
          var proj:Projectile = null;

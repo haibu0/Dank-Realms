@@ -321,132 +321,131 @@ package com.company.assembleegameclient.ui.tooltip
        {
 
        }
-      private function addActivateTagsToEffectsList() : void
-      {
-         var activateXML:XML = null;
-         var val:String = null;
-         var stat:int = 0;
-         var amt:int = 0;
-         var activationType:String = null;
-         for each(activateXML in this.objectXML_.Activate)
-         {
-            if(this.comparisonResults.processedTags[activateXML.toXMLString()] == true)
-            {
-               continue;
-            }
-                 activationType = activateXML.toString();
-
-
-             var statName:String;
-             var statIndex:int = activateXML.@stat;
-             switch (statIndex) {
-                 case 0:
-                     statName = "HP";
-                     break;
-                 case 1:
-                     statName = "MP";
-                     break;
-                 case 20:
-                     statName = "Att";
-                     break;
-                 case 21:
-                     statName = "Def";
-                     break;
-                 case 22:
-                     statName = "Spd";
-                     break;
-                 case 26:
-                     statName = "Vit";
-                     break;
-                 case 27:
-                     statName = "Wis";
-                     break;
-                 case 28:
-                     statName = "Dex";
-                     break;
-                 default:
-                     statName = "Error";
-                     break;
-             }
-
-             switch(activationType)
-            {
-               case ActivationType.COND_EFFECT_AURA:
-                  this.effects.push(new Effect("Party Effect","Range: " + activateXML.@range + " sqrs"));
-                  this.effects.push(new Effect("","  " + activateXML.@effect + " for " + activateXML.@duration + " secs"));
-                  continue;
-               case ActivationType.COND_EFFECT_SELF:
-                   this.effects.push(new Effect("Effect on Self",""));
-                   this.effects.push(new Effect("","  " + activateXML.@effect + " for " + activateXML.@duration + " secs"));
+       private function addActivateTagsToEffectsList() : void
+       {
+           var activateXML:XML = null;
+           var val:String = null;
+           var stat:int = 0;
+           var amt:int = 0;
+           var activationType:String = null;
+           for each(activateXML in this.objectXML_.Activate)
+           {
+               if(this.comparisonResults.processedTags[activateXML.toXMLString()] == true)
+               {
                    continue;
-                case ActivationType.STAT_BOOST_SELF:
-                    this.effects.push(new Effect("Self Boost",""));
-                    this.effects.push(new Effect("","  " + statName + " by " + activateXML.@amount + " for " + activateXML.@duration + " secs"));
-                    continue;
-                case ActivationType.STAT_BOOST_AURA:
-                    this.effects.push(new Effect("Party Boost","Within " + activateXML.@range + " sqrs"));
-                    this.effects.push(new Effect("","  " + statName + " by " + activateXML.@amount + " for " + activateXML.@duration + " secs"));
-                    continue;
-               case ActivationType.HEAL:
-                  this.effects.push(new Effect("","+" + activateXML.@amount + " HP"));
-                  continue;
-               case ActivationType.HEAL_NOVA:
-                  this.effects.push(new Effect("Party Heal",activateXML.@amount + " HP at " + activateXML.@range + " sqrs"));
-                  continue;
-               case ActivationType.MAGIC:
-                  this.effects.push(new Effect("","+" + activateXML.@amount + " MP" ));
-                  continue;
-               case ActivationType.MAGIC_NOVA:
-                  this.effects.push(new Effect("Fill Party Magic",activateXML.@amount + " MP at " + activateXML.@range + " sqrs"));
-                  continue;
-               case ActivationType.TELEPORT:
-                  this.effects.push(new Effect("","Teleport to Target"));
-                  continue;
-               case ActivationType.VAMPIRE_BLAST:
-                  this.effects.push(new Effect("Steal",activateXML.@totalDamage + " HP within " + activateXML.@radius + " sqrs"));
-                  continue;
-               case ActivationType.TRAP:
-                  this.effects.push(new Effect("Trap",activateXML.@totalDamage + " HP within " + activateXML.@radius + " sqrs"));
-                  this.effects.push(new Effect("","  " + (Boolean(activateXML.hasOwnProperty("@condEffect"))?activateXML.@condEffect:"Slowed") + " for " + (Boolean(activateXML.hasOwnProperty("@condDuration"))?activateXML.@condDuration:"5") + " secs"));
-                  continue;
-               case ActivationType.STASIS_BLAST:
-                  this.effects.push(new Effect("Stasis on Group",activateXML.@duration + " secs"));
-                  continue;
-               case ActivationType.DECOY:
-                  this.effects.push(new Effect("Decoy",activateXML.@duration + " secs"));
-                  continue;
-               case ActivationType.LIGHTNING:
-                  this.effects.push(new Effect("Lightning",""));
-                  this.effects.push(new Effect(""," " + activateXML.@totalDamage + " to " + activateXML.@maxTargets + " targets"));
-                  continue;
-               case ActivationType.POISON_GRENADE:
-                  this.effects.push(new Effect("Poison Grenade",""));
-                  this.effects.push(new Effect(""," " + activateXML.@totalDamage + " HP over " + activateXML.@duration + " secs within " + activateXML.@radius + " sqrs\n"));
-                  continue;
-               case ActivationType.REMOVE_NEG_COND:
-                  this.effects.push(new Effect("","Removes negative conditions"));
-                  continue;
-               case ActivationType.REMOVE_NEG_COND_SELF:
-                  this.effects.push(new Effect("","Removes negative conditions"));
-                  continue;
-               case ActivationType.INCREMENT_STAT:
-                  stat = int(activateXML.@stat);
-                  amt = int(activateXML.@amount);
-                  if(stat != StatData.HP_STAT && stat != StatData.MP_STAT)
-                  {
-                     val = "Permanently increases " + StatData.statToName(stat);
-                  }
-                  else
-                  {
-                     val = "+" + amt + " " + StatData.statToName(stat);
-                  }
-                  this.effects.push(new Effect("",val));
-                  continue;
-               default:
+               }
+               activationType = activateXML.toString();
 
-            }
-         }
-      }
+               var statName:String;
+               var statIndex:int = activateXML.@stat;
+               switch (statIndex) {
+                   case 0:
+                       statName = "HP";
+                       break;
+                   case 1:
+                       statName = "MP";
+                       break;
+                   case 20:
+                       statName = "Att";
+                       break;
+                   case 21:
+                       statName = "Def";
+                       break;
+                   case 22:
+                       statName = "Spd";
+                       break;
+                   case 26:
+                       statName = "Vit";
+                       break;
+                   case 27:
+                       statName = "Wis";
+                       break;
+                   case 28:
+                       statName = "Dex";
+                       break;
+                   default:
+                       statName = "Error";
+                       break;
+               }
+
+               switch(activationType)
+               {
+                   case ActivationType.COND_EFFECT_AURA:
+                       this.effects.push(new Effect("Party Effect","Range: " + activateXML.@range + " sqrs"));
+                       this.effects.push(new Effect("","  " + activateXML.@effect + " for " + activateXML.@duration + " secs"));
+                       continue;
+                   case ActivationType.COND_EFFECT_SELF:
+                       this.effects.push(new Effect("Effect on Self",""));
+                       this.effects.push(new Effect("","  " + activateXML.@effect + " for " + activateXML.@duration + " secs"));
+                       continue;
+                   case ActivationType.STAT_BOOST_SELF:
+                       this.effects.push(new Effect("Self Boost",""));
+                       this.effects.push(new Effect("","  " + statName + " by " + activateXML.@amount + " for " + activateXML.@duration + " secs"));
+                       continue;
+                   case ActivationType.STAT_BOOST_AURA:
+                       this.effects.push(new Effect("Party Boost","Within " + activateXML.@range + " sqrs"));
+                       this.effects.push(new Effect("","  " + statName + " by " + activateXML.@amount + " for " + activateXML.@duration + " secs"));
+                       continue;
+                   case ActivationType.HEAL:
+                       this.effects.push(new Effect("","+" + activateXML.@amount + " HP"));
+                       continue;
+                   case ActivationType.HEAL_NOVA:
+                       this.effects.push(new Effect("Party Heal",activateXML.@amount + " HP at " + activateXML.@range + " sqrs"));
+                       continue;
+                   case ActivationType.MAGIC:
+                       this.effects.push(new Effect("","+" + activateXML.@amount + " MP" ));
+                       continue;
+                   case ActivationType.MAGIC_NOVA:
+                       this.effects.push(new Effect("Fill Party Magic",activateXML.@amount + " MP at " + activateXML.@range + " sqrs"));
+                       continue;
+                   case ActivationType.TELEPORT:
+                       this.effects.push(new Effect("","Teleport to Target"));
+                       continue;
+                   case ActivationType.VAMPIRE_BLAST:
+                       this.effects.push(new Effect("Steal",activateXML.@totalDamage + " HP within " + activateXML.@radius + " sqrs"));
+                       continue;
+                   case ActivationType.TRAP:
+                       this.effects.push(new Effect("Trap",activateXML.@totalDamage + " HP within " + activateXML.@radius + " sqrs"));
+                       this.effects.push(new Effect("","  " + (Boolean(activateXML.hasOwnProperty("@condEffect"))?activateXML.@condEffect:"Slowed") + " for " + (Boolean(activateXML.hasOwnProperty("@condDuration"))?activateXML.@condDuration:"5") + " secs"));
+                       continue;
+                   case ActivationType.STASIS_BLAST:
+                       this.effects.push(new Effect("Stasis on Group",activateXML.@duration + " secs"));
+                       continue;
+                   case ActivationType.DECOY:
+                       this.effects.push(new Effect("Decoy",activateXML.@duration + " secs"));
+                       continue;
+                   case ActivationType.LIGHTNING:
+                       this.effects.push(new Effect("Lightning",""));
+                       this.effects.push(new Effect(""," " + activateXML.@totalDamage + " to " + activateXML.@maxTargets + " targets"));
+                       continue;
+                   case ActivationType.POISON_GRENADE:
+                       this.effects.push(new Effect("Poison Grenade",""));
+                       this.effects.push(new Effect(""," " + activateXML.@totalDamage + " HP over " + activateXML.@duration + " secs within " + activateXML.@radius + " sqrs\n"));
+                       continue;
+                   case ActivationType.REMOVE_NEG_COND:
+                       this.effects.push(new Effect("","Removes negative conditions"));
+                       continue;
+                   case ActivationType.REMOVE_NEG_COND_SELF:
+                       this.effects.push(new Effect("","Removes negative conditions"));
+                       continue;
+                   case ActivationType.INCREMENT_STAT:
+                       stat = int(activateXML.@stat);
+                       amt = int(activateXML.@amount);
+                       if(stat != StatData.HP_STAT && stat != StatData.MP_STAT)
+                       {
+                           val = "Permanently increases " + StatData.statToName(stat);
+                       }
+                       else
+                       {
+                           val = "+" + amt + " " + StatData.statToName(stat);
+                       }
+                       this.effects.push(new Effect("",val));
+                       continue;
+                   default:
+
+               }
+           }
+       }
        private function wisMod() {
            var Wisdom:Number = (this.player.wisdom_ + this.player.wisdomBoost_);
            return Wisdom;

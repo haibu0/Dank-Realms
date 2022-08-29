@@ -41,7 +41,7 @@ namespace wServer.logic.behaviors
 
             if (instant)
             {
-                host.ValidateAndMove(X, Y);
+                host.Move(X, Y);
             }
         }
 

@@ -17,9 +17,7 @@ namespace wServer.logic.behaviors
         private readonly int _damage;
         private readonly int _effDuration;
         ConditionEffectIndex _effect;
-
-        Player player;
-        public PetBomb(int damage, int radius = 3, ConditionEffectIndex effect = ConditionEffectIndex.Speedy, int effDuration = 0, int coolDown = 0, uint color = 0)
+        public PetBomb(int damage, int radius = 3, ConditionEffectIndex effect = ConditionEffectIndex.Speedy, int effDuration = 3, int coolDown = 0, uint color = 0)
         {
             _effect = effect;//add condeffect nothing
             _damage = damage;
@@ -38,7 +36,7 @@ namespace wServer.logic.behaviors
             int cool = (int)state;
             if (cool <= 0)
             {
-                var entities = host.GetNearestEntities(_radius, 0);//1 for enemy
+                var entities = host.GetNearestEntities(_radius, 0);//1 for tattack
 
                 Enemy en = null;
                 foreach (Entity e in entities)
@@ -54,6 +52,7 @@ namespace wServer.logic.behaviors
                         Y = host.Y,
                     };
                 //AOE Attack
+                
                 host.Owner.BroadcastPacket(new ShowEffect()
                 {
                     EffectType = EffectType.AreaBlast,
@@ -66,11 +65,7 @@ namespace wServer.logic.behaviors
                 {
                     if (enemies.Count() > 0)
                         foreach (var enemy in enemies)
-                            enemy?.Damage(host.GetPlayerOwner(), time, _damage, false, new ConditionEffect()
-                            {
-                                Effect = _effect,
-                                DurationMS = _effDuration
-                            });
+                            enemy?.Damage(host.GetPlayerOwner(), time, _damage, false);
                 };
 
                 cool = _coolDown;

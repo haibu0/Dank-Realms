@@ -380,12 +380,7 @@ namespace wServer.realm.entities
                 TargetObjectId = Id,
                 Pos1 = new Position() { X = 6 }
             }, this, null);
-
-
             var enemies = new List<Enemy>();
-
-
-
             this.AOE(6, false, enemy => enemies.Add(enemy as Enemy));
             {
                 if (enemies.Count() > 0)
@@ -439,6 +434,7 @@ namespace wServer.realm.entities
         }
         private void AEObjectToss(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
+            abilityConditionsCheck(eff);
             var airTime = eff.AirTime;
             var throwColor = eff.Color; 
             var entity = Resolve(Manager, eff.ObjectId);
@@ -995,9 +991,8 @@ namespace wServer.realm.entities
         {
             var trailColor = eff.Color2;
             var aoeColor = eff.Color;
-            var impactDamage = eff.ImpactDamage;
             var airTime = eff.AirTime;           
-            airTime = eff.AirTime == 0 ? 1500 : airTime;
+            airTime = eff.AirTime == 0 ? 1000 : airTime;
             trailColor = eff.Color2 == 0 ? 0xffddff00 :trailColor;
             aoeColor = eff.Color == 0 ? 0xffddff00 : aoeColor;
 
@@ -1027,7 +1022,7 @@ namespace wServer.realm.entities
             Owner.EnterWorld(x);
             Owner.Timers.Add(new WorldTimer(airTime, (world, t) => //timer for airtime
             {
-                world.BroadcastPacketNearby(new ShowEffect()
+                Owner.BroadcastPacketNearby(new ShowEffect()
                 {
                     EffectType = EffectType.AreaBlast,
                     Color = new ARGB(aoeColor),
@@ -1039,11 +1034,16 @@ namespace wServer.realm.entities
                     enemy => PoisonEnemy(world, enemy as Enemy, eff));
                 var impactDmg = 0;
                 var enemies = new List<Enemy>();
-                Owner.AOE(target, eff.Radius, false, enemy =>
+                Owner.AOE(target, eff.Radius, false, enemy => enemies.Add(enemy as Enemy));
                 {
-                    enemies.Add(enemy as Enemy);
-                    impactDmg += (enemy as Enemy).Damage(this, time, impactDamage, false);
-                });
+                    if (enemies.Count() > 0)
+                    {
+                        foreach (var enemy in enemies)
+                        {
+                            impactDmg += (enemy as Enemy).Damage(this, time, eff.ImpactDamage, false);
+                        }
+                    }
+                };
             }));
         }
 
@@ -1433,10 +1433,10 @@ namespace wServer.realm.entities
 
         private void AEClearConditionEffectSelf(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
+           
+
             var condition = eff.CheckExistingEffect;
-
             ConditionEffects conditions = 0;
-
             if (condition.HasValue)
                 conditions |= (ConditionEffects)(1 << (Byte)condition.Value);
 
@@ -1466,10 +1466,12 @@ namespace wServer.realm.entities
                     });
                 }
             });
-        }
-
+        }       
         private void AEConditionEffectSelf(RealmTime time, Item item, Position target, ActivateEffect eff)
-        {
+        {     
+            if (abilityConditionsCheck(eff))
+                return;
+
             var duration = eff.DurationMS;
             if (eff.UseWisMod)
                 duration = (int)(UseWisMod(eff.DurationSec) * 1000);
@@ -1528,32 +1530,32 @@ namespace wServer.realm.entities
 
         private void AEStatBoostSelf(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
+            if (abilityConditionsCheck(eff))
+                return;
+
             var duration = eff.DurationMS;
             var amount = eff.Amount;
-            Random rand = new Random();
-            float index = rand.Next(0, 100);
-            if (eff.ProcChance >= index) {
-                if (eff.UseWisMod)
-                {
-                    amount = (int)UseWisMod(eff.Amount, 0);
-                    duration = (int)(UseWisMod(eff.DurationSec) * 1000);
-                }
-                var idx = StatsManager.GetStatIndex((StatsType)eff.Stats);
-                var s = eff.Amount;
-                Stats.Boost.ActivateBoost[idx].Push(s, false);
-                Stats.ReCalculateValues();
-                Owner.Timers.Add(new WorldTimer(eff.DurationMS, (world, t) =>
-                {
-                    Stats.Boost.ActivateBoost[idx].Pop(s, false);
-                    Stats.ReCalculateValues();
-                }));
-                BroadcastSync(new ShowEffect()
-                {
-                    EffectType = EffectType.Potion,
-                    TargetObjectId = Id,
-                    Color = new ARGB(0xffffffff)
-                }, p => this.DistSqr(p) < RadiusSqr);
+            if (eff.UseWisMod)
+            {
+                amount = (int)UseWisMod(eff.Amount, 0);
+                duration = (int)(UseWisMod(eff.DurationSec) * 1000);
             }
+            var idx = StatsManager.GetStatIndex((StatsType)eff.Stats);
+            var s = eff.Amount;
+            Stats.Boost.ActivateBoost[idx].Push(s, false);
+            Stats.ReCalculateValues();
+            Owner.Timers.Add(new WorldTimer(eff.DurationMS, (world, t) =>
+            {
+                Stats.Boost.ActivateBoost[idx].Pop(s, false);
+                Stats.ReCalculateValues();
+            }));
+            BroadcastSync(new ShowEffect()
+            {
+                EffectType = EffectType.Potion,
+                TargetObjectId = Id,
+                Color = new ARGB(0xffffffff)
+            }, p => this.DistSqr(p) < RadiusSqr);
+
         }
 
         private void AEShoot(RealmTime time, Item item, Position target, ActivateEffect eff)
@@ -1705,6 +1707,23 @@ namespace wServer.realm.entities
 
             tmr = new WorldTimer(250, healTick);
             world.Timers.Add(tmr);
+        }
+            public bool abilityConditionsCheck(ActivateEffect eff)
+        {
+            Random rand = new Random();
+            int index = rand.Next(0, 100);
+
+            var HP = this.HP;
+            if (eff.HPRequired != 0)
+                if (HP < eff.HPRequired)
+                    return true;
+            if (eff.HPMinThreshold != 0)
+                if (HP > eff.HPMinThreshold)
+                    return true;
+            if (eff.ProcChance != 100)
+                if (eff.ProcChance >= index)
+                    return true;
+            return false;
         }
         private float UseWisMod(float value, int offset = 1)
         {

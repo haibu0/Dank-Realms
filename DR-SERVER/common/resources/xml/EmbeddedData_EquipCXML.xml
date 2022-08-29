@@ -114,6 +114,17 @@
       <PassesCover/>
       <ParticleTrail/>
     </Projectile>
+    <Projectile id="1">
+      <ObjectId>Coral Arrow</ObjectId>
+      <Speed>150</Speed>
+      <MinDamage>330</MinDamage>
+      <MaxDamage>390</MaxDamage>
+      <LifetimeMS>1000</LifetimeMS>
+      <Size>150</Size>
+      <MultiHit/>
+      <PassesCover/>
+      <ParticleTrail/>
+    </Projectile>
     <ActivateOnEquip stat="28" amount="7">IncrementStat</ActivateOnEquip>
     <ActivateOnEquip stat="0" amount="40">IncrementStat</ActivateOnEquip>
     <ActivateOnEquip stat="3" amount="40">IncrementStat</ActivateOnEquip>
@@ -351,6 +362,142 @@
     <BagType>3</BagType>
   </Object>
   <!--Agent of Oryx Items-->
+  <Object type="0x458e" id="AoO Skull Minion">
+    <Class>Character</Class>
+    <AnimatedTexture>
+      <File>chars8x8rPets1</File>
+      <Index>68</Index>
+    </AnimatedTexture>
+    <Size>80</Size>
+    <NoMiniMap/>
+  </Object>
+  <Object type="0x5212" id="AoOSkull">
+    <DisplayId>Demon Lord's Skull</DisplayId>
+    <Class>Equipment</Class>
+    <Item/>
+    <Texture>
+      <File>d2LofiObjEmbed</File>
+      <Index>0x275</Index>
+    </Texture>
+    <SlotType>19</SlotType>
+    <Description>The charred remains of an ancient demon ruler once killed by the Mad God. Oryx's wicked spellcasters have cursed it with the ability to resurrect and control demons.</Description>
+    <ExtraTooltipData>
+      <EffectInfo description="Summons an undead demon minion" name="Dark Ritual"/>
+      <EffectInfo description="250 every 0.4 seconds" name="Demon Damage"/>
+      <EffectInfo description="6 seconds" name="Demon Duration"/>
+      <EffectInfo description="Does not heal." name=""/>
+    </ExtraTooltipData>
+    <Usable/>
+    <BagType>6</BagType>
+    <FameBonus>5</FameBonus>
+    <MpCost>110</MpCost>
+    <ActivateOnEquip amount="65" stat="0">IncrementStat</ActivateOnEquip>
+    <Activate2 objectId="AoO Skull Minion">Pet</Activate2>
+    <OryxGear/>
+  </Object>
+  <Object type="0x658e" id="AoOPoison Cluster0">
+    <Class>Character</Class>
+    <Texture>
+      <File>theMachineObjects16x16</File>
+      <Index>0x15</Index>
+    </Texture>
+    <Size>0</Size>
+    <NoMiniMap/>
+  </Object>
+  <Object type="0x648e" id="AoOPoison Cluster1">
+    <Class>Character</Class>
+    <Texture>
+      <File>theMachineObjects16x16</File>
+      <Index>0x15</Index>
+    </Texture>
+    <Size>0</Size>
+    <NoMiniMap/>
+  </Object>
+  <Object type="0x638e" id="AoOPoison Cluster2">
+    <Class>Character</Class>
+    <Texture>
+      <File>theMachineObjects16x16</File>
+      <Index>0x15</Index>
+    </Texture>
+    <Size>0</Size>
+    <NoMiniMap/>
+  </Object>
+  <Object type="0x628e" id="AoOPoison Cluster3">
+    <Class>Character</Class>
+    <Texture>
+      <File>theMachineObjects16x16</File>
+      <Index>0x15</Index>
+    </Texture>
+    <Size>0</Size>
+    <NoMiniMap/>
+  </Object>
+  <Object type="0x618e" id="AoOPoison Cluster4">
+    <Class>Character</Class>
+    <Texture>
+      <File>theMachineObjects16x16</File>
+      <Index>0x15</Index>
+    </Texture>
+    <Size>0</Size>
+    <NoMiniMap/>
+  </Object>
+  <Object type="0x1b19" id="AoOPoison">
+    <DisplayId>Tyrant's Toxin</DisplayId>
+    <Class>Equipment</Class>
+    <Item/>
+    <SlotType>18</SlotType>
+    <Usable/>
+    <Texture>
+      <File>d2LofiObjEmbed</File>
+      <Index>0x284</Index>
+    </Texture>
+    <Description>Oryx demanded his alchemists make a poison capable of killing more rapidly to satisfy his impatience. The resulting brew proved rather explosive.</Description>
+    <Activate2 objectId="Invisible Object" color ="0xA31026" airTime ="1000">ObjectToss</Activate2>
+    <Activate2 objectId="AoOPoison Cluster0" color ="0xA31026" airTime ="1000">ObjectToss</Activate2>
+    <Activate2 objectId="AoOPoison Cluster1" airTime ="0">ObjectToss</Activate2>
+    <Activate2 objectId="AoOPoison Cluster2" airTime ="0">ObjectToss</Activate2>
+    <Activate2 objectId="AoOPoison Cluster3" airTime ="0">ObjectToss</Activate2>
+    <Activate2 objectId="AoOPoison Cluster4" airTime ="0">ObjectToss</Activate2>
+    <Activate radius="3" totalDamage="250" duration="2" impactDamage="500" color ="0xD6471C" color2="0xD6471C">PoisonGrenade</Activate>
+    <ExtraTooltipData>
+      <EffectInfo name="Cluster Bomb" description="Initial poison bomb creates 3 cluster bombs 1.5 tiles from its center."/>
+      <EffectInfo name="Cluster Damage" description="550 over 2.5 sqrs"/>
+      <EffectInfo name="Alchemical Boon" description="33% chance to restore 50 MP."/>
+      <EffectInfo name="Alchemical Inhibition" description="33% chance to decrease speed by 20 for 5 seconds."/>
+    </ExtraTooltipData>
+    <MpCost>150</MpCost>
+    <ActivateOnEquip stat="20" amount="3">IncrementStat</ActivateOnEquip>
+    <ActivateOnEquip stat="21" amount="3">IncrementStat</ActivateOnEquip>
+    <ActivateOnEquip stat="27" amount="-5">IncrementStat</ActivateOnEquip>
+    <FameBonus>5</FameBonus>
+    <BagType>6</BagType>
+    <OryxGear/>
+  </Object>
+  <Object id="AoOSeal" type="0x4e05">
+    <DisplayId>Seal of the Battle God</DisplayId>
+    <Class>Equipment</Class>
+    <Item/>
+    <Texture>
+      <File>d2LofiObjEmbed</File>
+      <Index>0x27d</Index>
+    </Texture>
+    <SlotType>12</SlotType>
+    <ExtraTooltipData>
+      <EffectInfo description="When below 400 HP, Armored on self for 3 seconds." name="Stagger"/>
+      <EffectInfo description="When above 400 HP, increases attack by 150 for 0.4 seconds." name="Counter"/>
+    </ExtraTooltipData>
+    <Description>Given to Oryx's most esteemed gladiators, this twisted artifact is capable of focusing all of the wearer's strength into a single blow, mirroring the Mad God's own fighting style.</Description>
+    <Sound>spell/light_heal</Sound>
+    <Usable/>
+    <BagType>6</BagType>
+    <FameBonus>5</FameBonus>
+    <MpCost>110</MpCost>
+    <Activate center="player" color="0xff0080" duration="5" effect="Damaging" range="5.5" target="player" useWisMod="false" visualEffect="0">GenericActivate</Activate>
+    <Activate2 hpMinThreshold="400" cooldown="3" duration="3" effect="Armored">ConditionEffectSelf</Activate2>
+    <Activate2  hpRequired="400" cooldown="3" amount="150" duration="0.4" stat="20">StatBoostSelf</Activate2>
+    <Cooldown>3.0</Cooldown>
+    <feedPower>700</feedPower>
+    <OryxGear/>
+</Object>
   <Object id="AoOShield" type="0x4f33">
     <DisplayId>Brutal Buckler</DisplayId>
     <Class>Equipment</Class>
@@ -468,7 +615,7 @@
     <FameBonus>5</FameBonus>
     <MpCost>100</MpCost>
     <feedPower>700</feedPower>
-    <Soulbound/>
+    <OryxGear/>
   </Object>
   <Object id="AoOCloak" type="0x52ec">
     <Class>Equipment</Class>
@@ -523,7 +670,7 @@
     </Projectile>
     <ActivateOnEquip amount="10" stat="20">IncrementStat</ActivateOnEquip>
     <ActivateOnEquip amount="-3" stat="28">IncrementStat</ActivateOnEquip>
-    <Activate2 amount="10" duration="2" stat="20" proc="50" ignoreToolTip="false">StatBoostSelf</Activate2>
+    <Activate2 amount="10" duration="2" stat="20" proc="50">StatBoostSelf</Activate2>
     <Activate2 amount="5" duration="2" stat="20">StatBoostSelf</Activate2>
     <Usable/>
     <BagType>6</BagType>
@@ -618,6 +765,7 @@
       <LifetimeMS>900</LifetimeMS>
       <Amplitude>0.8</Amplitude>
       <Frequency>1.3</Frequency>
+      <MultiHit/>
       <FaceDir/>
     </Projectile>
     <OryxGear/>
@@ -3407,7 +3555,7 @@
     <Description>A well-made shortbow.</Description>
     <RateOfFire>1</RateOfFire>
     <Sound>weapon/poor_quality_bow</Sound>
-    <Projectile id="0">
+    <Projectile>
       <ObjectId>Green Arrow</ObjectId>
       <Speed>160</Speed>
       <MinDamage>999</MinDamage>
@@ -3415,7 +3563,7 @@
       <LifetimeMS>700</LifetimeMS>
       <MultiHit/>
     </Projectile>
-    <Projectile id="1">
+    <Projectile>
       <ObjectId>Coral Arrow</ObjectId>
       <Speed>160</Speed>
       <MinDamage>999</MinDamage>
